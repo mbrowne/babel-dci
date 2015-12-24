@@ -1,0 +1,5 @@
+.DS_Store
+.bin
+/babel-cli
+node_modules
+lib

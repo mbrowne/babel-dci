@@ -1,0 +1,16 @@
+{
+  "name": "babel-plugin-transform-dci",
+  "version": "0.0.1",
+  "description": "DCI transform plugin for Babel",
+  "main": "lib/index.js",
+  "devDependencies": {},
+  "author": "Matt Browne",
+  "license": "MIT",
+  "keywords": [
+    "babel-plugin"
+  ],
+  "dependencies": {
+    "babel-plugin-syntax-dci": "^0.0.1",
+    "babel-runtime": "^5.0.0"
+  }
+}

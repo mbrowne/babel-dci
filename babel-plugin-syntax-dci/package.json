@@ -1,0 +1,15 @@
+{
+  "name": "babel-plugin-syntax-dci",
+  "version": "0.0.1",
+  "description": "DCI syntax plugin for Babel",
+  "main": "lib/index.js",
+  "dependencies": {
+    "babylon": "^6.3.25"
+  },
+  "devDependencies": {},
+  "author": "Matt Browne",
+  "license": "MIT",
+  "keywords": [
+    "babel-plugin"
+  ]
+}
