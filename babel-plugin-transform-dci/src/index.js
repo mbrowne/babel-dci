@@ -1,68 +1,178 @@
 //TEMP
 const log = console.log;
 
+//Code to initialize __context variable.
+//This works on the server and in the browser and in both strict and non-strict mode.
+//If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
+//be used as a container to hold the role methods.
+//
+//TODO
+//It would be more efficient to build the AST for this programmatically
+import {parse} from "babel-cli/node_modules/babel-core/node_modules/babylon";
+const code = "(this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this)";
+const initContextVariableAst = parse(code).program.body[0].expression;
+
+/*
+import defineType, {assertNodeType} from 'babel-cli/node_modules/babel-core/node_modules/babel-types/lib/definitions';
+
+defineType('ContextDeclaration', {
+  builder: ["id", "body", "decorators"],
+  visitor: [
+    "id",
+    "body",
+    "decorators"
+  ],
+  fields: {
+    id: {
+      validate: assertNodeType("Identifier")
+    },
+    body: {
+      validate: assertNodeType("ContextBody")
+    }
+	//,
+    //decorators: {
+    //  validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator")))
+    //}
+  }
+});
+*/
+
 export default function({types: t}) {
+	//this makes it possible to create a ContextDeclaration visitor
+	t.TYPES.push('ContextDeclaration');
+	
+	//Allow DCI node types to be traversed
+	t.VISITOR_KEYS.RoleDeclaration = ['id', 'body'];
+	t.VISITOR_KEYS.RoleDeclarationBody = ['body'];
+	t.VISITOR_KEYS.RoleMethod = ['key', 'params', 'body', 'decorators', 'returnType', 'typeParameters'];
+	t.VISITOR_KEYS.ContextDeclaration = ['id', 'body', 'decorators'];
+	t.VISITOR_KEYS.ContextBody = ['body'];
+	t.VISITOR_KEYS.ContextProperty = ['key', 'value', 'decorators'];
+	t.VISITOR_KEYS.ContextMethod = ['key', 'params', 'body', 'decorators', 'returnType', 'typeParameters'];
+	
 	return {
 		inherits: require("babel-plugin-syntax-dci"),
 	
 		visitor: {
 			FunctionDeclaration: {
 				exit(path) {
-					let node = path.node;
-					let childNodes = node.body.body;
-					let roleAssignments = [];
+					let fnDecl = path.node;
 					//2-dimensional map of role methods indexed by role name and then by method name
 					let roleMethods = {};
-					
-					//Create objects for the role methods
+					let rolePaths = [];
 					let nodesToKeep = [];
-					if (Array.isArray(childNodes)) {
-						let roleName;
-						for (let n of childNodes) {
-							if (n.type == "RoleDeclaration") {
-								roleName = n.id.name;
-								roleMethods[roleName] = indexRoleMethodsByName(n);
-								
-								//__context.__$[[roleName]] = {...}
-								roleAssignments.push(t.AssignmentExpression(
-									'=',
-									t.MemberExpression(t.Identifier('__context'), t.Identifier('__$' + roleName)),
-									roleDeclAsObj(n)
-								));
-							}
-							else nodesToKeep.push(n);
+					
+					for (let subPath of path.get('body.body')) {
+						if (subPath.equals('type', 'RoleDeclaration')) {
+							rolePaths.push(subPath);
+							let roleName = subPath.node.id.name;
+							roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
 						}
+						else nodesToKeep.push(subPath.node);
 					}
-					node.body.body = nodesToKeep;
-					node.isDCIContext = (roleAssignments.length > 0);
+
+					fnDecl.isDCIContext = (rolePaths.length > 0);
 			
-					if (!node.isDCIContext) {
+					if (!fnDecl.isDCIContext) {
 						return;
 					}
 					
+					//Create objects for the role methods
+					let roleAssignments = [];
+					for (let rolePath of rolePaths) {
+						let roleName = rolePath.node.id.name;
+						
+						//__context.__$[[roleName]] = {...}
+						roleAssignments.push(t.AssignmentExpression(
+							'=',
+							t.MemberExpression(t.Identifier('__context'), t.Identifier('__$' + roleName)),
+							roleDeclAsObj(rolePath.node)
+						));
+					
+						//transform call expressions within role methods
+						transformCallExpressions(rolePath, roleMethods, roleName);
+					}
+					
+					fnDecl.body.body = nodesToKeep;
+					
+					//Transform the contents of the Context function and Context methods
+					path.get('body').traverse({
+						ExpressionStatement(subPath) {
+							//Allow binding the current Context to a role via `this`, even if the Context
+							//function wasn't called with the `new` operator.
+							//
+							//For example,
+							//	bank = this
+							//becomes:
+							//	bank = __context
+							
+							let n = subPath.node;
+							if (t.isAssignmentExpression(n.expression) && t.isIdentifier(n.expression.left)
+								&& t.isThisExpression(n.expression.right)
+							) {
+								//role methods map is indexed by role name
+								if (n.expression.left.name in roleMethods) {
+									n.expression.right = t.Identifier('__context');
+								}
+							}
+						},
+						
+						CallExpression: createCallExpressionVisitor(roleMethods)
+					});
+					
 					//Initialize __context variable
-					//
-					//var __context = {}
-					//
-					//TODO
-					//if it's a constructor function, __context is set to 'this'; otherwise, create an empty object to
+					//If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
 					//be used as a container to hold the role methods.
 					//
 					//Would it be possible to detect whether we're generating a commonjs or AMD mode here rather than checking for
 					//both global and window at runtime? But what about UMD modules intended to run in either environment?
 					//
-					//var __context = (this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this);					
+					//var __context = (this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this);	
+					let ctxAssignment = t.VariableDeclaration('var', [
+						t.VariableDeclarator(
+							t.Identifier('__context'),
+							initContextVariableAst
+						)
+					]);
+					/*
 					let ctxAssignment = t.VariableDeclaration('var', [
 						t.VariableDeclarator(
 							t.Identifier('__context'),
 							t.ObjectExpression([])
 						)
 					]);
+					*/
+					
+					//TODO
+					//Inner contexts - generate unique context variable for each level?
+					//e.g. var __context2 = ...
 					
 					//add initialization code to top of function declaration
-					node.body.body = [ctxAssignment].concat(roleAssignments, node.body.body);
+					fnDecl.body.body = [ctxAssignment].concat(roleAssignments, fnDecl.body.body);
+				}
+			},
+			
+			ContextDeclaration: {
+				exit(path) {
+					let node = path.node;
+					//log('hasConstructor', hasConstructor(node));
 					
-					transformCallExpressions(path, roleMethods);
+					let fnBodyNodes = [];
+					
+					//TEMP
+					let params;
+					let nodes = node.body.body;
+					for (let n of nodes) {
+					  if (n.kind === 'constructor') {
+					    params = n.params;
+						fnBodyNodes = n.body.body;
+						break;
+					  }
+					}
+					
+					path.replaceWith(
+						t.FunctionDeclaration(node.id, params, t.BlockStatement(fnBodyNodes))
+					);
 				}
 			}
 		}
@@ -79,10 +189,32 @@ export default function({types: t}) {
 	function roleDeclAsObj(roleDecl) {
 		let roleMethods = roleDecl.body.body;
 		let props = new Array(roleMethods.length);
+		let methodBody;
 		roleMethods.forEach(function(method, i) {
+			//TODO is it actually necessary to copy the array here?
+			//Was just trying to avoid modifying the original role declaration,
+			//but that's being replaced anyhow...
+			//
+			//copy the method body array
+			methodBody = t.BlockStatement(method.body.body.slice());
+			
+			
+			
+			//MAY NEED TO USE
+			//PATH API TO INSERT THIS WITHOUT AN EXTRA NEWLINE IN THE GENERATED CODE
+			
+			
+			//Allow `self` to be used as an alternative to `this`
+			//(and without the scoping issues of `this`).
+			//
+			//var self = this;
+			methodBody.body.unshift(t.VariableDeclaration('var', [
+				t.VariableDeclarator(t.Identifier('self'), t.ThisExpression())
+			]));
+			
 			props[i] = t.ObjectProperty(
 				method.key,
-				t.FunctionExpression(null, method.params, method.body, method.generator, method.async)
+				t.FunctionExpression(null, method.params, methodBody, method.generator, method.async)
 			);
 			//props[i] = t.ObjectMethod(method.kind, method.key, method.params, method.body, method.computed);
 		});
@@ -92,41 +224,69 @@ export default function({types: t}) {
 	//Transform call statements
 	//from [[roleName]].[[methodName]](...)
 	//to __context.roles.[[roleName]].[[methodName]].call([[rolePlayer]], ...)
-	function transformCallExpressions(path, roleMethods) {
-		path.traverse(
-			{CallExpression(subPath) {
-				let callee = subPath.node.callee;
+	function transformCallExpressions(path, roleMethods, currentRoleName) {
+		path.traverse({
+			CallExpression: createCallExpressionVisitor(roleMethods, currentRoleName)
+		});
+	}
 	
+	function createCallExpressionVisitor(roleMethods, currentRoleName) {
+		return function(subPath) {
+			let callee = subPath.node.callee;				
+			if (callee.type === 'MemberExpression') {
+				let roleId;
+			
+				//TODO for `this`, only top-level statements should be transformed
+				//(so `this` scoping works the same as it would normally)
+				if (t.isThisExpression(callee.object) || (callee.object.type === 'Identifier' && callee.object.name === 'self')
+					&& (callee.property.name in roleMethods[currentRoleName])
+				) {
+					roleId = t.Identifier(currentRoleName);
+				}
+				else if (callee.object.type === 'Identifier' && callee.object.name in roleMethods
+					&& callee.property.name in roleMethods[callee.object.name]
+				) {
+					roleId = callee.object;
+				}
+				
+				if (!roleId) {
+					return;
+				}
+				
+				let methodId = callee.property;
+
 				//TODO
-				//instance methods
-	
-				if (callee.type === 'MemberExpression' && callee.object.type === 'Identifier'
-					&& callee.object.name in this.roleMethods
-					&& callee.property.name in this.roleMethods[callee.object.name])
-				{
-					let roleId = callee.object,
-						methodId = callee.property;						
-		
-					//__context.roles.[[roleName]].[[methodName]].call([[rolePlayer]], ...);
-					subPath.replaceWith(t.CallExpression(
-						//build expression resolving to call() method of role method
+				//Why is this causing an extra newline to be added?
+				//This only happens if the variable names start with underscores (__context and __$...)
+
+				//__context.roles.[[roleName]].[[methodName]].call([[rolePlayer]], ...);
+				subPath.replaceWith(t.CallExpression(
+					//build expression resolving to call() method of role method
+					t.MemberExpression(
 						t.MemberExpression(
 							t.MemberExpression(
-								t.MemberExpression(
-									t.Identifier('__context'),
-									t.Identifier('__$' + roleId.name)
-								),
-								methodId
+								t.Identifier('__context'),
+								t.Identifier('__$' + roleId.name)
 							),
-							t.Identifier('call')
+							methodId
 						),
-			
-						//arguments
-						[roleId].concat(subPath.node.arguments)
-					));
-				}
-			}},
-			{roleMethods}
-		);
+						t.Identifier('call')
+					),
+	
+					//arguments
+					[roleId].concat(subPath.node.arguments)
+				));
+			}
+		};
+	}
+	
+	function hasConstructor(contextDecl) {
+		let nodes = contextDecl.body.body;
+		for (let n of nodes) {
+		  if (n.kind === 'constructor') {
+			return true;
+		  }
+		}
+		return false;
 	}
 }

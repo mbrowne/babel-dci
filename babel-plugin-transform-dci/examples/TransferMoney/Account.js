@@ -13,7 +13,7 @@ export default context Account
 		ledgers.addEntry('depositing', amount);
 	}
 	
-	decreaseBalance = function(amount: number) {
+	decreaseBalance(amount: number) {
 		ledgers.addEntry('withdrawing', 0 - amount);		
 	}
 	
@@ -22,7 +22,7 @@ export default context Account
 	}
 	
 	role ledgers {
-		addEntry(message, amount) {
+		addEntry(message: string, amount: number) {
 			ledgers.push(new LedgerEntry(message, amount));
 		}
 		
@@ -39,7 +39,15 @@ export default context Account
 export class LedgerEntry
 {
 	constructor(message: string, amount: number) {
-		this.message = message;
-		this.amount = amount;
+		this._message = message;
+		this._amount = amount;
+	}
+	
+	get message(): string {
+		return this._message;
+	}
+	
+	get amount(): number {
+		return this._amount;
 	}
 }
