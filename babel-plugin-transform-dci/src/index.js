@@ -12,31 +12,6 @@ import {parse} from "babel-cli/node_modules/babel-core/node_modules/babylon";
 const code = "(this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this)";
 const initContextVariableAst = parse(code).program.body[0].expression;
 
-/*
-import defineType, {assertNodeType} from 'babel-cli/node_modules/babel-core/node_modules/babel-types/lib/definitions';
-
-defineType('ContextDeclaration', {
-  builder: ["id", "body", "decorators"],
-  visitor: [
-    "id",
-    "body",
-    "decorators"
-  ],
-  fields: {
-    id: {
-      validate: assertNodeType("Identifier")
-    },
-    body: {
-      validate: assertNodeType("ContextBody")
-    }
-	//,
-    //decorators: {
-    //  validate: chain(assertValueType("array"), assertEach(assertNodeType("Decorator")))
-    //}
-  }
-});
-*/
-
 export default function({types: t}) {
 	//this makes it possible to create a ContextDeclaration visitor
 	t.TYPES.push('ContextDeclaration');
@@ -98,6 +73,12 @@ export default function({types: t}) {
 					//Transform the contents of the Context function and Context methods
 					path.get('body').traverse({
 						ExpressionStatement(subPath) {
+							//TODO
+							//This transformation should not happen inside inner classes or constructor
+							//functions where `this` is not equal to the current context.
+							//Maybe we don't even need a visitor for this and can just loop over
+							//top-level statements...
+							
 							//Allow binding the current Context to a role via `this`, even if the Context
 							//function wasn't called with the `new` operator.
 							//
