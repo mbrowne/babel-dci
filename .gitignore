@@ -3,3 +3,4 @@
 /babel-cli
 node_modules
 lib
+npm-debug.log

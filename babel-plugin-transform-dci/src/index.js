@@ -93,7 +93,15 @@ export default function({types: t}) {
 							) {
 								//role methods map is indexed by role name
 								if (n.expression.left.name in roleMethods) {
-									n.expression.right = t.Identifier('__context');
+									//TODO we should be checking whether role variables are defined for
+									//ALL roles, and adding 'var' statements when appropriate.
+									//For now, this is a quick solution to ensure that the variable is defined, so that we're
+									//strict-mode compatible.
+									subPath.replaceWith(t.VariableDeclaration('var', [
+										t.VariableDeclarator(n.expression.left, t.Identifier('__context'))
+									]))
+								
+									//n.expression.right = t.Identifier('__context');
 								}
 							}
 						},
@@ -219,7 +227,7 @@ export default function({types: t}) {
 			
 				//TODO for `this`, only top-level statements should be transformed
 				//(so `this` scoping works the same as it would normally)
-				if (t.isThisExpression(callee.object) || (callee.object.type === 'Identifier' && callee.object.name === 'self')
+				if ( (t.isThisExpression(callee.object) || (callee.object.type === 'Identifier' && callee.object.name === 'self'))
 					&& (callee.property.name in roleMethods[currentRoleName])
 				) {
 					roleId = t.Identifier(currentRoleName);
@@ -271,3 +279,6 @@ export default function({types: t}) {
 		return false;
 	}
 }
+
+//TEMP solution for babel-standalone
+module.exports = exports.default;

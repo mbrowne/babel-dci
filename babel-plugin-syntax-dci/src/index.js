@@ -9,3 +9,6 @@ export default function () {
     }
   };
 }
+
+//TEMP solution for babel-standalone
+module.exports = exports.default;
