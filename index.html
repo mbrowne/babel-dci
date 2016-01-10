@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>babel-dci demo</title>
+
+	<link rel="stylesheet" href="pure-min.css">
+	<style>
+	html, body {height:100%;}
+	.content {height:70%;}
+
+	h2 {font-size:1.1em;}
+
+	/*
+	 * -- MENU STYLES --
+	 */
+
+	.home-menu {
+		padding: 0.5em;
+		text-align: center;
+		box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+		border-bottom: 1px solid #A5C2CC;
+		background: #DEEDF3;
+	}
+	.home-menu .pure-menu-heading {
+		text-transform: none;
+		font-weight: 400;
+		font-size: 120%;
+		color:#477F92;
+	}
+
+	/*
+	 * -- TABLET (AND UP) MEDIA QUERIES --
+	 * On tablets and other medium-sized devices, we want to customize some
+	 * of the mobile styles.
+	 */
+	@media (min-width: 48em) {
+
+		/* We increase the body font size */
+		body {
+			font-size: 16px;
+		}
+		/* We want to give the content area some more padding */
+		.content {
+			padding: 1em;
+		}
+	}
+
+	/*
+	 * Padding for grids
+	 */
+	.pure-g > div {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 0 1em;
+	}
+
+	/*
+	 * Code editors
+	 */
+
+	#btn-run {background-color:green; color:white; margin-left:.5em;}
+ 
+	.code-editors-wrapper, .code-editor {height:100%;}
+ 
+	.code-editor {margin-top:1em;}
+	.code-editor textarea {
+		width:100%; height: 100%;
+		font-family:monospace;
+		font-size: .8em;
+	}
+
+	</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal">
+        <a class="pure-menu-heading">babel-dci demo</a>
+    </div>
+</div>
+<div class="content">
+	<div class="code-editors-wrapper pure-g">
+		<div class="pure-u-1">
+			<button id="btn-compile" class="pure-button pure-button-primary" type="button">Compile</button>
+			<button id="btn-run" class="pure-button" type="button">Run</button>
+		</div>
+		<div class="code-editor pure-u-1-2">
+			<h2>Source</h2>			
+			<!--
+			//in a real script, this would go at the top of the code below
+			/* @flow */
+			-->
+			<textarea class="source-code" id="input-code">
+function TransferMoney(source: Account, destination: Account, amount: number) {
+    bank = this;
+    bank.transfer();
+
+    role bank {
+        transfer() {
+            source.withdraw();
+            destination.deposit();
+        }
+    }
+
+    role source {
+        withdraw() {
+            if (self.balance < amount) {
+                throw new Error('Insufficient funds');
+            }
+            self.decreaseBalance(amount);
+        }
+    }
+    
+    role destination {
+        deposit() {
+            self.increaseBalance(amount);
+        }
+    }
+    
+    role amount {}
+}
+
+class Account
+{
+    _balance: number = 0;
+    
+    increaseBalance(amount: number) {
+        this._balance += amount;
+    }
+    
+    decreaseBalance(amount: number) {
+        this._balance -= amount;
+    }
+    
+    get balance(): number {
+        return this._balance;
+    }
+}
+
+let source = new Account();
+source.increaseBalance(30);
+let dest = new Account();
+dest.increaseBalance(30);
+TransferMoney(source, dest, 10);
+
+console.log('source balance', source.balance);
+console.log('destination balance', dest.balance);
+			</textarea>
+		</div>
+		<div class="code-editor pure-u-1-2">
+			<h2>Output</h2>
+			<textarea class="source-code" id="output-code" readonly>Loading...</textarea>
+		</div>
+	</div>
+</div>
+
+<script src="babel.min.js"></script>
+<script src="babel-polyfill.min.js"></script>
+<script>
+	
+	var $ = function(sel){return document.querySelector(sel);};
+    var inputEl = $('#input-code');
+    var outputEl = $('#output-code');
+	
+    function transform() {
+      try {
+        var output = Babel.transform(inputEl.value, {
+          presets: ['es2015'],
+          plugins: [
+          	'transform-flow-strip-types',
+          	'transform-dci',
+          	'transform-class-properties'
+          ]
+        }).code;
+        
+        outputEl.innerHTML = output;
+      } catch (ex) {
+        outputEl.innerHTML = 'ERROR: ' + ex.message;
+      }
+      return output;
+    }
+
+    transform();
+    
+    $('#btn-compile').addEventListener('click', transform);
+    $('#btn-run').addEventListener('click', function() {
+    	eval(transform());
+    });
+
+</script>
+</body>
+</html>
