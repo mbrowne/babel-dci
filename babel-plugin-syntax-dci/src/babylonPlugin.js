@@ -3,8 +3,8 @@
 //TEMP
 const log = console.log;
 
-import { types as tt } from "babel-cli/node_modules/babel-core/node_modules/babylon/lib/tokenizer/types";
-import Parser from "babel-cli/node_modules/babel-core/node_modules/babylon/lib/parser";
+import { types as tt } from "babylon/lib/tokenizer/types";
+import Parser from "babylon/lib/parser";
 
 export default function (instance) {
 	instance.extend("parseExpressionStatement", function (inner) {

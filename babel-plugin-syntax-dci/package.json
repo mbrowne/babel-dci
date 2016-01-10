@@ -4,7 +4,7 @@
   "description": "DCI syntax plugin for Babel",
   "main": "lib/index.js",
   "dependencies": {
-    "babylon": "^6.3.25"
+    "babylon": "6.3.26"
   },
   "devDependencies": {},
   "author": "Matt Browne",

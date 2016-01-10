@@ -11,6 +11,7 @@
   ],
   "dependencies": {
     "babel-plugin-syntax-dci": "^0.0.1",
-    "babel-runtime": "^5.0.0"
+    "babel-runtime": "^5.0.0",
+    "babylon": "^6.3.25"
   }
 }

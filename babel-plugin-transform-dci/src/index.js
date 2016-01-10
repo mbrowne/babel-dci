@@ -8,7 +8,7 @@ const log = console.log;
 //
 //TODO
 //It would be more efficient to build the AST for this programmatically
-import {parse} from "babel-cli/node_modules/babel-core/node_modules/babylon";
+import {parse} from "babylon";
 const code = "(this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this)";
 const initContextVariableAst = parse(code).program.body[0].expression;
 
@@ -93,21 +93,25 @@ export default function({types: t}) {
 							) {
 								//role methods map is indexed by role name
 								if (n.expression.left.name in roleMethods) {
-									//TODO we should be checking whether role variables are defined for
-									//ALL roles, and adding 'var' statements when appropriate.
-									//For now, this is a quick solution to ensure that the variable is defined, so that we're
-									//strict-mode compatible.
-									subPath.replaceWith(t.VariableDeclaration('var', [
-										t.VariableDeclarator(n.expression.left, t.Identifier('__context'))
-									]))
-								
-									//n.expression.right = t.Identifier('__context');
+									n.expression.right = t.Identifier('__context');
 								}
 							}
 						},
 						
 						CallExpression: createCallExpressionVisitor(roleMethods)
 					});
+					
+					//declare any role variables that haven't yet been declared
+					let roleVarDeclarators = [];
+					for (let roleName in roleMethods) {
+						//has the role variable been declared?
+						if (!path.scope.hasOwnBinding(roleName)) {
+							roleVarDeclarators.push(t.VariableDeclarator(t.Identifier(roleName)));
+						}
+					}
+					if (roleVarDeclarators.length) {
+						roleAssignments.unshift(t.VariableDeclaration('var', roleVarDeclarators));
+					}
 					
 					//Initialize __context variable
 					//If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
