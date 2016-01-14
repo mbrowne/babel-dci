@@ -26285,13 +26285,14 @@ return /******/ (function(modules) { // webpackBootstrap
 		};
 
 		function indexRoleMethodsByName(roleDecl) {
-			var roleMethods = roleDecl.body.body;
+			var body = roleDecl.body.body;
+			var roleMethods = {};
 			var _iteratorNormalCompletion4 = true;
 			var _didIteratorError4 = false;
 			var _iteratorError4 = undefined;
 
 			try {
-				for (var _iterator4 = roleMethods[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+				for (var _iterator4 = body[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
 					var m = _step4.value;
 
 					roleMethods[m.key.name] = m;
