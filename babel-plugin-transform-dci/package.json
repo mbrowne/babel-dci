@@ -9,6 +9,9 @@
   "keywords": [
     "babel-plugin"
   ],
+  "scripts": {
+  	"build": "babel src -d lib"
+  },
   "dependencies": {
     "babel-plugin-syntax-dci": "^0.0.1",
     "babel-runtime": "^5.0.0",

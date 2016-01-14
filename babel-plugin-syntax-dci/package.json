@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "DCI syntax plugin for Babel",
   "main": "lib/index.js",
+  "scripts": {
+  	"build": "babel src -d lib"
+  },
   "dependencies": {
     "babylon": "6.3.26"
   },

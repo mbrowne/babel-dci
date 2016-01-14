@@ -7,6 +7,10 @@ const log = console.log;
 //be used as a container to hold the role methods.
 //
 //TODO
+//Could we just do this instead?
+//var __context = (this instanceof MyContext ? this: {});
+//
+//TODO
 //It would be more efficient to build the AST for this programmatically
 import {parse} from "babylon";
 const code = "(this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this)";

@@ -17,7 +17,7 @@ export default function TransferMoney(source: Account, destination: Account, amo
 	role source {
 		withdraw() {
 			if (self.balance < amount) {
-				throw new Error('Insufficient funds');
+				throw Error('Insufficient funds');
 			}
 			self.decreaseBalance(amount);
 		}
