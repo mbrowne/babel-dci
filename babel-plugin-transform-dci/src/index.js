@@ -36,6 +36,7 @@ export default function({types: t}) {
 			FunctionDeclaration: {
 				exit(path) {
 					let fnDecl = path.node;
+					
 					//2-dimensional map of role methods indexed by role name and then by method name
 					let roleMethods = {};
 					let rolePaths = [];
@@ -176,8 +177,9 @@ export default function({types: t}) {
 	}
 	
 	function indexRoleMethodsByName(roleDecl) {
-		let roleMethods = roleDecl.body.body;
-		for (let m of roleMethods) {
+		let body = roleDecl.body.body;
+		let roleMethods = {};
+		for (let m of body) {
 			roleMethods[m.key.name] = m;
 		}
 		return roleMethods;
