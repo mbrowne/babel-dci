@@ -58,15 +58,22 @@ export default function({types: t}) {
 					}
 					
 					//Create objects for the role methods
-					let roleAssignments = [];
+					/*
+					Object.defineProperties(__context, {value: {
+						__$[[roleName]]: {...},
+						...
+					}});
+					*/
+					let rolesAsProps = [];
+					let valueId = t.Identifier('value');
 					for (let rolePath of rolePaths) {
 						let roleName = rolePath.node.id.name;
 						
-						//__context.__$[[roleName]] = {...}
-						roleAssignments.push(t.AssignmentExpression(
-							'=',
-							t.MemberExpression(t.Identifier('__context'), t.Identifier('__$' + roleName)),
-							roleDeclAsObj(rolePath.node)
+						rolesAsProps.push(t.ObjectProperty(
+							t.Identifier('__$' + roleName),
+							t.ObjectExpression([
+								t.ObjectProperty(valueId, roleDeclAsObj(rolePath.node))
+							])
 						));
 					
 						//transform call expressions within role methods
@@ -105,6 +112,16 @@ export default function({types: t}) {
 						
 						CallExpression: createCallExpressionVisitor(roleMethods)
 					});
+					
+					let roleAssignments = [
+						t.CallExpression(
+							t.MemberExpression(t.Identifier('Object'), t.Identifier('defineProperties')),
+							[
+								t.Identifier('__context'),
+								t.ObjectExpression(rolesAsProps)
+							]
+						)
+					];
 					
 					//declare any role variables that haven't yet been declared
 					let roleVarDeclarators = [];
