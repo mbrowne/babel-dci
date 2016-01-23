@@ -80,7 +80,16 @@ export default function({types: t}) {
 						transformCallExpressions(rolePath, roleMethods, roleName);
 					}
 					
-					fnDecl.body.body = nodesToKeep;
+					//Also initialize the roleBindings map
+					rolesAsProps.push(t.ObjectProperty(
+						t.Identifier('__roleBindings'),
+						t.ObjectExpression([
+							t.ObjectProperty(valueId, t.ObjectExpression([]))
+						])
+					));
+					
+					let automaticBindings = automaticallyBindConstructorParams(fnDecl.params, roleMethods);
+					fnDecl.body.body = automaticBindings.concat(nodesToKeep);
 					
 					//Transform the contents of the Context function and Context methods
 					path.get('body').traverse({
@@ -110,7 +119,8 @@ export default function({types: t}) {
 							}
 						},
 						
-						CallExpression: createCallExpressionVisitor(roleMethods)
+						CallExpression: createCallExpressionVisitor(roleMethods),
+						AssignmentExpression: createAssignmentExpressionVisitor(roleMethods)
 					});
 					
 					let roleAssignments = [
@@ -196,8 +206,8 @@ export default function({types: t}) {
 	function indexRoleMethodsByName(roleDecl) {
 		let body = roleDecl.body.body;
 		let roleMethods = {};
-		for (let m of body) {
-			roleMethods[m.key.name] = m;
+		for (let method of body) {
+			roleMethods[method.key.name] = method;
 		}
 		return roleMethods;
 	}
@@ -294,6 +304,44 @@ export default function({types: t}) {
 				));
 			}
 		};
+	}
+	
+	//Find role-binding statements (AKA role assignments) and keep track of bindings
+	function createAssignmentExpressionVisitor(roleMethods) {
+		let roleBindingsExpr = t.MemberExpression(t.Identifier('__context'), t.Identifier('__roleBindings'));
+		return function(path) {
+			let node = path.node;
+			if (t.isIdentifier(node.left) && (node.left.name in roleMethods)) {
+				let roleId = node.left;
+				
+				//__context.__roleBindings.[[roleName]] = [[player]]
+				path.insertAfter(t.AssignmentExpression(
+					'=',
+					t.MemberExpression(roleBindingsExpr, roleId),
+					node.right
+				));
+			}
+		};
+	}
+	
+	//Automatically bind any constructor (or Context function) parameters that have the
+	//same names as roles.
+	function automaticallyBindConstructorParams(fnParams, roleMethods) {
+		let assignments = [];
+		let roleBindingsExpr = t.MemberExpression(t.Identifier('__context'), t.Identifier('__roleBindings'));
+		for (let param of fnParams) {
+			if (t.isIdentifier(param)) {
+				if (param.name in roleMethods) {
+					let roleId = param;
+					assignments.push(t.AssignmentExpression(
+						'=',
+						t.MemberExpression(roleBindingsExpr, roleId),
+						roleId
+					));
+				}
+			}
+		}
+		return assignments;
 	}
 	
 	function hasConstructor(contextDecl) {
