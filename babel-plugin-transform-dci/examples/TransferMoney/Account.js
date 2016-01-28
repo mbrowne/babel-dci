@@ -27,7 +27,9 @@ export default context Account
 		}
 		
 		getBalance(): number {
-			return ledgers.reduce(sum, amount => sum + amount);
+			let sum = 0;
+			ledgers.forEach(ledger => sum += ledger.amount);
+			return sum;
 		}
 	}
 }
