@@ -107,7 +107,7 @@ export default function (instance) {
 				this.next();
 				return this.finishNode(node, "NullLiteralTypeAnnotation");
 			}
-			else inner.call(this);
+			else return inner.call(this);
 		};
 	});
 }
