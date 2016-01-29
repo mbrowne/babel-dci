@@ -22,11 +22,17 @@ export default function TransferMoney(source: Account, destination: Account, amo
 			self.decreaseBalance(amount);
 		}
 	}
+	contract {
+		decreaseBalance(amt: number): void;
+	}
 	
 	role destination {
 		deposit() {
 			self.increaseBalance(amount);
 		}
+	}
+	contract {
+		increaseBalance(amt: number): void;
 	}
 	
 	role amount {}

@@ -97,18 +97,21 @@ export default function (instance) {
 		};
 	});
 	
-	//allow 'void' return types in role-player contracts
-	instance.extend('flowParsePrimaryType', function(inner) {
-		return function(node) {
-			if (this.state.type === tt._void) {
-				//convert to null return type
-				let node = this.startNode();
-				node.value = this.match(tt._void);
-				this.next();
-				return this.finishNode(node, "NullLiteralTypeAnnotation");
-			}
-			else return inner.call(this);
-		};
+	//COPIED FROM babylon/src/plugins/flow.js
+	//We need this to parse role-player contracts since the flow parser plugin hasn't
+	//been fully initialized yet when the DCI Babylon plugin runs
+	//(the flow plugin is always added last.)
+	//
+	// don't consider `void` to be a keyword as then it'll use the void token type
+	// and set startExpr
+	instance.extend("isKeyword", function (inner) {
+	  return function (name) {
+		if (this.state.inType && name === "void") {
+		  return false;
+		} else {
+		  return inner.call(this, name);
+		}
+	  };
 	});
 }
 
@@ -186,10 +189,8 @@ pp.dci_parseRoleBody = function (node) {
 	if (this.match(tt.name) && this.state.value === 'contract') {
 		let id = this.parseIdentifier();
 		if (id.name === 'contract') {
-			//node.contract = this.dci_parseRolePlayerContract();
-			
 			//use flow syntax plugin to parse the contract
-			let contract = this.flowParseObjectType();
+			let contract = this.flowParseType();
 			contract.type = 'RolePlayerContract';
 			node.contract = contract;
 			
