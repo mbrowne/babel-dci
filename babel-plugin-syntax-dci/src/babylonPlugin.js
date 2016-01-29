@@ -80,7 +80,7 @@ export default function (instance) {
 			  this.checkExport(node);
 			  return this.finishNode(node, "ExportDefaultDeclaration");
 			  
-			//DCI (modified)
+			//DCI modified
 			} else if (this.state.type.keyword || this.state.value === 'context' || this.shouldParseExportDeclaration()) {
 			//} else if (this.state.type.keyword || this.shouldParseExportDeclaration()) {
 			
@@ -94,6 +94,20 @@ export default function (instance) {
 			}
 			this.checkExport(node);
 			return this.finishNode(node, "ExportNamedDeclaration");
+		};
+	});
+	
+	//allow 'void' return types in role-player contracts
+	instance.extend('flowParsePrimaryType', function(inner) {
+		return function(node) {
+			if (this.state.type === tt._void) {
+				//convert to null return type
+				let node = this.startNode();
+				node.value = this.match(tt._void);
+				this.next();
+				return this.finishNode(node, "NullLiteralTypeAnnotation");
+			}
+			else inner.call(this);
 		};
 	});
 }
@@ -165,6 +179,28 @@ pp.dci_parseRoleBody = function (node) {
 			  this.raise(start, "setter should have exactly one param");
 			}
 		  }
+		}
+	}
+	
+	//Role-Player contracts
+	if (this.match(tt.name)) {
+		let id = this.parseIdentifier();
+		if (id.name === 'contract') {
+			//node.contract = this.dci_parseRolePlayerContract();
+		
+			//use flow syntax plugin to parse the contract
+			let contract = this.flowParseObjectType();
+			contract.type = 'RolePlayerContract';
+			node.contract = contract;
+			
+			/*
+			let contract = this.startNode();
+			this.expect(tt.braceL);
+			while (!this.eat(tt.braceR)) {
+				
+			}
+			this.finishNode(contract, "RolePlayerContract");
+			*/
 		}
 	}
 
