@@ -183,24 +183,22 @@ pp.dci_parseRoleBody = function (node) {
 	}
 	
 	//Role-Player contracts
-	if (this.match(tt.name)) {
+	if (this.match(tt.name) && this.state.value === 'contract') {
 		let id = this.parseIdentifier();
 		if (id.name === 'contract') {
 			//node.contract = this.dci_parseRolePlayerContract();
-		
+			
 			//use flow syntax plugin to parse the contract
 			let contract = this.flowParseObjectType();
 			contract.type = 'RolePlayerContract';
 			node.contract = contract;
 			
-			/*
-			let contract = this.startNode();
-			this.expect(tt.braceL);
-			while (!this.eat(tt.braceR)) {
-				
-			}
-			this.finishNode(contract, "RolePlayerContract");
-			*/
+			//let contract = this.startNode();
+			//this.expect(tt.braceL);
+			//while (!this.eat(tt.braceR)) {
+			//	
+			//}
+			//this.finishNode(contract, "RolePlayerContract");
 		}
 	}
 
