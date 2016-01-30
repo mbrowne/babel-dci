@@ -3,18 +3,18 @@
 /**
  * TransferMoney use case
  */
-export default function TransferMoney(source: Account, destination: Account, amount: number) {
+export default function TransferMoney(sourceAccount: Account, destinationAccount: Account, amount: number) {
 	bank = this;
 	bank.transfer();
 
 	role bank {
 		transfer() {
-			source.withdraw();
-			destination.deposit();
+			sourceAccount.withdraw();
+			destinationAccount.deposit();
 		}
 	}
 
-	role source {
+	role sourceAccount {
 		withdraw() {
 			if (self.balance < amount) {
 				throw Error('Insufficient funds');
@@ -26,7 +26,7 @@ export default function TransferMoney(source: Account, destination: Account, amo
 		decreaseBalance(amt: number): void;
 	}
 	
-	role destination {
+	role destinationAccount {
 		deposit() {
 			self.increaseBalance(amount);
 		}

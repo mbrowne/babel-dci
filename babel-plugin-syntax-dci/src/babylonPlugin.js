@@ -190,7 +190,7 @@ pp.dci_parseRoleBody = function (node) {
 		let id = this.parseIdentifier();
 		if (id.name === 'contract') {
 			//use flow syntax plugin to parse the contract
-			let contract = this.flowParseType();
+			let contract = this.flowParseObjectType();
 			contract.type = 'RolePlayerContract';
 			node.contract = contract;
 			

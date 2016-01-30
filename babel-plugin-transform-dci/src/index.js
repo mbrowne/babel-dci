@@ -42,231 +42,253 @@ export default function({types: t}) {
 		inherits: require("babel-plugin-syntax-dci"),
 	
 		visitor: {
-			FunctionDeclaration: {
-				exit(path, state) {
-					//state.file.addHelper('dci_getRoleMember');
+			FunctionDeclaration(path, state) {
+				//state.file.addHelper('dci_getRoleMember');
 				
-					let fnDecl = path.node;
-					
-					//2-dimensional map of role methods indexed by role name and then by method name
-					let roleMethods = {};
-					let rolePaths = [];
-					let nodesToKeep = [];
-					
-					for (let subPath of path.get('body.body')) {
-						if (subPath.equals('type', 'RoleDeclaration')) {
-							rolePaths.push(subPath);
-							let roleName = subPath.node.id.name;
-							roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
-						}
-						else nodesToKeep.push(subPath.node);
+				let fnDecl = path.node;
+				
+				//2-dimensional map of role methods indexed by role name and then by method name
+				let roleMethods = {};
+				let rolePaths = [];
+				let nodesToKeep = [];
+				
+				for (let subPath of path.get('body.body')) {
+					if (subPath.equals('type', 'RoleDeclaration')) {
+						rolePaths.push(subPath);
+						let roleName = subPath.node.id.name;
+						roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
 					}
-
-					fnDecl.isDCIContext = (rolePaths.length > 0);
-			
-					if (!fnDecl.isDCIContext) {
-						return;
-					}
-					
-					let roleDescriptors = transformRolesToDescriptors(roleMethods, rolePaths);
-					
-					//Also initialize the roleBindings map
-					roleDescriptors.push(t.ObjectProperty(
-						t.Identifier('__roleBindings'),
-						t.ObjectExpression([
-							t.ObjectProperty(t.Identifier('value'), t.ObjectExpression([]))
-						])
-					));
-					
-					let automaticBindings = automaticallyBindConstructorParams(fnDecl.params, roleMethods);
-					fnDecl.body.body = automaticBindings.concat(nodesToKeep);
-					
-					transformContextMethods(path.get('body'), roleMethods)
-					
-					let roleAssignments = [
-						t.CallExpression(
-							t.MemberExpression(t.Identifier('Object'), t.Identifier('defineProperties')),
-							[
-								t.Identifier('__context'),
-								t.ObjectExpression(roleDescriptors)
-							]
-						)
-					];
-					
-					//declare any role variables that haven't yet been declared
-					let roleVarDeclarators = initRolePlayerVars(path, roleMethods);
-					if (roleVarDeclarators.length) {
-						roleAssignments.unshift(t.VariableDeclaration('var', roleVarDeclarators));
-					}
-					
-					//Initialize __context variable
-					//If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
-					//be used as a container to hold the role methods.
-					//
-					//Would it be possible to detect whether we're generating a commonjs or AMD mode here rather than checking for
-					//both global and window at runtime? But what about UMD modules intended to run in either environment?
-					//
-					//var __context = (this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this);	
-					let ctxAssignment = t.VariableDeclaration('var', [
-						t.VariableDeclarator(
-							t.Identifier('__context'),
-							initContextVariableAst
-						)
-					]);
-					
-					//TODO
-					//Inner contexts - generate unique context variable for each level?
-					//e.g. var __context2 = ...
-					
-					//add initialization code to top of function declaration
-					fnDecl.body.body = [ctxAssignment].concat(roleAssignments, fnDecl.body.body);
+					else nodesToKeep.push(subPath.node);
 				}
+
+				fnDecl.isDCIContext = (rolePaths.length > 0);
+		
+				if (!fnDecl.isDCIContext) {
+					return;
+				}
+				
+				let roleDescriptors = transformRolesToDescriptors(roleMethods, rolePaths);
+				
+				//Also initialize the roleBindings map					
+				let roleBindingsMapInit = initRoleBindingsMap(rolePaths);
+				
+				roleDescriptors.push(t.ObjectProperty(
+					t.Identifier('__roleBindings'),
+					t.ObjectExpression([
+						t.ObjectProperty(t.Identifier('value'), t.Identifier('__roleBindings'))
+					])
+				));
+				
+				//Old version
+				/*
+				roleDescriptors.push(t.ObjectProperty(
+					t.Identifier('__roleBindings'),
+					t.ObjectExpression([
+						t.ObjectProperty(t.Identifier('value'), t.ObjectExpression([]))
+					])
+				));
+				*/
+				
+				let automaticBindings = automaticallyBindConstructorParams(fnDecl.params, roleMethods);
+				fnDecl.body.body = automaticBindings.concat(nodesToKeep);
+				
+				transformContextMethods(path.get('body'), roleMethods)
+				
+				let roleAssignments = [
+					t.CallExpression(
+						t.MemberExpression(t.Identifier('Object'), t.Identifier('defineProperties')),
+						[
+							t.Identifier('__context'),
+							t.ObjectExpression(roleDescriptors)
+						]
+					)
+				];
+				
+				//declare any role variables that haven't yet been declared
+				let roleVarDeclarators = initRolePlayerVars(path, roleMethods);
+				if (roleVarDeclarators.length) {
+					roleAssignments.unshift(t.VariableDeclaration('var', roleVarDeclarators));
+				}
+				
+				//Initialize __context variable
+				//If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
+				//be used as a container to hold the role methods.
+				//
+				//Would it be possible to detect whether we're generating a commonjs or AMD mode here rather than checking for
+				//both global and window at runtime? But what about UMD modules intended to run in either environment?
+				//
+				//var __context = (this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this);	
+				let ctxAssignment = t.VariableDeclaration('var', [
+					t.VariableDeclarator(
+						t.Identifier('__context'),
+						initContextVariableAst
+					)
+				]);
+				
+				//TODO
+				//Inner contexts - generate unique context variable for each level?
+				//e.g. var __context2 = ...
+				
+				//transform role-player contracts to flow type aliases
+				let contractsAsFlowTypes = transformRolePlayerContracts(rolePaths);
+				
+				//add initialization code to top of function declaration
+				fnDecl.body.body = [ctxAssignment].concat([roleBindingsMapInit], roleAssignments, fnDecl.body.body, contractsAsFlowTypes);
 			},
 			
-			ContextDeclaration: {
-				exit(path) {
-					let node = path.node;
-					
-					//2-dimensional map of role methods indexed by role name and then by method name
-					let roleMethods = {};
-					let rolePaths = [];
-					let contextMemberPaths = [];
-					
-					for (let subPath of path.get('body.body')) {
-						if (subPath.equals('type', 'RoleDeclaration')) {
-							rolePaths.push(subPath);
-							let roleName = subPath.node.id.name;
-							roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
-						}
-						else {
-							let node = subPath.node;
-							if (!node.kind || node.kind != 'constructor') {
-								contextMemberPaths.push(subPath);
-							}
-						}
-					}					
-					
-					//Transform Context members
-					
-					let contextMemberDescriptors = [];
-					let valueId = t.Identifier('value');
-					
-					//Transform Context members to descriptors that will be passed to
-					//Object.defineProperties(this, ...);
-					for (let subPath of contextMemberPaths) {
-						let member = subPath.node;
-						if (member.type === 'ContextMethod') {
-							contextMemberDescriptors.push( transformContextMethodToDescriptor(subPath) );
-						}
-						else if (member.type === 'ContextProperty') {
-							let prop = member;
-							if (prop.decorators) continue;
-							if (!prop.value) continue;
-							contextMemberDescriptors.push(t.ObjectProperty(
-								prop.key,
-								t.ObjectExpression([
-									t.ObjectProperty(valueId, prop.value)
-								])
-							));
+			ContextDeclaration(path) {
+				let node = path.node;
+				
+				//2-dimensional map of role methods indexed by role name and then by method name
+				let roleMethods = {};
+				let rolePaths = [];
+				let contextMemberPaths = [];
+				
+				for (let subPath of path.get('body.body')) {
+					if (subPath.equals('type', 'RoleDeclaration')) {
+						rolePaths.push(subPath);
+						let roleName = subPath.node.id.name;
+						roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
+					}
+					else {
+						let node = subPath.node;
+						if (!node.kind || node.kind != 'constructor') {
+							contextMemberPaths.push(subPath);
 						}
 					}
-					
-					let constructorPath,
-						constructorParams = [];
-					for (let subPath of path.get('body.body')) {
-						if (subPath.node.kind === 'constructor') {
-							constructorPath = subPath;
-							constructorParams = subPath.node.params;
-							break;
-						}
+				}					
+				
+				//Transform Context members
+				
+				let contextMemberDescriptors = [];
+				let valueId = t.Identifier('value');
+				
+				//Transform Context members to descriptors that will be passed to
+				//Object.defineProperties(this, ...);
+				for (let subPath of contextMemberPaths) {
+					let member = subPath.node;
+					if (member.type === 'ContextMethod') {
+						contextMemberDescriptors.push( transformContextMethodToDescriptor(subPath) );
 					}
-					
-					//Transform constructor body
-					let constructorBodyNodes = [];
-					if (constructorPath) {
-						constructorBodyNodes = constructorPath.node.body.body;
-						transformContextMethods(constructorPath.get('body'), roleMethods);
-					}
-					
-					//Transform roles
-					
-					let roleDescriptors = transformRolesToDescriptors(roleMethods, rolePaths);
-					
-					//Also initialize the roleBindings map
-					roleDescriptors.push(t.ObjectProperty(
-						t.Identifier('__roleBindings'),
-						t.ObjectExpression([
-							t.ObjectProperty(t.Identifier('value'), t.ObjectExpression([]))
-						])
-					));
-					
-					let automaticBindings = automaticallyBindConstructorParams(constructorParams, roleMethods);
-					constructorBodyNodes = automaticBindings.concat(constructorBodyNodes);
-					
-					
-					//Add initialization code at the top of the Context function
-					
-					//if (!(this instanceof [[ContextName]]))
-					//	throw Error("Contexts defined with the 'context' declaration should be instantiated with the 'new' operator.");
-					let ctxCallCheck = t.IfStatement(
-						t.UnaryExpression('!', t.BinaryExpression('instanceof', t.ThisExpression(), node.id), true),
-						contextCallCheckErrorAst
-					);	
-					
-					//var __context = this;
-					let ctxAssignment = t.VariableDeclaration('var', [
-						t.VariableDeclarator(
-							t.Identifier('__context'),
-							t.ThisExpression()
-						)
-					]);
-					
-					//Put it all together
-					let fnBodyNodes = [
-						ctxCallCheck,
-						ctxAssignment,
-						t.ExpressionStatement(
-							t.CallExpression(
-								//Object.defineProperties(this, {...});
-								t.MemberExpression(t.Identifier('Object'), t.Identifier('defineProperties')),
-								[
-									t.ThisExpression(),
-									t.ObjectExpression(roleDescriptors.concat(contextMemberDescriptors))
-								]
-							)
-						)
-					];
-					fnBodyNodes = fnBodyNodes.concat(constructorBodyNodes);
-					
-					//was the Context declaration preceded with 'export default'?
-					if (path.parentPath.isExportDefaultDeclaration()) {
-						path = path.parentPath;
-						path.insertAfter(t.exportDefaultDeclaration(node.id));
-					}
-					
-					path.replaceWith(
-						t.FunctionDeclaration(node.id, constructorParams, t.BlockStatement(fnBodyNodes))
-					);
-					
-					
-					function transformContextMethodToDescriptor(subPath) {
-						let method = subPath.node;
-						//determine whether to set 'value', 'get', or 'set' property of the descriptor.
-						let methodKindId = (method.kind === 'method' ? valueId: t.Identifier(method.kind))
-						
-						transformContextMethods(subPath.get('body'), roleMethods);
-						let fnDecl = t.FunctionExpression(method.key, method.params, method.body, method.generator, method.async);
-						return t.ObjectProperty(
-							method.key,
+					else if (member.type === 'ContextProperty') {
+						let prop = member;
+						if (prop.decorators) continue;
+						if (!prop.value) continue;
+						contextMemberDescriptors.push(t.ObjectProperty(
+							prop.key,
 							t.ObjectExpression([
-								t.ObjectProperty(methodKindId, fnDecl)
+								t.ObjectProperty(valueId, prop.value)
 							])
-						);
+						));
 					}
+				}
+				
+				let constructorPath,
+					constructorParams = [];
+				for (let subPath of path.get('body.body')) {
+					if (subPath.node.kind === 'constructor') {
+						constructorPath = subPath;
+						constructorParams = subPath.node.params;
+						break;
+					}
+				}
+				
+				//Transform constructor body
+				let constructorBodyNodes = [];
+				if (constructorPath) {
+					constructorBodyNodes = constructorPath.node.body.body;
+					transformContextMethods(constructorPath.get('body'), roleMethods);
+				}
+				
+				//Transform roles
+				
+				let roleDescriptors = transformRolesToDescriptors(roleMethods, rolePaths);
+				
+				//Also initialize the roleBindings map					
+				let roleBindingsMapInit = initRoleBindingsMap(rolePaths);
+				
+				roleDescriptors.push(t.ObjectProperty(
+					t.Identifier('__roleBindings'),
+					t.ObjectExpression([
+						t.ObjectProperty(t.Identifier('value'), t.Identifier('__roleBindings'))
+					])
+				));
+				
+				let automaticBindings = automaticallyBindConstructorParams(constructorParams, roleMethods);
+				constructorBodyNodes = automaticBindings.concat(constructorBodyNodes);
+				
+				
+				//Add initialization code at the top of the Context function
+				
+				//if (!(this instanceof [[ContextName]]))
+				//	throw Error("Contexts defined with the 'context' declaration should be instantiated with the 'new' operator.");
+				let ctxCallCheck = t.IfStatement(
+					t.UnaryExpression('!', t.BinaryExpression('instanceof', t.ThisExpression(), node.id), true),
+					contextCallCheckErrorAst
+				);	
+				
+				//var __context = this;
+				let ctxAssignment = t.VariableDeclaration('var', [
+					t.VariableDeclarator(
+						t.Identifier('__context'),
+						t.ThisExpression()
+					)
+				]);
+				
+				//transform role-player contracts to flow type aliases
+				let contractsAsFlowTypes = transformRolePlayerContracts(rolePaths);
+				
+				//Put it all together
+				let fnBodyNodes = [
+					ctxCallCheck,
+					ctxAssignment,
+					roleBindingsMapInit,
+					t.ExpressionStatement(
+						t.CallExpression(
+							//Object.defineProperties(this, {...});
+							t.MemberExpression(t.Identifier('Object'), t.Identifier('defineProperties')),
+							[
+								t.ThisExpression(),
+								t.ObjectExpression(roleDescriptors.concat(contextMemberDescriptors))
+							]
+						)
+					),
+				];
+				
+				//TODO see if we can accomplish this by modifying the 'loc' objects. This inserts an unnecessary semicolon.
+				//push type declarations to the next line
+				contractsAsFlowTypes.unshift(t.EmptyStatement());
+				
+				fnBodyNodes = fnBodyNodes.concat(constructorBodyNodes, contractsAsFlowTypes);
+				
+				//was the Context declaration preceded with 'export default'?
+				if (path.parentPath.isExportDefaultDeclaration()) {
+					path = path.parentPath;
+					path.insertAfter(t.exportDefaultDeclaration(node.id));
+				}
+				
+				path.replaceWith(
+					t.FunctionDeclaration(node.id, constructorParams, t.BlockStatement(fnBodyNodes))
+				);
+				
+				
+				function transformContextMethodToDescriptor(subPath) {
+					let method = subPath.node;
+					//determine whether to set 'value', 'get', or 'set' property of the descriptor.
+					let methodKindId = (method.kind === 'method' ? valueId: t.Identifier(method.kind))
+					
+					transformContextMethods(subPath.get('body'), roleMethods);
+					let fnDecl = t.FunctionExpression(method.key, method.params, method.body, method.generator, method.async);
+					return t.ObjectProperty(
+						method.key,
+						t.ObjectExpression([
+							t.ObjectProperty(methodKindId, fnDecl)
+						])
+					);
 				}
 			} //end ContextDeclaration visitor
 		}
-	}
+	};
 	
 	function indexRoleMethodsByName(roleDecl) {
 		let body = roleDecl.body.body;
@@ -448,8 +470,7 @@ export default function({types: t}) {
 		return function(path) {
 			let node = path.node;
 			if (t.isIdentifier(node.left) && (node.left.name in roleMethods)) {
-				let roleId = node.left;
-				
+				let roleId = node.left;				
 				//__context.__roleBindings.[[roleName]] = [[player]]
 				path.insertAfter(t.ExpressionStatement(t.AssignmentExpression(
 					'=',
@@ -478,14 +499,46 @@ export default function({types: t}) {
 		return assignments;
 	}
 	
-	function hasConstructor(contextDecl) {
-		let nodes = contextDecl.body.body;
-		for (let n of nodes) {
-		  if (n.kind === 'constructor') {
-			return true;
-		  }
+	//Initialize the role bindings map.
+	//Returns a variable declaration for the __roleBindings variable.
+	function initRoleBindingsMap(rolePaths) {
+		let roleBindingsId = t.Identifier('__roleBindings');
+		let rolePlayerContractTypes = [];
+		for (let rolePath of rolePaths) {
+			let roleDecl = rolePath.node;
+			if (roleDecl.contract) {
+				rolePlayerContractTypes.push(
+					t.ObjectTypeProperty(roleDecl.id, roleDecl.id)
+				);
+			}
 		}
-		return false;
+		
+		roleBindingsId.typeAnnotation = t.TypeAnnotation(
+			t.ObjectTypeAnnotation([], rolePlayerContractTypes)
+		);
+		
+		let roleBindingsMapInit = t.VariableDeclaration('var', [
+			t.VariableDeclarator(roleBindingsId, t.ObjectExpression([]))
+		]);
+		
+		return roleBindingsMapInit;
+	}
+	
+	//Transform role-player contracts to flow type aliases
+	function transformRolePlayerContracts(rolePaths) {
+		let typeAliases = [];
+		for (let rolePath of rolePaths) {
+			let roleDecl = rolePath.node,
+				contract = roleDecl.contract;
+			if (contract) {
+				let typeAlias = t.TypeAlias();
+				typeAlias.id = roleDecl.id;
+				contract.type = 'ObjectTypeAnnotation';
+				typeAlias.right = contract;
+				typeAliases.push(typeAlias);
+			}
+		}
+		return typeAliases;
 	}
 }
 

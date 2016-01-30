@@ -1,13 +1,14 @@
 {
   "name": "babel-plugin-syntax-dci",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "DCI syntax plugin for Babel",
   "main": "lib/index.js",
   "scripts": {
-  	"build": "babel src -d lib"
+    "build": "babel src -d lib"
   },
   "dependencies": {
-    "babylon": "6.3.26"
+    "babylon": "6.3.26",
+	"babel-plugin-syntax-flow": "^6.3.13"
   },
   "devDependencies": {},
   "author": "Matt Browne",
