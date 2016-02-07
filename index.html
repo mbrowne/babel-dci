@@ -109,7 +109,7 @@ function TransferMoney(source: Account, destination: Account, amount: number) {
     role source {
         withdraw() {
             if (self.balance < amount) {
-                throw new Error('Insufficient funds');
+                throw Error('Insufficient funds');
             }
             self.decreaseBalance(amount);
         }
@@ -124,22 +124,52 @@ function TransferMoney(source: Account, destination: Account, amount: number) {
     role amount {}
 }
 
-class Account
+context Account
 {
-    _balance: number = 0;
+    constructor(ledgers: ?Array<LedgerEntry>) {
+        if (!ledgers) ledgers = [];
+    }
     
     increaseBalance(amount: number) {
-        this._balance += amount;
+        ledgers.addEntry('depositing', amount);
     }
     
     decreaseBalance(amount: number) {
-        this._balance -= amount;
+        ledgers.addEntry('withdrawing', 0 - amount);        
     }
     
     get balance(): number {
-        return this._balance;
+        return ledgers.getBalance();
+    }
+    
+    role ledgers {
+        addEntry(message: string, amount: number) {
+            ledgers.push(new LedgerEntry(message, amount));
+        }
+        
+        getBalance(): number {
+            let sum = 0;
+            ledgers.forEach(ledger => sum += ledger.amount);
+            return sum;
+        }
     }
 }
+
+function LedgerEntry(message: string, amount: number) {
+	this._message = message;
+	this._amount = amount;
+}
+LedgerEntry.prototype = {
+	constructor: LedgerEntry,
+	
+	get message(): string {
+		return this._message;
+	},
+	
+	get amount(): number {
+		return this._amount;
+	}
+};
 
 let source = new Account();
 source.increaseBalance(30);

@@ -88,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.transform = transform;
 	exports.transformFromAst = transformFromAst;
 
-	var _babelCore = __webpack_require__(195);
+	var _babelCore = __webpack_require__(196);
 
 	var Babel = _interopRequireWildcard(_babelCore);
 
@@ -148,12 +148,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  'external-helpers-2': __webpack_require__(242),
 	  'syntax-async-functions': __webpack_require__(72),
 	  'syntax-async-generators': __webpack_require__(243),
-	  'syntax-class-properties': __webpack_require__(133),
+	  'syntax-class-properties': __webpack_require__(134),
 
-	  'syntax-flow': __webpack_require__(134),
+	  'syntax-flow': __webpack_require__(135),
 
 	  'transform-async-functions': __webpack_require__(246),
-	  'transform-async-to-generator': __webpack_require__(135),
+	  'transform-async-to-generator': __webpack_require__(136),
 	  //'transform-async-to-module-method': require('babel-plugin-transform-async-to-module-method'),
 
 	  'transform-class-properties': __webpack_require__(247),
@@ -169,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  'transform-es2015-instanceof': __webpack_require__(251),
 	  'transform-es2015-literals': __webpack_require__(81),
 	  //'transform-es2015-modules-amd': require('babel-plugin-transform-es2015-modules-amd'),
-	  'transform-es2015-modules-commonjs': __webpack_require__(137),
+	  'transform-es2015-modules-commonjs': __webpack_require__(138),
 	  //'transform-es2015-modules-systemjs': require('babel-plugin-transform-es2015-modules-systemjs'),
 	  //'transform-es2015-modules-umd': require('babel-plugin-transform-es2015-modules-umd'),
 
@@ -192,7 +192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  'transform-runtime': __webpack_require__(264),
 
-	  'transform-strict-mode': __webpack_require__(140),
+	  'transform-strict-mode': __webpack_require__(141),
 
 	  'undeclared-variables-check': __webpack_require__(266)
 	};
@@ -815,7 +815,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	//
 
-	var _retrievers = __webpack_require__(159);
+	var _retrievers = __webpack_require__(160);
 
 	_defaults(exports, _interopExportWildcard(_retrievers, _defaults));
 
@@ -916,7 +916,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.Scope = _interopRequire(_scope);
 
-	var _hub = __webpack_require__(155);
+	var _hub = __webpack_require__(156);
 
 	exports.Hub = _interopRequire(_hub);
 	exports.visitors = visitors;
@@ -942,7 +942,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	traverse.NodePath = __webpack_require__(25);
 	traverse.Scope = __webpack_require__(100);
-	traverse.Hub = __webpack_require__(155);
+	traverse.Hub = __webpack_require__(156);
 
 	traverse.cheap = function (node, enter) {
 	  if (!node) return;
@@ -1199,7 +1199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _options = __webpack_require__(349);
 
-	var _tokenizer = __webpack_require__(160);
+	var _tokenizer = __webpack_require__(161);
 
 	var _tokenizer2 = _interopRequireDefault(_tokenizer);
 
@@ -1466,11 +1466,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _lodashLangCloneDeep = __webpack_require__(180);
+	var _lodashLangCloneDeep = __webpack_require__(181);
 
 	var _lodashLangCloneDeep2 = _interopRequireDefault(_lodashLangCloneDeep);
 
-	var _lodashObjectHas = __webpack_require__(187);
+	var _lodashObjectHas = __webpack_require__(188);
 
 	var _lodashObjectHas2 = _interopRequireDefault(_lodashObjectHas);
 
@@ -1896,7 +1896,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var store  = __webpack_require__(147)('wks')
+	var store  = __webpack_require__(148)('wks')
 	  , uid    = __webpack_require__(98)
 	  , Symbol = __webpack_require__(41).Symbol;
 	module.exports = function(name){
@@ -2222,7 +2222,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _libVirtualTypes = __webpack_require__(157);
+	var _libVirtualTypes = __webpack_require__(158);
 
 	var virtualTypes = _interopRequireWildcard(_libVirtualTypes);
 
@@ -2230,7 +2230,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _debug3 = _interopRequireDefault(_debug2);
 
-	var _constants = __webpack_require__(156);
+	var _constants = __webpack_require__(157);
 
 	var _invariant = __webpack_require__(375);
 
@@ -2577,7 +2577,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var isFinite = __webpack_require__(164);
+	var isFinite = __webpack_require__(165);
 
 	module.exports = function (str, n) {
 		if (typeof str !== 'string') {
@@ -3057,7 +3057,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _index = __webpack_require__(67);
 
-	var _helpersResolve = __webpack_require__(198);
+	var _helpersResolve = __webpack_require__(199);
 
 	var _helpersResolve2 = _interopRequireDefault(_helpersResolve);
 
@@ -3073,7 +3073,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _pathExists2 = _interopRequireDefault(_pathExists);
 
-	var _lodashLangCloneDeep = __webpack_require__(180);
+	var _lodashLangCloneDeep = __webpack_require__(181);
 
 	var _lodashLangCloneDeep2 = _interopRequireDefault(_lodashLangCloneDeep);
 
@@ -3081,7 +3081,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lodashLangClone2 = _interopRequireDefault(_lodashLangClone);
 
-	var _helpersMerge = __webpack_require__(196);
+	var _helpersMerge = __webpack_require__(197);
 
 	var _helpersMerge2 = _interopRequireDefault(_helpersMerge);
 
@@ -4073,7 +4073,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
-	var IObject = __webpack_require__(143)
+	var IObject = __webpack_require__(144)
 	  , defined = __webpack_require__(52);
 	module.exports = function(it){
 	  return IObject(defined(it));
@@ -4191,7 +4191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var identity = __webpack_require__(189);
+	var identity = __webpack_require__(190);
 
 	/**
 	 * A specialized version of `baseCallback` which only supports `this` binding
@@ -4994,7 +4994,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _tokenizerTypes = __webpack_require__(12);
 
-	__webpack_require__(160);
+	__webpack_require__(161);
 
 	__webpack_require__(57);
 
@@ -5194,7 +5194,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    isIterateeCall = __webpack_require__(48),
 	    isLength = __webpack_require__(22),
 	    isString = __webpack_require__(110),
-	    values = __webpack_require__(188);
+	    values = __webpack_require__(189);
 
 	/* Native method references for those with the same name as other `lodash` methods. */
 	var nativeMax = Math.max;
@@ -5303,7 +5303,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseClone = __webpack_require__(169),
+	var baseClone = __webpack_require__(170),
 	    bindCallback = __webpack_require__(47),
 	    isIterateeCall = __webpack_require__(48);
 
@@ -5380,8 +5380,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var assignWith = __webpack_require__(395),
-	    baseAssign = __webpack_require__(168),
-	    createAssigner = __webpack_require__(178);
+	    baseAssign = __webpack_require__(169),
+	    createAssigner = __webpack_require__(179);
 
 	/**
 	 * Assigns own enumerable properties of source object(s) to the destination
@@ -5858,11 +5858,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _babelHelpers = __webpack_require__(132);
+	var _babelHelpers = __webpack_require__(133);
 
 	var _babelHelpers2 = _interopRequireDefault(_babelHelpers);
 
-	var _metadata = __webpack_require__(201);
+	var _metadata = __webpack_require__(202);
 
 	var metadataVisitor = _interopRequireWildcard(_metadata);
 
@@ -5874,7 +5874,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _optionsOptionManager2 = _interopRequireDefault(_optionsOptionManager);
 
-	var _pluginPass = __webpack_require__(205);
+	var _pluginPass = __webpack_require__(206);
 
 	var _pluginPass2 = _interopRequireDefault(_pluginPass);
 
@@ -5884,7 +5884,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _babelTraverse = __webpack_require__(7);
 
-	var _sourceMap = __webpack_require__(212);
+	var _sourceMap = __webpack_require__(213);
 
 	var _sourceMap2 = _interopRequireDefault(_sourceMap);
 
@@ -5896,13 +5896,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _babelCodeFrame2 = _interopRequireDefault(_babelCodeFrame);
 
-	var _lodashObjectDefaults = __webpack_require__(186);
+	var _lodashObjectDefaults = __webpack_require__(187);
 
 	var _lodashObjectDefaults2 = _interopRequireDefault(_lodashObjectDefaults);
 
 	var _babelTraverse2 = _interopRequireDefault(_babelTraverse);
 
-	var _logger = __webpack_require__(200);
+	var _logger = __webpack_require__(201);
 
 	var _logger2 = _interopRequireDefault(_logger);
 
@@ -5924,11 +5924,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var t = _interopRequireWildcard(_babelTypes);
 
-	var _internalPluginsBlockHoist = __webpack_require__(202);
+	var _internalPluginsBlockHoist = __webpack_require__(203);
 
 	var _internalPluginsBlockHoist2 = _interopRequireDefault(_internalPluginsBlockHoist);
 
-	var _internalPluginsShadowFunctions = __webpack_require__(203);
+	var _internalPluginsShadowFunctions = __webpack_require__(204);
 
 	var _internalPluginsShadowFunctions2 = _interopRequireDefault(_internalPluginsShadowFunctions);
 
@@ -6588,7 +6588,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.booleanString = booleanString;
 	exports.list = list;
 
-	var _slash = __webpack_require__(192);
+	var _slash = __webpack_require__(193);
 
 	var _slash2 = _interopRequireDefault(_slash);
 
@@ -6804,7 +6804,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lodashStringStartsWith2 = _interopRequireDefault(_lodashStringStartsWith);
 
-	var _lodashLangIsBoolean = __webpack_require__(181);
+	var _lodashLangIsBoolean = __webpack_require__(182);
 
 	var _lodashLangIsBoolean2 = _interopRequireDefault(_lodashLangIsBoolean);
 
@@ -6820,7 +6820,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lodashLangIsString2 = _interopRequireDefault(_lodashLangIsString);
 
-	var _lodashLangIsRegExp = __webpack_require__(185);
+	var _lodashLangIsRegExp = __webpack_require__(186);
 
 	var _lodashLangIsRegExp2 = _interopRequireDefault(_lodashLangIsRegExp);
 
@@ -6828,7 +6828,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _path2 = _interopRequireDefault(_path);
 
-	var _slash = __webpack_require__(192);
+	var _slash = __webpack_require__(193);
 
 	var _slash2 = _interopRequireDefault(_slash);
 
@@ -7195,7 +7195,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var t = _interopRequireWildcard(_babelTypes);
 
-	var _lodashObjectValues = __webpack_require__(188);
+	var _lodashObjectValues = __webpack_require__(189);
 
 	var _lodashObjectValues2 = _interopRequireDefault(_lodashObjectValues);
 
@@ -7870,7 +7870,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _loose2 = _interopRequireDefault(_loose);
 
-	var _vanilla = __webpack_require__(136);
+	var _vanilla = __webpack_require__(137);
 
 	var _vanilla2 = _interopRequireDefault(_vanilla);
 
@@ -9629,7 +9629,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , isArrayIter = __webpack_require__(300)
 	  , anObject    = __webpack_require__(38)
 	  , toLength    = __webpack_require__(309)
-	  , getIterFn   = __webpack_require__(151);
+	  , getIterFn   = __webpack_require__(152);
 	module.exports = function(iterable, entries, fn, that){
 	  var iterFn = getIterFn(iterable)
 	    , f      = ctx(fn, that, entries ? 2 : 1)
@@ -9649,7 +9649,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var LIBRARY        = __webpack_require__(145)
+	var LIBRARY        = __webpack_require__(146)
 	  , $export        = __webpack_require__(19)
 	  , redefine       = __webpack_require__(97)
 	  , hide           = __webpack_require__(42)
@@ -9772,12 +9772,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , $export        = __webpack_require__(19)
 	  , redefine       = __webpack_require__(97)
 	  , $fails         = __webpack_require__(40)
-	  , shared         = __webpack_require__(147)
+	  , shared         = __webpack_require__(148)
 	  , setToStringTag = __webpack_require__(55)
 	  , uid            = __webpack_require__(98)
 	  , wks            = __webpack_require__(20)
 	  , keyOf          = __webpack_require__(304)
-	  , $names         = __webpack_require__(142)
+	  , $names         = __webpack_require__(143)
 	  , enumKeys       = __webpack_require__(299)
 	  , isArray        = __webpack_require__(301)
 	  , anObject       = __webpack_require__(38)
@@ -9922,7 +9922,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  $.getNames   = $names.get = $getOwnPropertyNames;
 	  $.getSymbols = $getOwnPropertySymbols;
 
-	  if(DESCRIPTORS && !__webpack_require__(145)){
+	  if(DESCRIPTORS && !__webpack_require__(146)){
 	    redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
 	  }
 	}
@@ -10027,7 +10027,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _index2 = _interopRequireDefault(_index);
 
-	var _lodashObjectDefaults = __webpack_require__(186);
+	var _lodashObjectDefaults = __webpack_require__(187);
 
 	var _lodashObjectDefaults2 = _interopRequireDefault(_lodashObjectDefaults);
 
@@ -10035,7 +10035,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var messages = _interopRequireWildcard(_babelMessages);
 
-	var _binding = __webpack_require__(158);
+	var _binding = __webpack_require__(159);
 
 	var _binding2 = _interopRequireDefault(_binding);
 
@@ -11312,7 +11312,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var baseMatches = __webpack_require__(400),
 	    baseMatchesProperty = __webpack_require__(401),
 	    bindCallback = __webpack_require__(47),
-	    identity = __webpack_require__(189),
+	    identity = __webpack_require__(190),
 	    property = __webpack_require__(435);
 
 	/**
@@ -11437,7 +11437,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseProperty = __webpack_require__(176);
+	var baseProperty = __webpack_require__(177);
 
 	/**
 	 * Gets the "length" property value of `object`.
@@ -11773,7 +11773,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _jsTokens2 = _interopRequireDefault(_jsTokens);
 
-	var _esutils = __webpack_require__(163);
+	var _esutils = __webpack_require__(164);
 
 	var _esutils2 = _interopRequireDefault(_esutils);
 
@@ -11916,7 +11916,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.transformFile = transformFile;
 	exports.transformFileSync = transformFileSync;
 
-	var _lodashLangIsFunction = __webpack_require__(182);
+	var _lodashLangIsFunction = __webpack_require__(183);
 
 	var _lodashLangIsFunction2 = _interopRequireDefault(_lodashLangIsFunction);
 
@@ -11950,7 +11950,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	//
 
-	var _transformationPipeline = __webpack_require__(204);
+	var _transformationPipeline = __webpack_require__(205);
 
 	var _transformationPipeline2 = _interopRequireDefault(_transformationPipeline);
 
@@ -11962,7 +11962,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.options = _interopRequire(_transformationFileOptionsConfig);
 
-	var _toolsBuildExternalHelpers = __webpack_require__(199);
+	var _toolsBuildExternalHelpers = __webpack_require__(200);
 
 	exports.buildExternalHelpers = _interopRequire(_toolsBuildExternalHelpers);
 
@@ -12054,9 +12054,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 118 */
 [456, 35],
 /* 119 */
-[457, 206],
+[457, 207],
 /* 120 */
-[460, 119, 35, 118, 208],
+[460, 119, 35, 118, 209],
 /* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12241,15 +12241,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _detectIndent2 = _interopRequireDefault(_detectIndent);
 
-	var _whitespace = __webpack_require__(228);
+	var _whitespace = __webpack_require__(229);
 
 	var _whitespace2 = _interopRequireDefault(_whitespace);
 
-	var _sourceMap = __webpack_require__(227);
+	var _sourceMap = __webpack_require__(228);
 
 	var _sourceMap2 = _interopRequireDefault(_sourceMap);
 
-	var _position = __webpack_require__(225);
+	var _position = __webpack_require__(226);
 
 	var _position2 = _interopRequireDefault(_position);
 
@@ -12257,7 +12257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var messages = _interopRequireWildcard(_babelMessages);
 
-	var _printer = __webpack_require__(226);
+	var _printer = __webpack_require__(227);
 
 	var _printer2 = _interopRequireDefault(_printer);
 
@@ -12420,11 +12420,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _whitespace = __webpack_require__(224);
+	var _whitespace = __webpack_require__(225);
 
 	var _whitespace2 = _interopRequireDefault(_whitespace);
 
-	var _parentheses = __webpack_require__(223);
+	var _parentheses = __webpack_require__(224);
 
 	var parens = _interopRequireWildcard(_parentheses);
 
@@ -12544,9 +12544,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 124 */
 [456, 36],
 /* 125 */
-[457, 229],
+[457, 230],
 /* 126 */
-[460, 125, 36, 124, 231],
+[460, 125, 36, 124, 232],
 /* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12571,7 +12571,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lodashCollectionEach2 = _interopRequireDefault(_lodashCollectionEach);
 
-	var _lodashObjectHas = __webpack_require__(187);
+	var _lodashObjectHas = __webpack_require__(188);
 
 	var _lodashObjectHas2 = _interopRequireDefault(_lodashObjectHas);
 
@@ -13064,6 +13064,80 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	"use strict";
 
+	var _interopRequireDefault = __webpack_require__(1)["default"];
+
+	exports.__esModule = true;
+
+	var _babelTemplate = __webpack_require__(13);
+
+	var _babelTemplate2 = _interopRequireDefault(_babelTemplate);
+
+	var helpers = {};
+	exports["default"] = helpers;
+
+	helpers["typeof"] = _babelTemplate2["default"]("\n  (function (obj) {\n    return obj && typeof Symbol !== \"undefined\" && obj.constructor === Symbol ? \"symbol\" : typeof obj;\n  });\n");
+
+	helpers.jsx = _babelTemplate2["default"]("\n  (function () {\n    var REACT_ELEMENT_TYPE = (typeof Symbol === \"function\" && Symbol.for && Symbol.for(\"react.element\")) || 0xeac7;\n\n    return function createRawReactElement (type, props, key, children) {\n      var defaultProps = type && type.defaultProps;\n      var childrenLength = arguments.length - 3;\n\n      if (!props && childrenLength !== 0) {\n        // If we're going to assign props.children, we create a new object now\n        // to avoid mutating defaultProps.\n        props = {};\n      }\n      if (props && defaultProps) {\n        for (var propName in defaultProps) {\n          if (props[propName] === void 0) {\n            props[propName] = defaultProps[propName];\n          }\n        }\n      } else if (!props) {\n        props = defaultProps || {};\n      }\n\n      if (childrenLength === 1) {\n        props.children = children;\n      } else if (childrenLength > 1) {\n        var childArray = Array(childrenLength);\n        for (var i = 0; i < childrenLength; i++) {\n          childArray[i] = arguments[i + 3];\n        }\n        props.children = childArray;\n      }\n\n      return {\n        $$typeof: REACT_ELEMENT_TYPE,\n        type: type,\n        key: key === undefined ? null : '' + key,\n        ref: null,\n        props: props,\n        _owner: null,\n      };\n    };\n\n  })()\n");
+
+	helpers.asyncToGenerator = _babelTemplate2["default"]("\n  (function (fn) {\n    return function () {\n      var gen = fn.apply(this, arguments);\n      return new Promise(function (resolve, reject) {\n        function step(key, arg) {\n          try {\n            var info = gen[key](arg);\n            var value = info.value;\n          } catch (error) {\n            reject(error);\n            return;\n          }\n\n          if (info.done) {\n            resolve(value);\n          } else {\n            Promise.resolve(value).then(function (value) {\n              step(\"next\", value);\n            }, function (err) {\n              step(\"throw\", err);\n            });\n          }\n        }\n\n        step(\"next\");\n      });\n    };\n  })\n");
+
+	helpers.classCallCheck = _babelTemplate2["default"]("\n  (function (instance, Constructor) {\n    if (!(instance instanceof Constructor)) {\n      throw new TypeError(\"Cannot call a class as a function\");\n    }\n  });\n");
+
+	helpers.createClass = _babelTemplate2["default"]("\n  (function() {\n    function defineProperties(target, props) {\n      for (var i = 0; i < props.length; i ++) {\n        var descriptor = props[i];\n        descriptor.enumerable = descriptor.enumerable || false;\n        descriptor.configurable = true;\n        if (\"value\" in descriptor) descriptor.writable = true;\n        Object.defineProperty(target, descriptor.key, descriptor);\n      }\n    }\n\n    return function (Constructor, protoProps, staticProps) {\n      if (protoProps) defineProperties(Constructor.prototype, protoProps);\n      if (staticProps) defineProperties(Constructor, staticProps);\n      return Constructor;\n    };\n  })()\n");
+
+	helpers.defineEnumerableProperties = _babelTemplate2["default"]("\n  (function (obj, descs) {\n    for (var key in descs) {\n      var desc = descs[key];\n      desc.configurable = desc.enumerable = true;\n      if (\"value\" in desc) desc.writable = true;\n      Object.defineProperty(obj, key, desc);\n    }\n    return obj;\n  })\n");
+
+	helpers.defaults = _babelTemplate2["default"]("\n  (function (obj, defaults) {\n    var keys = Object.getOwnPropertyNames(defaults);\n    for (var i = 0; i < keys.length; i++) {\n      var key = keys[i];\n      var value = Object.getOwnPropertyDescriptor(defaults, key);\n      if (value && value.configurable && obj[key] === undefined) {\n        Object.defineProperty(obj, key, value);\n      }\n    }\n    return obj;\n  })\n");
+
+	helpers.defineProperty = _babelTemplate2["default"]("\n  (function (obj, key, value) {\n    // Shortcircuit the slow defineProperty path when possible.\n    // We are trying to avoid issues where setters defined on the\n    // prototype cause side effects under the fast path of simple\n    // assignment. By checking for existence of the property with\n    // the in operator, we can optimize most of this overhead away.\n    if (key in obj) {\n      Object.defineProperty(obj, key, {\n        value: value,\n        enumerable: true,\n        configurable: true,\n        writable: true\n      });\n    } else {\n      obj[key] = value;\n    }\n    return obj;\n  });\n");
+
+	helpers["extends"] = _babelTemplate2["default"]("\n  Object.assign || (function (target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = arguments[i];\n      for (var key in source) {\n        if (Object.prototype.hasOwnProperty.call(source, key)) {\n          target[key] = source[key];\n        }\n      }\n    }\n    return target;\n  })\n");
+
+	helpers.get = _babelTemplate2["default"]("\n  (function get(object, property, receiver) {\n    if (object === null) object = Function.prototype;\n\n    var desc = Object.getOwnPropertyDescriptor(object, property);\n\n    if (desc === undefined) {\n      var parent = Object.getPrototypeOf(object);\n\n      if (parent === null) {\n        return undefined;\n      } else {\n        return get(parent, property, receiver);\n      }\n    } else if (\"value\" in desc) {\n      return desc.value;\n    } else {\n      var getter = desc.get;\n\n      if (getter === undefined) {\n        return undefined;\n      }\n\n      return getter.call(receiver);\n    }\n  });\n");
+
+	helpers.inherits = _babelTemplate2["default"]("\n  (function (subClass, superClass) {\n    if (typeof superClass !== \"function\" && superClass !== null) {\n      throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass);\n    }\n    subClass.prototype = Object.create(superClass && superClass.prototype, {\n      constructor: {\n        value: subClass,\n        enumerable: false,\n        writable: true,\n        configurable: true\n      }\n    });\n    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;\n  })\n");
+
+	helpers["instanceof"] = _babelTemplate2["default"]("\n  (function (left, right) {\n    if (right != null && typeof Symbol !== \"undefined\" && right[Symbol.hasInstance]) {\n      return right[Symbol.hasInstance](left);\n    } else {\n      return left instanceof right;\n    }\n  });\n");
+
+	helpers.interopRequireDefault = _babelTemplate2["default"]("\n  (function (obj) {\n    return obj && obj.__esModule ? obj : { default: obj };\n  })\n");
+
+	helpers.interopRequireWildcard = _babelTemplate2["default"]("\n  (function (obj) {\n    if (obj && obj.__esModule) {\n      return obj;\n    } else {\n      var newObj = {};\n      if (obj != null) {\n        for (var key in obj) {\n          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];\n        }\n      }\n      newObj.default = obj;\n      return newObj;\n    }\n  })\n");
+
+	helpers.newArrowCheck = _babelTemplate2["default"]("\n  (function (innerThis, boundThis) {\n    if (innerThis !== boundThis) {\n      throw new TypeError(\"Cannot instantiate an arrow function\");\n    }\n  });\n");
+
+	helpers.objectDestructuringEmpty = _babelTemplate2["default"]("\n  (function (obj) {\n    if (obj == null) throw new TypeError(\"Cannot destructure undefined\");\n  });\n");
+
+	helpers.objectWithoutProperties = _babelTemplate2["default"]("\n  (function (obj, keys) {\n    var target = {};\n    for (var i in obj) {\n      if (keys.indexOf(i) >= 0) continue;\n      if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;\n      target[i] = obj[i];\n    }\n    return target;\n  })\n");
+
+	helpers.possibleConstructorReturn = _babelTemplate2["default"]("\n  (function (self, call) {\n    if (!self) {\n      throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\");\n    }\n    return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self;\n  });\n");
+
+	helpers.selfGlobal = _babelTemplate2["default"]("\n  typeof global === \"undefined\" ? self : global\n");
+
+	helpers.set = _babelTemplate2["default"]("\n  (function set(object, property, value, receiver) {\n    var desc = Object.getOwnPropertyDescriptor(object, property);\n\n    if (desc === undefined) {\n      var parent = Object.getPrototypeOf(object);\n\n      if (parent !== null) {\n        set(parent, property, value, receiver);\n      }\n    } else if (\"value\" in desc && desc.writable) {\n      desc.value = value;\n    } else {\n      var setter = desc.set;\n\n      if (setter !== undefined) {\n        setter.call(receiver, value);\n      }\n    }\n\n    return value;\n  });\n");
+
+	helpers.slicedToArray = _babelTemplate2["default"]("\n  (function () {\n    // Broken out into a separate function to avoid deoptimizations due to the try/catch for the\n    // array iterator case.\n    function sliceIterator(arr, i) {\n      // this is an expanded form of `for...of` that properly supports abrupt completions of\n      // iterators etc. variable names have been minimised to reduce the size of this massive\n      // helper. sometimes spec compliancy is annoying :(\n      //\n      // _n = _iteratorNormalCompletion\n      // _d = _didIteratorError\n      // _e = _iteratorError\n      // _i = _iterator\n      // _s = _step\n\n      var _arr = [];\n      var _n = true;\n      var _d = false;\n      var _e = undefined;\n      try {\n        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n          _arr.push(_s.value);\n          if (i && _arr.length === i) break;\n        }\n      } catch (err) {\n        _d = true;\n        _e = err;\n      } finally {\n        try {\n          if (!_n && _i[\"return\"]) _i[\"return\"]();\n        } finally {\n          if (_d) throw _e;\n        }\n      }\n      return _arr;\n    }\n\n    return function (arr, i) {\n      if (Array.isArray(arr)) {\n        return arr;\n      } else if (Symbol.iterator in Object(arr)) {\n        return sliceIterator(arr, i);\n      } else {\n        throw new TypeError(\"Invalid attempt to destructure non-iterable instance\");\n      }\n    };\n  })();\n");
+
+	helpers.slicedToArrayLoose = _babelTemplate2["default"]("\n  (function (arr, i) {\n    if (Array.isArray(arr)) {\n      return arr;\n    } else if (Symbol.iterator in Object(arr)) {\n      var _arr = [];\n      for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {\n        _arr.push(_step.value);\n        if (i && _arr.length === i) break;\n      }\n      return _arr;\n    } else {\n      throw new TypeError(\"Invalid attempt to destructure non-iterable instance\");\n    }\n  });\n");
+
+	helpers.taggedTemplateLiteral = _babelTemplate2["default"]("\n  (function (strings, raw) {\n    return Object.freeze(Object.defineProperties(strings, {\n        raw: { value: Object.freeze(raw) }\n    }));\n  });\n");
+
+	helpers.taggedTemplateLiteralLoose = _babelTemplate2["default"]("\n  (function (strings, raw) {\n    strings.raw = raw;\n    return strings;\n  });\n");
+
+	helpers.temporalRef = _babelTemplate2["default"]("\n  (function (val, name, undef) {\n    if (val === undef) {\n      throw new ReferenceError(name + \" is not defined - temporal dead zone\");\n    } else {\n      return val;\n    }\n  })\n");
+
+	helpers.temporalUndefined = _babelTemplate2["default"]("\n  ({})\n");
+
+	helpers.toArray = _babelTemplate2["default"]("\n  (function (arr) {\n    return Array.isArray(arr) ? arr : Array.from(arr);\n  });\n");
+
+	helpers.toConsumableArray = _babelTemplate2["default"]("\n  (function (arr) {\n    if (Array.isArray(arr)) {\n      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];\n      return arr2;\n    } else {\n      return Array.from(arr);\n    }\n  });\n");
+	module.exports = exports["default"];
+
+/***/ },
+/* 133 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
 	var _Object$keys = __webpack_require__(28)["default"];
 
 	var _interopRequireDefault = __webpack_require__(1)["default"];
@@ -13071,7 +13145,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.__esModule = true;
 	exports.get = get;
 
-	var _helpers = __webpack_require__(241);
+	var _helpers = __webpack_require__(132);
 
 	var _helpers2 = _interopRequireDefault(_helpers);
 
@@ -13092,7 +13166,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports["default"] = get;
 
 /***/ },
-/* 133 */
+/* 134 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13110,7 +13184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 134 */
+/* 135 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -13128,7 +13202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 135 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13137,7 +13211,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _babelHelperRemapAsyncToGenerator = __webpack_require__(240);
+	var _babelHelperRemapAsyncToGenerator = __webpack_require__(241);
 
 	var _babelHelperRemapAsyncToGenerator2 = _interopRequireDefault(_babelHelperRemapAsyncToGenerator);
 
@@ -13158,7 +13232,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 136 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13763,7 +13837,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 137 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -13895,7 +13969,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  return {
-	    inherits: __webpack_require__(140),
+	    inherits: __webpack_require__(141),
 
 	    visitor: {
 	      ThisExpression: function ThisExpression(path, state) {
@@ -14207,7 +14281,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 138 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -14242,7 +14316,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var meta = _interopRequireWildcard(_meta);
 
-	var _util = __webpack_require__(139);
+	var _util = __webpack_require__(140);
 
 	var util = _interopRequireWildcard(_util);
 
@@ -15208,7 +15282,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 139 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -15242,7 +15316,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 140 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15291,7 +15365,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 141 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
@@ -15312,7 +15386,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 142 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -15337,7 +15411,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 143 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -15347,7 +15421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 144 */
+/* 145 */
 /***/ function(module, exports) {
 
 	module.exports = function(done, value){
@@ -15355,13 +15429,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 145 */
+/* 146 */
 /***/ function(module, exports) {
 
 	module.exports = true;
 
 /***/ },
-/* 146 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var redefine = __webpack_require__(97);
@@ -15371,7 +15445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 147 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var global = __webpack_require__(41)
@@ -15382,7 +15456,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 148 */
+/* 149 */
 /***/ function(module, exports) {
 
 	module.exports = function(it, Constructor, name){
@@ -15391,7 +15465,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 149 */
+/* 150 */
 /***/ function(module, exports) {
 
 	// 7.1.4 ToInteger
@@ -15402,7 +15476,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 150 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.13 ToObject(argument)
@@ -15412,10 +15486,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 151 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var classof   = __webpack_require__(141)
+	var classof   = __webpack_require__(142)
 	  , ITERATOR  = __webpack_require__(20)('iterator')
 	  , Iterators = __webpack_require__(43);
 	module.exports = __webpack_require__(9).getIteratorMethod = function(it){
@@ -15425,9 +15499,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 152 */
-27,
 /* 153 */
+27,
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15449,7 +15523,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 154 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(311);
@@ -15457,7 +15531,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Iterators.NodeList = Iterators.HTMLCollection = Iterators.Array;
 
 /***/ },
-/* 155 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15477,7 +15551,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 156 */
+/* 157 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15487,7 +15561,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	//Symbol();
 
 /***/ },
-/* 157 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15645,7 +15719,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.Flow = Flow;
 
 /***/ },
-/* 158 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15747,7 +15821,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 159 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -15872,7 +15946,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 160 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16759,7 +16833,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports["default"] = Tokenizer;
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -16962,7 +17036,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports) {
 
 	/*
@@ -17103,7 +17177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -17135,14 +17209,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    'use strict';
 
 	    exports.ast = __webpack_require__(371);
-	    exports.code = __webpack_require__(162);
+	    exports.code = __webpack_require__(163);
 	    exports.keyword = __webpack_require__(372);
 	}());
 	/* vim: set sw=4 ts=4 et tw=80 : */
 
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17154,7 +17228,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports) {
 
 	/**
@@ -17179,7 +17253,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports) {
 
 	/** Used as the `TypeError` message for "Functions" methods. */
@@ -17243,7 +17317,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports) {
 
 	/**
@@ -17269,10 +17343,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseCopy = __webpack_require__(170),
+	var baseCopy = __webpack_require__(171),
 	    keys = __webpack_require__(26);
 
 	/**
@@ -17294,13 +17368,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayCopy = __webpack_require__(167),
+	var arrayCopy = __webpack_require__(168),
 	    arrayEach = __webpack_require__(102),
-	    baseAssign = __webpack_require__(168),
-	    baseForOwn = __webpack_require__(173),
+	    baseAssign = __webpack_require__(169),
+	    baseForOwn = __webpack_require__(174),
 	    initCloneArray = __webpack_require__(423),
 	    initCloneByTag = __webpack_require__(424),
 	    initCloneObject = __webpack_require__(425),
@@ -17428,7 +17502,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 170 */
+/* 171 */
 /***/ function(module, exports) {
 
 	/**
@@ -17457,10 +17531,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseForOwn = __webpack_require__(173),
+	var baseForOwn = __webpack_require__(174),
 	    createBaseEach = __webpack_require__(412);
 
 	/**
@@ -17478,7 +17552,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var createBaseFor = __webpack_require__(413);
@@ -17501,10 +17575,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFor = __webpack_require__(172),
+	var baseFor = __webpack_require__(173),
 	    keys = __webpack_require__(26);
 
 	/**
@@ -17524,7 +17598,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseIsEqualDeep = __webpack_require__(398),
@@ -17558,10 +17632,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseEach = __webpack_require__(171),
+	var baseEach = __webpack_require__(172),
 	    isArrayLike = __webpack_require__(30);
 
 	/**
@@ -17587,7 +17661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports) {
 
 	/**
@@ -17607,7 +17681,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports) {
 
 	/**
@@ -17645,12 +17719,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var bindCallback = __webpack_require__(47),
 	    isIterateeCall = __webpack_require__(48),
-	    restParam = __webpack_require__(166);
+	    restParam = __webpack_require__(167);
 
 	/**
 	 * Creates a `_.assign`, `_.defaults`, or `_.merge` function.
@@ -17692,7 +17766,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(10);
@@ -17713,10 +17787,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseClone = __webpack_require__(169),
+	var baseClone = __webpack_require__(170),
 	    bindCallback = __webpack_require__(47);
 
 	/**
@@ -17774,7 +17848,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObjectLike = __webpack_require__(14);
@@ -17815,7 +17889,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(10);
@@ -17859,7 +17933,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObjectLike = __webpack_require__(14);
@@ -17906,7 +17980,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseForIn = __webpack_require__(397),
@@ -17983,7 +18057,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(10);
@@ -18024,7 +18098,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var assign = __webpack_require__(63),
@@ -18055,17 +18129,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseGet = __webpack_require__(104),
-	    baseSlice = __webpack_require__(177),
+	    baseSlice = __webpack_require__(178),
 	    isArguments = __webpack_require__(49),
 	    isArray = __webpack_require__(8),
 	    isIndex = __webpack_require__(61),
 	    isKey = __webpack_require__(108),
 	    isLength = __webpack_require__(22),
-	    last = __webpack_require__(165),
+	    last = __webpack_require__(166),
 	    toPath = __webpack_require__(109);
 
 	/** Used for native method references. */
@@ -18118,7 +18192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseValues = __webpack_require__(407),
@@ -18157,7 +18231,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports) {
 
 	/**
@@ -18183,7 +18257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18318,7 +18392,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/regenerate v1.2.0 by @mathias | MIT license */
@@ -19481,7 +19555,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(113)(module), (function() { return this; }())))
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19498,7 +19572,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -21050,10 +21124,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return i
 	}
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(193).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(194).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 194 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
@@ -21125,14 +21199,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(113)(module)))
 
 /***/ },
-/* 195 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(116);
 
 
 /***/ },
-/* 196 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -21183,7 +21257,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 197 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @noflow */
@@ -21219,7 +21293,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -21259,7 +21333,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21270,7 +21344,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _babelHelpers = __webpack_require__(132);
+	var _babelHelpers = __webpack_require__(133);
 
 	var helpers = _interopRequireWildcard(_babelHelpers);
 
@@ -21370,7 +21444,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21449,7 +21523,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21636,7 +21710,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -21697,7 +21771,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21786,7 +21860,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @noflow */
@@ -21799,7 +21873,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _helpersNormalizeAst = __webpack_require__(197);
+	var _helpersNormalizeAst = __webpack_require__(198);
 
 	var _helpersNormalizeAst2 = _interopRequireDefault(_helpersNormalizeAst);
 
@@ -21856,7 +21930,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21942,7 +22016,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports) {
 
 	/* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22016,7 +22090,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	/* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22134,9 +22208,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 208 */
-[458, 35],
 /* 209 */
+[458, 35],
+/* 210 */
 /***/ function(module, exports) {
 
 	/* -*- Mode: js; js-indent-level: 2; -*- */
@@ -22257,13 +22331,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /***/ },
-/* 210 */
-[459, 35, 207, 118, 119, 209],
 /* 211 */
-[461, 120, 35],
+[459, 35, 208, 118, 119, 210],
 /* 212 */
-[462, 120, 210, 211],
+[461, 120, 35],
 /* 213 */
+[462, 120, 211, 212],
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22621,7 +22695,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports) {
 
 	/* @flow */
@@ -22678,7 +22752,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports) {
 
 	/* @flow */
@@ -22765,7 +22839,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -22800,7 +22874,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _isInteger2 = _interopRequireDefault(_isInteger);
 
-	var _lodashLangIsNumber = __webpack_require__(183);
+	var _lodashLangIsNumber = __webpack_require__(184);
 
 	var _lodashLangIsNumber2 = _interopRequireDefault(_lodashLangIsNumber);
 
@@ -23048,7 +23122,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -23363,7 +23437,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -23469,7 +23543,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function JSXEmptyExpression() {}
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -23581,7 +23655,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -23745,7 +23819,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24050,7 +24124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports) {
 
 	/* @flow */
@@ -24090,7 +24164,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -24338,7 +24412,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24347,7 +24421,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _interopRequireWildcard = __webpack_require__(2)["default"];
 
-	var _lodashLangIsBoolean = __webpack_require__(181);
+	var _lodashLangIsBoolean = __webpack_require__(182);
 
 	var _lodashLangIsBoolean2 = _interopRequireDefault(_lodashLangIsBoolean);
 
@@ -24585,7 +24659,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -24644,7 +24718,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -24667,7 +24741,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _repeating2 = _interopRequireDefault(_repeating);
 
-	var _buffer = __webpack_require__(213);
+	var _buffer = __webpack_require__(214);
 
 	var _buffer2 = _interopRequireDefault(_buffer);
 
@@ -25023,7 +25097,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	})(_buffer2["default"]);
 
 	exports["default"] = Printer;
-	var _arr = [__webpack_require__(222), __webpack_require__(216), __webpack_require__(221), __webpack_require__(215), __webpack_require__(219), __webpack_require__(220), __webpack_require__(121), __webpack_require__(217), __webpack_require__(214), __webpack_require__(218)];
+	var _arr = [__webpack_require__(223), __webpack_require__(217), __webpack_require__(222), __webpack_require__(216), __webpack_require__(220), __webpack_require__(221), __webpack_require__(121), __webpack_require__(218), __webpack_require__(215), __webpack_require__(219)];
 
 	for (var _i2 = 0; _i2 < _arr.length; _i2++) {
 	  var generator = _arr[_i2];
@@ -25032,7 +25106,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25045,7 +25119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _sourceMap = __webpack_require__(235);
+	var _sourceMap = __webpack_require__(236);
 
 	var _sourceMap2 = _interopRequireDefault(_sourceMap);
 
@@ -25125,7 +25199,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -25263,21 +25337,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 229 */
-206,
 /* 230 */
 207,
 /* 231 */
-[458, 36],
+208,
 /* 232 */
-209,
+[458, 36],
 /* 233 */
-[459, 36, 230, 124, 125, 232],
+210,
 /* 234 */
-[461, 126, 36],
+[459, 36, 231, 124, 125, 233],
 /* 235 */
-[462, 126, 233, 234],
+[461, 126, 36],
 /* 236 */
+[462, 126, 234, 235],
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -25290,7 +25364,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _babelHelperExplodeAssignableExpression = __webpack_require__(238);
+	var _babelHelperExplodeAssignableExpression = __webpack_require__(239);
 
 	var _babelHelperExplodeAssignableExpression2 = _interopRequireDefault(_babelHelperExplodeAssignableExpression);
 
@@ -25353,7 +25427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25364,7 +25438,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _babelHelperHoistVariables = __webpack_require__(239);
+	var _babelHelperHoistVariables = __webpack_require__(240);
 
 	var _babelHelperHoistVariables2 = _interopRequireDefault(_babelHelperHoistVariables);
 
@@ -25436,7 +25510,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25524,7 +25598,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25599,7 +25673,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -25719,80 +25793,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	};
 
-	module.exports = exports["default"];
-
-/***/ },
-/* 241 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var _interopRequireDefault = __webpack_require__(1)["default"];
-
-	exports.__esModule = true;
-
-	var _babelTemplate = __webpack_require__(13);
-
-	var _babelTemplate2 = _interopRequireDefault(_babelTemplate);
-
-	var helpers = {};
-	exports["default"] = helpers;
-
-	helpers["typeof"] = _babelTemplate2["default"]("\n  (function (obj) {\n    return obj && typeof Symbol !== \"undefined\" && obj.constructor === Symbol ? \"symbol\" : typeof obj;\n  });\n");
-
-	helpers.jsx = _babelTemplate2["default"]("\n  (function () {\n    var REACT_ELEMENT_TYPE = (typeof Symbol === \"function\" && Symbol.for && Symbol.for(\"react.element\")) || 0xeac7;\n\n    return function createRawReactElement (type, props, key, children) {\n      var defaultProps = type && type.defaultProps;\n      var childrenLength = arguments.length - 3;\n\n      if (!props && childrenLength !== 0) {\n        // If we're going to assign props.children, we create a new object now\n        // to avoid mutating defaultProps.\n        props = {};\n      }\n      if (props && defaultProps) {\n        for (var propName in defaultProps) {\n          if (props[propName] === void 0) {\n            props[propName] = defaultProps[propName];\n          }\n        }\n      } else if (!props) {\n        props = defaultProps || {};\n      }\n\n      if (childrenLength === 1) {\n        props.children = children;\n      } else if (childrenLength > 1) {\n        var childArray = Array(childrenLength);\n        for (var i = 0; i < childrenLength; i++) {\n          childArray[i] = arguments[i + 3];\n        }\n        props.children = childArray;\n      }\n\n      return {\n        $$typeof: REACT_ELEMENT_TYPE,\n        type: type,\n        key: key === undefined ? null : '' + key,\n        ref: null,\n        props: props,\n        _owner: null,\n      };\n    };\n\n  })()\n");
-
-	helpers.asyncToGenerator = _babelTemplate2["default"]("\n  (function (fn) {\n    return function () {\n      var gen = fn.apply(this, arguments);\n      return new Promise(function (resolve, reject) {\n        function step(key, arg) {\n          try {\n            var info = gen[key](arg);\n            var value = info.value;\n          } catch (error) {\n            reject(error);\n            return;\n          }\n\n          if (info.done) {\n            resolve(value);\n          } else {\n            Promise.resolve(value).then(function (value) {\n              step(\"next\", value);\n            }, function (err) {\n              step(\"throw\", err);\n            });\n          }\n        }\n\n        step(\"next\");\n      });\n    };\n  })\n");
-
-	helpers.classCallCheck = _babelTemplate2["default"]("\n  (function (instance, Constructor) {\n    if (!(instance instanceof Constructor)) {\n      throw new TypeError(\"Cannot call a class as a function\");\n    }\n  });\n");
-
-	helpers.createClass = _babelTemplate2["default"]("\n  (function() {\n    function defineProperties(target, props) {\n      for (var i = 0; i < props.length; i ++) {\n        var descriptor = props[i];\n        descriptor.enumerable = descriptor.enumerable || false;\n        descriptor.configurable = true;\n        if (\"value\" in descriptor) descriptor.writable = true;\n        Object.defineProperty(target, descriptor.key, descriptor);\n      }\n    }\n\n    return function (Constructor, protoProps, staticProps) {\n      if (protoProps) defineProperties(Constructor.prototype, protoProps);\n      if (staticProps) defineProperties(Constructor, staticProps);\n      return Constructor;\n    };\n  })()\n");
-
-	helpers.defineEnumerableProperties = _babelTemplate2["default"]("\n  (function (obj, descs) {\n    for (var key in descs) {\n      var desc = descs[key];\n      desc.configurable = desc.enumerable = true;\n      if (\"value\" in desc) desc.writable = true;\n      Object.defineProperty(obj, key, desc);\n    }\n    return obj;\n  })\n");
-
-	helpers.defaults = _babelTemplate2["default"]("\n  (function (obj, defaults) {\n    var keys = Object.getOwnPropertyNames(defaults);\n    for (var i = 0; i < keys.length; i++) {\n      var key = keys[i];\n      var value = Object.getOwnPropertyDescriptor(defaults, key);\n      if (value && value.configurable && obj[key] === undefined) {\n        Object.defineProperty(obj, key, value);\n      }\n    }\n    return obj;\n  })\n");
-
-	helpers.defineProperty = _babelTemplate2["default"]("\n  (function (obj, key, value) {\n    // Shortcircuit the slow defineProperty path when possible.\n    // We are trying to avoid issues where setters defined on the\n    // prototype cause side effects under the fast path of simple\n    // assignment. By checking for existence of the property with\n    // the in operator, we can optimize most of this overhead away.\n    if (key in obj) {\n      Object.defineProperty(obj, key, {\n        value: value,\n        enumerable: true,\n        configurable: true,\n        writable: true\n      });\n    } else {\n      obj[key] = value;\n    }\n    return obj;\n  });\n");
-
-	helpers["extends"] = _babelTemplate2["default"]("\n  Object.assign || (function (target) {\n    for (var i = 1; i < arguments.length; i++) {\n      var source = arguments[i];\n      for (var key in source) {\n        if (Object.prototype.hasOwnProperty.call(source, key)) {\n          target[key] = source[key];\n        }\n      }\n    }\n    return target;\n  })\n");
-
-	helpers.get = _babelTemplate2["default"]("\n  (function get(object, property, receiver) {\n    if (object === null) object = Function.prototype;\n\n    var desc = Object.getOwnPropertyDescriptor(object, property);\n\n    if (desc === undefined) {\n      var parent = Object.getPrototypeOf(object);\n\n      if (parent === null) {\n        return undefined;\n      } else {\n        return get(parent, property, receiver);\n      }\n    } else if (\"value\" in desc) {\n      return desc.value;\n    } else {\n      var getter = desc.get;\n\n      if (getter === undefined) {\n        return undefined;\n      }\n\n      return getter.call(receiver);\n    }\n  });\n");
-
-	helpers.inherits = _babelTemplate2["default"]("\n  (function (subClass, superClass) {\n    if (typeof superClass !== \"function\" && superClass !== null) {\n      throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass);\n    }\n    subClass.prototype = Object.create(superClass && superClass.prototype, {\n      constructor: {\n        value: subClass,\n        enumerable: false,\n        writable: true,\n        configurable: true\n      }\n    });\n    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;\n  })\n");
-
-	helpers["instanceof"] = _babelTemplate2["default"]("\n  (function (left, right) {\n    if (right != null && typeof Symbol !== \"undefined\" && right[Symbol.hasInstance]) {\n      return right[Symbol.hasInstance](left);\n    } else {\n      return left instanceof right;\n    }\n  });\n");
-
-	helpers.interopRequireDefault = _babelTemplate2["default"]("\n  (function (obj) {\n    return obj && obj.__esModule ? obj : { default: obj };\n  })\n");
-
-	helpers.interopRequireWildcard = _babelTemplate2["default"]("\n  (function (obj) {\n    if (obj && obj.__esModule) {\n      return obj;\n    } else {\n      var newObj = {};\n      if (obj != null) {\n        for (var key in obj) {\n          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];\n        }\n      }\n      newObj.default = obj;\n      return newObj;\n    }\n  })\n");
-
-	helpers.newArrowCheck = _babelTemplate2["default"]("\n  (function (innerThis, boundThis) {\n    if (innerThis !== boundThis) {\n      throw new TypeError(\"Cannot instantiate an arrow function\");\n    }\n  });\n");
-
-	helpers.objectDestructuringEmpty = _babelTemplate2["default"]("\n  (function (obj) {\n    if (obj == null) throw new TypeError(\"Cannot destructure undefined\");\n  });\n");
-
-	helpers.objectWithoutProperties = _babelTemplate2["default"]("\n  (function (obj, keys) {\n    var target = {};\n    for (var i in obj) {\n      if (keys.indexOf(i) >= 0) continue;\n      if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;\n      target[i] = obj[i];\n    }\n    return target;\n  })\n");
-
-	helpers.possibleConstructorReturn = _babelTemplate2["default"]("\n  (function (self, call) {\n    if (!self) {\n      throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\");\n    }\n    return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self;\n  });\n");
-
-	helpers.selfGlobal = _babelTemplate2["default"]("\n  typeof global === \"undefined\" ? self : global\n");
-
-	helpers.set = _babelTemplate2["default"]("\n  (function set(object, property, value, receiver) {\n    var desc = Object.getOwnPropertyDescriptor(object, property);\n\n    if (desc === undefined) {\n      var parent = Object.getPrototypeOf(object);\n\n      if (parent !== null) {\n        set(parent, property, value, receiver);\n      }\n    } else if (\"value\" in desc && desc.writable) {\n      desc.value = value;\n    } else {\n      var setter = desc.set;\n\n      if (setter !== undefined) {\n        setter.call(receiver, value);\n      }\n    }\n\n    return value;\n  });\n");
-
-	helpers.slicedToArray = _babelTemplate2["default"]("\n  (function () {\n    // Broken out into a separate function to avoid deoptimizations due to the try/catch for the\n    // array iterator case.\n    function sliceIterator(arr, i) {\n      // this is an expanded form of `for...of` that properly supports abrupt completions of\n      // iterators etc. variable names have been minimised to reduce the size of this massive\n      // helper. sometimes spec compliancy is annoying :(\n      //\n      // _n = _iteratorNormalCompletion\n      // _d = _didIteratorError\n      // _e = _iteratorError\n      // _i = _iterator\n      // _s = _step\n\n      var _arr = [];\n      var _n = true;\n      var _d = false;\n      var _e = undefined;\n      try {\n        for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {\n          _arr.push(_s.value);\n          if (i && _arr.length === i) break;\n        }\n      } catch (err) {\n        _d = true;\n        _e = err;\n      } finally {\n        try {\n          if (!_n && _i[\"return\"]) _i[\"return\"]();\n        } finally {\n          if (_d) throw _e;\n        }\n      }\n      return _arr;\n    }\n\n    return function (arr, i) {\n      if (Array.isArray(arr)) {\n        return arr;\n      } else if (Symbol.iterator in Object(arr)) {\n        return sliceIterator(arr, i);\n      } else {\n        throw new TypeError(\"Invalid attempt to destructure non-iterable instance\");\n      }\n    };\n  })();\n");
-
-	helpers.slicedToArrayLoose = _babelTemplate2["default"]("\n  (function (arr, i) {\n    if (Array.isArray(arr)) {\n      return arr;\n    } else if (Symbol.iterator in Object(arr)) {\n      var _arr = [];\n      for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {\n        _arr.push(_step.value);\n        if (i && _arr.length === i) break;\n      }\n      return _arr;\n    } else {\n      throw new TypeError(\"Invalid attempt to destructure non-iterable instance\");\n    }\n  });\n");
-
-	helpers.taggedTemplateLiteral = _babelTemplate2["default"]("\n  (function (strings, raw) {\n    return Object.freeze(Object.defineProperties(strings, {\n        raw: { value: Object.freeze(raw) }\n    }));\n  });\n");
-
-	helpers.taggedTemplateLiteralLoose = _babelTemplate2["default"]("\n  (function (strings, raw) {\n    strings.raw = raw;\n    return strings;\n  });\n");
-
-	helpers.temporalRef = _babelTemplate2["default"]("\n  (function (val, name, undef) {\n    if (val === undef) {\n      throw new ReferenceError(name + \" is not defined - temporal dead zone\");\n    } else {\n      return val;\n    }\n  })\n");
-
-	helpers.temporalUndefined = _babelTemplate2["default"]("\n  ({})\n");
-
-	helpers.toArray = _babelTemplate2["default"]("\n  (function (arr) {\n    return Array.isArray(arr) ? arr : Array.from(arr);\n  });\n");
-
-	helpers.toConsumableArray = _babelTemplate2["default"]("\n  (function (arr) {\n    if (Array.isArray(arr)) {\n      for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];\n      return arr2;\n    } else {\n      return Array.from(arr);\n    }\n  });\n");
 	module.exports = exports["default"];
 
 /***/ },
@@ -25923,7 +25923,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 
 	  return {
-	    inherits: __webpack_require__(133),
+	    inherits: __webpack_require__(134),
 
 	    visitor: {
 	      Class: function Class(path) {
@@ -26068,9 +26068,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 
 	exports.default = function (_ref) {
-		//TEMP
-		var log = console.log.bind(console);
-	
 		var t = _ref.types;
 
 		//this makes it possible to create a ContextDeclaration visitor
@@ -26086,228 +26083,314 @@ return /******/ (function(modules) { // webpackBootstrap
 		t.VISITOR_KEYS.ContextMethod = ['key', 'params', 'body', 'decorators', 'returnType', 'typeParameters'];
 
 		return {
-			
 			inherits: __webpack_require__(244),
 
 			visitor: {
-				FunctionDeclaration: {
-					exit: function exit(path) {
-						var fnDecl = path.node;
-						//2-dimensional map of role methods indexed by role name and then by method name
-						var roleMethods = {};
-						var rolePaths = [];
-						var nodesToKeep = [];
+				FunctionDeclaration: function FunctionDeclaration(path, state) {
+					//state.file.addHelper('dci_getRoleMember');
 
-						var _iteratorNormalCompletion = true;
-						var _didIteratorError = false;
-						var _iteratorError = undefined;
+					var fnDecl = path.node;
 
+					//2-dimensional map of role methods indexed by role name and then by method name
+					var roleMethods = {};
+					var rolePaths = [];
+
+					//role-player type annotations, indexed by role name
+					//not currently used but might be needed for future features
+					var playerTypeAnnotations = {};
+					var nodesToKeep = [];
+
+					var _iteratorNormalCompletion = true;
+					var _didIteratorError = false;
+					var _iteratorError = undefined;
+
+					try {
+						for (var _iterator = path.get('body.body')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+							var subPath = _step.value;
+
+							if (subPath.equals('type', 'RoleDeclaration')) {
+								rolePaths.push(subPath);
+								var roleName = subPath.node.id.name;
+								roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
+							} else nodesToKeep.push(subPath.node);
+						}
+					} catch (err) {
+						_didIteratorError = true;
+						_iteratorError = err;
+					} finally {
 						try {
-							for (var _iterator = path.get('body.body')[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-								var subPath = _step.value;
-
-								if (subPath.equals('type', 'RoleDeclaration')) {
-									rolePaths.push(subPath);
-									var roleName = subPath.node.id.name;
-									roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
-								} else nodesToKeep.push(subPath.node);
+							if (!_iteratorNormalCompletion && _iterator.return) {
+								_iterator.return();
 							}
-						} catch (err) {
-							_didIteratorError = true;
-							_iteratorError = err;
 						} finally {
-							try {
-								if (!_iteratorNormalCompletion && _iterator.return) {
-									_iterator.return();
-								}
-							} finally {
-								if (_didIteratorError) {
-									throw _iteratorError;
-								}
+							if (_didIteratorError) {
+								throw _iteratorError;
 							}
 						}
-
-						fnDecl.isDCIContext = rolePaths.length > 0;
-
-						if (!fnDecl.isDCIContext) {
-							return;
-						}
-
-						//Create objects for the role methods
-						var roleAssignments = [];
-						var _iteratorNormalCompletion2 = true;
-						var _didIteratorError2 = false;
-						var _iteratorError2 = undefined;
-
-						try {
-							for (var _iterator2 = rolePaths[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-								var rolePath = _step2.value;
-
-								var roleName = rolePath.node.id.name;
-
-								//__context.__$[[roleName]] = {...}
-								roleAssignments.push(t.AssignmentExpression('=', t.MemberExpression(t.Identifier('__context'), t.Identifier('__$' + roleName)), roleDeclAsObj(rolePath.node)));
-
-								//transform call expressions within role methods
-								transformCallExpressions(rolePath, roleMethods, roleName);
-							}
-						} catch (err) {
-							_didIteratorError2 = true;
-							_iteratorError2 = err;
-						} finally {
-							try {
-								if (!_iteratorNormalCompletion2 && _iterator2.return) {
-									_iterator2.return();
-								}
-							} finally {
-								if (_didIteratorError2) {
-									throw _iteratorError2;
-								}
-							}
-						}
-
-						fnDecl.body.body = nodesToKeep;
-
-						//Transform the contents of the Context function and Context methods
-						path.get('body').traverse({
-							ExpressionStatement: function ExpressionStatement(subPath) {
-								//TODO
-								//This transformation should not happen inside inner classes or constructor
-								//functions where `this` is not equal to the current context.
-								//Maybe we don't even need a visitor for this and can just loop over
-								//top-level statements...
-
-								//Allow binding the current Context to a role via `this`, even if the Context
-								//function wasn't called with the `new` operator.
-								//
-								//For example,
-								//	bank = this
-								//becomes:
-								//	bank = __context
-
-								var n = subPath.node;
-								
-								if (t.isAssignmentExpression(n.expression)) {
-									//role methods map is indexed by role name
-									if (t.isIdentifier(n.expression.left) && n.expression.left.name in roleMethods) {
-										if (t.isThisExpression(n.expression.right)) {
-											n.expression.right = t.Identifier('__context');
-										}
-									}
-								}
-							},
-
-							CallExpression: createCallExpressionVisitor(roleMethods)
-						});
-						
-						//declare any role variables that haven't yet been declared
-						var roleVarDeclarators = [];
-						for (var roleName in roleMethods) {
-							//has the role variable been declared?
-							if (!path.scope.hasOwnBinding(roleName)) {
-								roleVarDeclarators.push(t.VariableDeclarator(t.Identifier(roleName)));
-							}
-						}
-						if (roleVarDeclarators.length) {
-							roleAssignments.unshift(t.VariableDeclaration('var', roleVarDeclarators));
-						}
-
-						//Initialize __context variable
-						//If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
-						//be used as a container to hold the role methods.
-						//
-						//Would it be possible to detect whether we're generating a commonjs or AMD mode here rather than checking for
-						//both global and window at runtime? But what about UMD modules intended to run in either environment?
-						//
-						//var __context = (this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this);	
-						var ctxAssignment = t.VariableDeclaration('var', [t.VariableDeclarator(t.Identifier('__context'), initContextVariableAst)]);
-						/*
-	     let ctxAssignment = t.VariableDeclaration('var', [
-	     	t.VariableDeclarator(
-	     		t.Identifier('__context'),
-	     		t.ObjectExpression([])
-	     	)
-	     ]);
-	     */
-
-						//TODO
-						//Inner contexts - generate unique context variable for each level?
-						//e.g. var __context2 = ...
-
-						//add initialization code to top of function declaration
-						fnDecl.body.body = [ctxAssignment].concat(roleAssignments, fnDecl.body.body);
 					}
+
+					fnDecl.isDCIContext = rolePaths.length > 0;
+
+					if (!fnDecl.isDCIContext) {
+						return;
+					}
+
+					var automaticBindings = automaticallyBindConstructorParams(fnDecl.params, roleMethods, playerTypeAnnotations);
+					fnDecl.body.body = automaticBindings.concat(nodesToKeep);
+
+					//TODO
+					//Type-casts for accessing instance properties
+
+					var roleDescriptors = transformRolesToDescriptors(roleMethods, rolePaths);
+
+					//Also initialize the roleBindings map					
+					var roleBindingsMapInit = initRoleBindingsMap(rolePaths);
+
+					roleDescriptors.push(t.ObjectProperty(t.Identifier('__roleBindings'), t.ObjectExpression([t.ObjectProperty(t.Identifier('value'), t.Identifier('__roleBindings'))])));
+
+					//Old version
+					/*
+	    roleDescriptors.push(t.ObjectProperty(
+	    	t.Identifier('__roleBindings'),
+	    	t.ObjectExpression([
+	    		t.ObjectProperty(t.Identifier('value'), t.ObjectExpression([]))
+	    	])
+	    ));
+	    */
+
+					transformContextMethods(path.get('body'), roleMethods, playerTypeAnnotations);
+
+					var roleAssignments = [t.CallExpression(t.MemberExpression(t.Identifier('Object'), t.Identifier('defineProperties')), [t.Identifier('__context'), t.ObjectExpression(roleDescriptors)])];
+
+					//declare any role variables that haven't yet been declared
+					var roleVarDeclarators = initRolePlayerVars(path, roleMethods);
+					if (roleVarDeclarators.length) {
+						roleAssignments.unshift(t.VariableDeclaration('var', roleVarDeclarators));
+					}
+
+					//Initialize __context variable
+					//If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
+					//be used as a container to hold the role methods.
+					//
+					//Would it be possible to detect whether we're generating a commonjs or AMD mode here rather than checking for
+					//both global and window at runtime? But what about UMD modules intended to run in either environment?
+					//
+					//var __context = (this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this);	
+					var ctxAssignment = t.VariableDeclaration('var', [t.VariableDeclarator(t.Identifier('__context'), initContextVariableAst)]);
+
+					//TODO
+					//Inner contexts - generate unique context variable for each level?
+					//e.g. var __context2 = ...
+
+					//transform role-player contracts to flow type aliases
+					var contractsAsFlowTypes = transformRolePlayerContracts(rolePaths);
+
+					//add initialization code to top of function declaration
+					fnDecl.body.body = [ctxAssignment].concat(contractsAsFlowTypes, [roleBindingsMapInit], roleAssignments, fnDecl.body.body);
 				},
+				ContextDeclaration: function ContextDeclaration(path) {
+					var node = path.node;
 
-				ContextDeclaration: {
-					exit: function exit(path) {
-						var node = path.node;
-						//log('hasConstructor', hasConstructor(node));
+					//2-dimensional map of role methods indexed by role name and then by method name
+					var roleMethods = {};
+					var rolePaths = [];
 
-						var fnBodyNodes = [];
+					//role-player type annotations, indexed by role name
+					//not currently used but might be needed for future features
+					var playerTypeAnnotations = {};
+					var contextMemberPaths = [];
 
-						//TEMP
-						var params = undefined;
-						var nodes = node.body.body;
-						var _iteratorNormalCompletion3 = true;
-						var _didIteratorError3 = false;
-						var _iteratorError3 = undefined;
+					var _iteratorNormalCompletion2 = true;
+					var _didIteratorError2 = false;
+					var _iteratorError2 = undefined;
 
-						try {
-							for (var _iterator3 = nodes[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-								var n = _step3.value;
+					try {
+						for (var _iterator2 = path.get('body.body')[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+							var subPath = _step2.value;
 
-								if (n.kind === 'constructor') {
-									params = n.params;
-									fnBodyNodes = n.body.body;
-									break;
-								}
-							}
-						} catch (err) {
-							_didIteratorError3 = true;
-							_iteratorError3 = err;
-						} finally {
-							try {
-								if (!_iteratorNormalCompletion3 && _iterator3.return) {
-									_iterator3.return();
-								}
-							} finally {
-								if (_didIteratorError3) {
-									throw _iteratorError3;
+							if (subPath.equals('type', 'RoleDeclaration')) {
+								rolePaths.push(subPath);
+								var roleName = subPath.node.id.name;
+								roleMethods[roleName] = indexRoleMethodsByName(subPath.node);
+							} else {
+								var _node = subPath.node;
+								if (!_node.kind || _node.kind != 'constructor') {
+									contextMemberPaths.push(subPath);
 								}
 							}
 						}
 
-						path.replaceWith(t.FunctionDeclaration(node.id, params, t.BlockStatement(fnBodyNodes)));
+						//Transform Context members
+					} catch (err) {
+						_didIteratorError2 = true;
+						_iteratorError2 = err;
+					} finally {
+						try {
+							if (!_iteratorNormalCompletion2 && _iterator2.return) {
+								_iterator2.return();
+							}
+						} finally {
+							if (_didIteratorError2) {
+								throw _iteratorError2;
+							}
+						}
 					}
-				}
+
+					var contextMemberDescriptors = [];
+					var valueId = t.Identifier('value');
+
+					//Transform Context members to descriptors that will be passed to
+					//Object.defineProperties(this, ...);
+					var _iteratorNormalCompletion3 = true;
+					var _didIteratorError3 = false;
+					var _iteratorError3 = undefined;
+
+					try {
+						for (var _iterator3 = contextMemberPaths[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+							var subPath = _step3.value;
+
+							var member = subPath.node;
+							if (member.type === 'ContextMethod') {
+								contextMemberDescriptors.push(transformContextMethodToDescriptor(subPath));
+							} else if (member.type === 'ContextProperty') {
+								var prop = member;
+								if (prop.decorators) continue;
+								if (!prop.value) continue;
+								contextMemberDescriptors.push(t.ObjectProperty(prop.key, t.ObjectExpression([t.ObjectProperty(valueId, prop.value)])));
+							}
+						}
+					} catch (err) {
+						_didIteratorError3 = true;
+						_iteratorError3 = err;
+					} finally {
+						try {
+							if (!_iteratorNormalCompletion3 && _iterator3.return) {
+								_iterator3.return();
+							}
+						} finally {
+							if (_didIteratorError3) {
+								throw _iteratorError3;
+							}
+						}
+					}
+
+					var constructorPath = undefined,
+					    constructorParams = [];
+					var _iteratorNormalCompletion4 = true;
+					var _didIteratorError4 = false;
+					var _iteratorError4 = undefined;
+
+					try {
+						for (var _iterator4 = path.get('body.body')[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+							var subPath = _step4.value;
+
+							if (subPath.node.kind === 'constructor') {
+								constructorPath = subPath;
+								constructorParams = subPath.node.params;
+								break;
+							}
+						}
+
+						//Transform constructor body
+					} catch (err) {
+						_didIteratorError4 = true;
+						_iteratorError4 = err;
+					} finally {
+						try {
+							if (!_iteratorNormalCompletion4 && _iterator4.return) {
+								_iterator4.return();
+							}
+						} finally {
+							if (_didIteratorError4) {
+								throw _iteratorError4;
+							}
+						}
+					}
+
+					var constructorBodyNodes = [];
+					if (constructorPath) {
+						constructorBodyNodes = constructorPath.node.body.body;
+						transformContextMethods(constructorPath.get('body'), roleMethods, playerTypeAnnotations);
+					}
+
+					var automaticBindings = automaticallyBindConstructorParams(constructorParams, roleMethods, playerTypeAnnotations);
+					constructorBodyNodes = automaticBindings.concat(constructorBodyNodes);
+
+					//Transform roles
+
+					var roleDescriptors = transformRolesToDescriptors(roleMethods, rolePaths);
+
+					//Also initialize the roleBindings map					
+					var roleBindingsMapInit = initRoleBindingsMap(rolePaths);
+
+					roleDescriptors.push(t.ObjectProperty(t.Identifier('__roleBindings'), t.ObjectExpression([t.ObjectProperty(t.Identifier('value'), t.Identifier('__roleBindings'))])));
+
+					//Add initialization code at the top of the Context function
+
+					//if (!(this instanceof [[ContextName]]))
+					//	throw Error("Contexts defined with the 'context' declaration should be instantiated with the 'new' operator.");
+					var ctxCallCheck = t.IfStatement(t.UnaryExpression('!', t.BinaryExpression('instanceof', t.ThisExpression(), node.id), true), contextCallCheckErrorAst);
+
+					//var __context = this;
+					var ctxAssignment = t.VariableDeclaration('var', [t.VariableDeclarator(t.Identifier('__context'), t.ThisExpression())]);
+
+					//transform role-player contracts to flow type aliases
+					var contractsAsFlowTypes = transformRolePlayerContracts(rolePaths);
+
+					//Put it all together
+					var fnBodyNodes = [ctxCallCheck, ctxAssignment];
+					fnBodyNodes = fnBodyNodes.concat(contractsAsFlowTypes, [roleBindingsMapInit, t.ExpressionStatement(t.CallExpression(
+					//Object.defineProperties(this, {...});
+					t.MemberExpression(t.Identifier('Object'), t.Identifier('defineProperties')), [t.ThisExpression(), t.ObjectExpression(roleDescriptors.concat(contextMemberDescriptors))]))]);
+
+					fnBodyNodes = fnBodyNodes.concat(constructorBodyNodes);
+
+					//was the Context declaration preceded with 'export default'?
+					if (path.parentPath.isExportDefaultDeclaration()) {
+						path = path.parentPath;
+						path.insertAfter(t.exportDefaultDeclaration(node.id));
+					}
+
+					path.replaceWith(t.FunctionDeclaration(node.id, constructorParams, t.BlockStatement(fnBodyNodes)));
+
+					function transformContextMethodToDescriptor(subPath) {
+						var method = subPath.node;
+						//determine whether to set 'value', 'get', or 'set' property of the descriptor.
+						var methodKindId = method.kind === 'method' ? valueId : t.Identifier(method.kind);
+
+						transformContextMethods(subPath.get('body'), roleMethods);
+						var fnDecl = t.FunctionExpression(method.key, method.params, method.body, method.generator, method.async);
+						return t.ObjectProperty(method.key, t.ObjectExpression([t.ObjectProperty(methodKindId, fnDecl)]));
+					}
+				} //end ContextDeclaration visitor
+
 			}
 		};
 
 		function indexRoleMethodsByName(roleDecl) {
 			var body = roleDecl.body.body;
 			var roleMethods = {};
-			var _iteratorNormalCompletion4 = true;
-			var _didIteratorError4 = false;
-			var _iteratorError4 = undefined;
+			var _iteratorNormalCompletion5 = true;
+			var _didIteratorError5 = false;
+			var _iteratorError5 = undefined;
 
 			try {
-				for (var _iterator4 = body[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-					var m = _step4.value;
+				for (var _iterator5 = body[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+					var method = _step5.value;
 
-					roleMethods[m.key.name] = m;
+					roleMethods[method.key.name] = method;
 				}
 			} catch (err) {
-				_didIteratorError4 = true;
-				_iteratorError4 = err;
+				_didIteratorError5 = true;
+				_iteratorError5 = err;
 			} finally {
 				try {
-					if (!_iteratorNormalCompletion4 && _iterator4.return) {
-						_iterator4.return();
+					if (!_iteratorNormalCompletion5 && _iterator5.return) {
+						_iterator5.return();
 					}
 				} finally {
-					if (_didIteratorError4) {
-						throw _iteratorError4;
+					if (_didIteratorError5) {
+						throw _iteratorError5;
 					}
 				}
 			}
@@ -26333,13 +26416,99 @@ return /******/ (function(modules) { // webpackBootstrap
 				//Allow `self` to be used as an alternative to `this`
 				//(and without the scoping issues of `this`).
 				//
-				//var self = this;
-				methodBody.body.unshift(t.VariableDeclaration('var', [t.VariableDeclarator(t.Identifier('self'), t.ThisExpression())]));
+				//var self: RolePlayerType = this;
+				var selfId = t.Identifier('self');
+				methodBody.body.unshift(t.VariableDeclaration('var', [t.VariableDeclarator(selfId, t.ThisExpression())]));
 
 				props[i] = t.ObjectProperty(method.key, t.FunctionExpression(null, method.params, methodBody, method.generator, method.async));
 				//props[i] = t.ObjectMethod(method.kind, method.key, method.params, method.body, method.computed);
 			});
 			return t.ObjectExpression(props);
+		}
+
+		//Create objects for the role methods that can be passed to Object.defineProperties():
+		/*
+	 Object.defineProperties(__context, {value: {
+	 	__$[[roleName]]: {...},
+	 	...
+	 }});
+	 */
+		function transformRolesToDescriptors(roleMethods, rolePaths) {
+			var roleDescriptors = [];
+			var valueId = t.Identifier('value');
+			var _iteratorNormalCompletion6 = true;
+			var _didIteratorError6 = false;
+			var _iteratorError6 = undefined;
+
+			try {
+				for (var _iterator6 = rolePaths[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+					var rolePath = _step6.value;
+
+					var roleName = rolePath.node.id.name;
+					roleDescriptors.push(t.ObjectProperty(t.Identifier('__$' + roleName), t.ObjectExpression([t.ObjectProperty(valueId, roleDeclAsObj(rolePath.node))])));
+
+					//transform call expressions within role methods
+					transformCallExpressions(rolePath, roleMethods, roleName);
+				}
+			} catch (err) {
+				_didIteratorError6 = true;
+				_iteratorError6 = err;
+			} finally {
+				try {
+					if (!_iteratorNormalCompletion6 && _iterator6.return) {
+						_iterator6.return();
+					}
+				} finally {
+					if (_didIteratorError6) {
+						throw _iteratorError6;
+					}
+				}
+			}
+
+			return roleDescriptors;
+		}
+
+		//Transform the contents of the Context function and Context methods
+		function transformContextMethods(path, roleMethods, playerTypeAnnotations) {
+			path.traverse({
+				ExpressionStatement: function ExpressionStatement(subPath) {
+					//TODO
+					//This transformation should not happen inside inner classes or constructor
+					//functions where `this` is not equal to the current context.
+					//Maybe we don't even need a visitor for this and can just loop over
+					//top-level statements...
+
+					//Allow binding the current Context to a role via `this`, even if the Context
+					//function wasn't called with the `new` operator.
+					//
+					//	myRole = this
+					//becomes:
+					//	myRole = __context
+
+					var n = subPath.node;
+					if (t.isAssignmentExpression(n.expression) && t.isIdentifier(n.expression.left) && t.isThisExpression(n.expression.right)) {
+						//role methods map is indexed by role name
+						if (n.expression.left.name in roleMethods) {
+							n.expression.right = t.Identifier('__context');
+						}
+					}
+				},
+
+				CallExpression: createCallExpressionVisitor(roleMethods),
+				AssignmentExpression: createAssignmentExpressionVisitor(roleMethods, playerTypeAnnotations)
+			});
+		}
+
+		//declare any role variables that haven't yet been declared
+		function initRolePlayerVars(path, roleMethods) {
+			var roleVarDeclarators = [];
+			for (var roleName in roleMethods) {
+				//has the role variable been declared?
+				if (!path.scope.hasOwnBinding(roleName)) {
+					roleVarDeclarators.push(t.VariableDeclarator(t.Identifier(roleName)));
+				}
+			}
+			return roleVarDeclarators;
 		}
 
 		//Transform call statements
@@ -26352,18 +26521,23 @@ return /******/ (function(modules) { // webpackBootstrap
 		}
 
 		function createCallExpressionVisitor(roleMethods, currentRoleName) {
-			return function (subPath) {
-				var callee = subPath.node.callee;
+			return function (path) {
+				var callee = path.node.callee;
 				if (callee.type === 'MemberExpression') {
 					var roleId = undefined;
+					var isRoleMethod = false;
 
 					//TODO for `this`, only top-level statements should be transformed
 					//(so `this` scoping works the same as it would normally)
-					if (t.isThisExpression(callee.object) || callee.object.type === 'Identifier' && callee.object.name === 'self' && callee.property.name in roleMethods[currentRoleName]) {
+					if (t.isThisExpression(callee.object) || callee.object.type === 'Identifier' && callee.object.name === 'self') {
 						roleId = t.Identifier(currentRoleName);
-					} else if (callee.object.type === 'Identifier' && callee.object.name in roleMethods && callee.property.name in roleMethods[callee.object.name]) {
-						roleId = callee.object;
+						isRoleMethod = callee.property.name in roleMethods[currentRoleName];
 					}
+					//is it a role method?
+					else if (callee.object.type === 'Identifier' && callee.object.name in roleMethods) {
+							roleId = callee.object;
+							isRoleMethod = callee.property.name in roleMethods[callee.object.name];
+						}
 
 					if (!roleId) {
 						return;
@@ -26371,55 +26545,188 @@ return /******/ (function(modules) { // webpackBootstrap
 
 					var methodId = callee.property;
 
-					//TODO
-					//Why is this causing an extra newline to be added?
-					//This only happens if the variable names start with underscores (__context and __$...)
+					if (isRoleMethod) {
+						//TODO
+						//Why is this causing an extra newline to be added?
+						//This only happens if the variable names start with underscores (__context and __$...)
 
-					//__context.roles.[[roleName]].[[methodName]].call([[rolePlayer]], ...);
-					subPath.replaceWith(t.CallExpression(
-					//build expression resolving to call() method of role method
-					t.MemberExpression(t.MemberExpression(t.MemberExpression(t.Identifier('__context'), t.Identifier('__$' + roleId.name)), methodId), t.Identifier('call')),
+						//Transform role method call
+						//__context.roles.[[roleName]].[[methodName]].call([[rolePlayer]], ...);
+						path.replaceWith(t.CallExpression(
+						//build expression resolving to call() method of role method
+						t.MemberExpression(t.MemberExpression(t.MemberExpression(t.Identifier('__context'), t.Identifier('__$' + roleId.name)), methodId), t.Identifier('call')),
 
-					//arguments
-					[roleId].concat(subPath.node.arguments)));
+						//arguments
+						[roleId].concat(path.node.arguments)));
+					}
 				}
 			};
 		}
 
-		function hasConstructor(contextDecl) {
-			var nodes = contextDecl.body.body;
-			var _iteratorNormalCompletion5 = true;
-			var _didIteratorError5 = false;
-			var _iteratorError5 = undefined;
+		//Find role-binding statements (AKA role assignments) and keep track of bindings
+		function createAssignmentExpressionVisitor(roleMethods, playerTypeAnnotations) {
+			var roleBindingsExpr = t.MemberExpression(t.Identifier('__context'), t.Identifier('__roleBindings'));
+			return function (path) {
+				var node = path.node;
+				if (t.isIdentifier(node.left) && node.left.name in roleMethods) {
+					var roleId = node.left;
+
+					//Keep track of role player types
+					//Note: This would currently break in the case of role re-binding,
+					//but role re-binding probably shouldn't be allowed anyway.
+					var rhs = node.right;
+					if (t.isIdentifier(rhs) && rhs.name != '__context') {
+						var binding = path.scope.getBinding(rhs.name);
+						if (!binding) {
+							throw path.buildCodeFrameError("Undefined variable '" + rhs.name + "'");
+						}
+						if (binding && binding.identifier.typeAnnotation) {
+							playerTypeAnnotations[roleId.name] = binding.identifier.typeAnnotation;
+						}
+					}
+
+					//__context.__roleBindings.[[roleName]] = [[player]]
+					path.insertAfter(t.ExpressionStatement(t.AssignmentExpression('=', t.MemberExpression(roleBindingsExpr, roleId), roleId)));
+				}
+			};
+		}
+
+		//Automatically bind any constructor (or Context function) parameters that have the
+		//same names as roles.
+		function automaticallyBindConstructorParams(fnParams, roleMethods, playerTypeAnnotations) {
+			var assignments = [];
+			var roleBindingsExpr = t.MemberExpression(t.Identifier('__context'), t.Identifier('__roleBindings'));
+			var _iteratorNormalCompletion7 = true;
+			var _didIteratorError7 = false;
+			var _iteratorError7 = undefined;
 
 			try {
-				for (var _iterator5 = nodes[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-					var n = _step5.value;
+				for (var _iterator7 = fnParams[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+					var param = _step7.value;
 
-					if (n.kind === 'constructor') {
-						return true;
+					if (t.isIdentifier(param) && param.name in roleMethods) {
+						var roleId = param;
+						assignments.push(t.ExpressionStatement(t.AssignmentExpression('=', t.MemberExpression(roleBindingsExpr, roleId), roleId)));
+
+						//Keep track of role player types
+						if (roleId.typeAnnotation) {
+							playerTypeAnnotations[roleId.name] = roleId.typeAnnotation;
+						}
 					}
 				}
 			} catch (err) {
-				_didIteratorError5 = true;
-				_iteratorError5 = err;
+				_didIteratorError7 = true;
+				_iteratorError7 = err;
 			} finally {
 				try {
-					if (!_iteratorNormalCompletion5 && _iterator5.return) {
-						_iterator5.return();
+					if (!_iteratorNormalCompletion7 && _iterator7.return) {
+						_iterator7.return();
 					}
 				} finally {
-					if (_didIteratorError5) {
-						throw _iteratorError5;
+					if (_didIteratorError7) {
+						throw _iteratorError7;
 					}
 				}
 			}
 
-			return false;
+			return assignments;
+		}
+
+		//Initialize the role bindings map.
+		//Returns a variable declaration for the __roleBindings variable.
+		function initRoleBindingsMap(rolePaths) {
+			var roleBindingsId = t.Identifier('__roleBindings'),
+			    rolePlayerContractTypes = [],
+			    props = [],
+			    undef = t.Identifier('undefined');
+
+			var _iteratorNormalCompletion8 = true;
+			var _didIteratorError8 = false;
+			var _iteratorError8 = undefined;
+
+			try {
+				for (var _iterator8 = rolePaths[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+					var rolePath = _step8.value;
+
+					var roleId = rolePath.node.id,
+					    annotationId = undefined;
+					if (rolePath.node.contract) {
+						//type annotation (question mark indicates a "maybe type",
+						//which is needed since role players are undefined prior to role binding)
+						annotationId = t.Identifier('?__' + roleId.name + 'Contract');
+					} else annotationId = t.Identifier('any');
+
+					rolePlayerContractTypes.push(t.ObjectTypeProperty(roleId, annotationId));
+					props.push(t.ObjectProperty(roleId, undef));
+				}
+			} catch (err) {
+				_didIteratorError8 = true;
+				_iteratorError8 = err;
+			} finally {
+				try {
+					if (!_iteratorNormalCompletion8 && _iterator8.return) {
+						_iterator8.return();
+					}
+				} finally {
+					if (_didIteratorError8) {
+						throw _iteratorError8;
+					}
+				}
+			}
+
+			roleBindingsId.typeAnnotation = t.TypeAnnotation(t.ObjectTypeAnnotation([], rolePlayerContractTypes));
+
+			var roleBindingsMapInit = t.VariableDeclaration('var', [t.VariableDeclarator(roleBindingsId, t.ObjectExpression(props))]);
+			return roleBindingsMapInit;
+		}
+
+		//Transform role-player contracts to flow type aliases
+		function transformRolePlayerContracts(rolePaths) {
+			var typeAliases = [];
+			var _iteratorNormalCompletion9 = true;
+			var _didIteratorError9 = false;
+			var _iteratorError9 = undefined;
+
+			try {
+				for (var _iterator9 = rolePaths[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+					var rolePath = _step9.value;
+
+					var roleDecl = rolePath.node,
+					    contract = roleDecl.contract;
+					if (contract) {
+						var typeAlias = t.TypeAlias();
+						typeAlias.id = t.Identifier('__' + roleDecl.id.name + 'Contract');
+						contract.type = 'ObjectTypeAnnotation';
+						typeAlias.right = contract;
+						typeAliases.push(typeAlias);
+					}
+				}
+			} catch (err) {
+				_didIteratorError9 = true;
+				_iteratorError9 = err;
+			} finally {
+				try {
+					if (!_iteratorNormalCompletion9 && _iterator9.return) {
+						_iterator9.return();
+					}
+				} finally {
+					if (_didIteratorError9) {
+						throw _iteratorError9;
+					}
+				}
+			}
+
+			return typeAliases;
 		}
 	};
 
 	var _babylon = __webpack_require__(56);
+
+	var _helpers = __webpack_require__(132);
+
+	var helpers = _interopRequireWildcard(_helpers);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	//TEMP
 	var log = console.log;
@@ -26430,15 +26737,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	//be used as a container to hold the role methods.
 	//
 	//TODO
+	//Could we just do this instead?
+	//var __context = (this instanceof MyContext ? this: {});
+	//
+	//TODO
 	//It would be more efficient to build the AST for this programmatically
-
 	var code = "(this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this)";
 	var initContextVariableAst = (0, _babylon.parse)(code).program.body[0].expression;
 
+	code = "throw Error(\"Contexts defined with the 'context' declaration should be instantiated with the 'new' operator.\");";
+	var contextCallCheckErrorAst = (0, _babylon.parse)(code).program.body[0];
+
+	//how to properly add a helper? this doesn't work
+	//code = "var dci = {};";
+	//helpers.dci_getRoleMember = parse(code).program.body[0];
+
 	//TEMP solution for babel-standalone
 	module.exports = exports.default;
-
-
 
 /***/ },
 /* 249 */
@@ -26562,7 +26877,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _babelHelperFunctionName2 = _interopRequireDefault(_babelHelperFunctionName);
 
-	var _vanilla = __webpack_require__(136);
+	var _vanilla = __webpack_require__(137);
 
 	var _vanilla2 = _interopRequireDefault(_vanilla);
 
@@ -26655,7 +26970,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _babelHelperGetFunctionArity2 = _interopRequireDefault(_babelHelperGetFunctionArity);
 
-	var _babelHelperCallDelegate = __webpack_require__(237);
+	var _babelHelperCallDelegate = __webpack_require__(238);
 
 	var _babelHelperCallDelegate2 = _interopRequireDefault(_babelHelperCallDelegate);
 
@@ -27191,7 +27506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _babelHelperBuilderBinaryAssignmentOperatorVisitor = __webpack_require__(236);
+	var _babelHelperBuilderBinaryAssignmentOperatorVisitor = __webpack_require__(237);
 
 	var _babelHelperBuilderBinaryAssignmentOperatorVisitor2 = _interopRequireDefault(_babelHelperBuilderBinaryAssignmentOperatorVisitor);
 
@@ -27229,7 +27544,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var FLOW_DIRECTIVE = "@flow";
 
 	  return {
-	    inherits: __webpack_require__(134),
+	    inherits: __webpack_require__(135),
 
 	    visitor: {
 	      Program: function Program(path, _ref3) {
@@ -27605,7 +27920,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function LeapManager(emitter) {
 	  _assert2["default"].ok(this instanceof LeapManager);
 
-	  var Emitter = __webpack_require__(138).Emitter;
+	  var Emitter = __webpack_require__(139).Emitter;
 	  _assert2["default"].ok(emitter instanceof Emitter);
 
 	  this.emitter = emitter;
@@ -27683,7 +27998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var t = _interopRequireWildcard(_babelTypes);
 
-	var m = __webpack_require__(190).makeAccessor();
+	var m = __webpack_require__(191).makeAccessor();
 
 	var hasOwn = Object.prototype.hasOwnProperty;
 
@@ -27803,13 +28118,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _hoist = __webpack_require__(259);
 
-	var _emit = __webpack_require__(138);
+	var _emit = __webpack_require__(139);
 
-	var _util = __webpack_require__(139);
+	var _util = __webpack_require__(140);
 
 	var util = _interopRequireWildcard(_util);
 
-	var getMarkInfo = __webpack_require__(190).makeAccessor();
+	var getMarkInfo = __webpack_require__(191).makeAccessor();
 
 	exports.visitor = {
 	  Function: {
@@ -28469,7 +28784,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    __webpack_require__(78),
 	    __webpack_require__(75),
 	    __webpack_require__(88),
-	    __webpack_require__(137),
+	    __webpack_require__(138),
 	    [__webpack_require__(90), { async: false, asyncGenerators: false }],
 	  ]
 	};
@@ -28481,7 +28796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = {
 	  plugins: [
-	    __webpack_require__(135),
+	    __webpack_require__(136),
 	    __webpack_require__(256)
 	  ]
 	};
@@ -28589,17 +28904,17 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
+	__webpack_require__(155);
 	__webpack_require__(154);
-	__webpack_require__(153);
 	module.exports = __webpack_require__(310);
 
 /***/ },
 /* 282 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(152);
 	__webpack_require__(153);
 	__webpack_require__(154);
+	__webpack_require__(155);
 	__webpack_require__(312);
 	__webpack_require__(319);
 	module.exports = __webpack_require__(9).Map;
@@ -28689,7 +29004,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(99);
-	__webpack_require__(152);
+	__webpack_require__(153);
 	module.exports = __webpack_require__(9).Symbol;
 
 /***/ },
@@ -28714,13 +29029,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 	var $            = __webpack_require__(6)
 	  , hide         = __webpack_require__(42)
-	  , redefineAll  = __webpack_require__(146)
+	  , redefineAll  = __webpack_require__(147)
 	  , ctx          = __webpack_require__(51)
-	  , strictNew    = __webpack_require__(148)
+	  , strictNew    = __webpack_require__(149)
 	  , defined      = __webpack_require__(52)
 	  , forOf        = __webpack_require__(93)
 	  , $iterDefine  = __webpack_require__(94)
-	  , step         = __webpack_require__(144)
+	  , step         = __webpack_require__(145)
 	  , ID           = __webpack_require__(98)('id')
 	  , $has         = __webpack_require__(53)
 	  , isObject     = __webpack_require__(54)
@@ -28877,7 +29192,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// https://github.com/DavidBruant/Map-Set.prototype.toJSON
 	var forOf   = __webpack_require__(93)
-	  , classof = __webpack_require__(141);
+	  , classof = __webpack_require__(142);
 	module.exports = function(NAME){
 	  return function toJSON(){
 	    if(classof(this) != NAME)throw TypeError(NAME + "#toJSON isn't generic");
@@ -28897,9 +29212,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , $export        = __webpack_require__(19)
 	  , fails          = __webpack_require__(40)
 	  , hide           = __webpack_require__(42)
-	  , redefineAll    = __webpack_require__(146)
+	  , redefineAll    = __webpack_require__(147)
 	  , forOf          = __webpack_require__(93)
-	  , strictNew      = __webpack_require__(148)
+	  , strictNew      = __webpack_require__(149)
 	  , isObject       = __webpack_require__(54)
 	  , setToStringTag = __webpack_require__(55)
 	  , DESCRIPTORS    = __webpack_require__(39);
@@ -29045,8 +29360,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// 19.1.2.1 Object.assign(target, source, ...)
 	var $        = __webpack_require__(6)
-	  , toObject = __webpack_require__(150)
-	  , IObject  = __webpack_require__(143);
+	  , toObject = __webpack_require__(151)
+	  , IObject  = __webpack_require__(144);
 
 	// should work with symbols and should have deterministic property order (V8 bug)
 	module.exports = __webpack_require__(40)(function(){
@@ -29130,7 +29445,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toInteger = __webpack_require__(149)
+	var toInteger = __webpack_require__(150)
 	  , defined   = __webpack_require__(52);
 	// true  -> String#at
 	// false -> String#codePointAt
@@ -29153,7 +29468,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
-	var toInteger = __webpack_require__(149)
+	var toInteger = __webpack_require__(150)
 	  , min       = Math.min;
 	module.exports = function(it){
 	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
@@ -29164,7 +29479,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var anObject = __webpack_require__(38)
-	  , get      = __webpack_require__(151);
+	  , get      = __webpack_require__(152);
 	module.exports = __webpack_require__(9).getIterator = function(it){
 	  var iterFn = get(it);
 	  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
@@ -29177,7 +29492,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	'use strict';
 	var addToUnscopables = __webpack_require__(295)
-	  , step             = __webpack_require__(144)
+	  , step             = __webpack_require__(145)
 	  , Iterators        = __webpack_require__(43)
 	  , toIObject        = __webpack_require__(44);
 
@@ -29269,7 +29584,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// 19.1.2.7 Object.getOwnPropertyNames(O)
 	__webpack_require__(95)('getOwnPropertyNames', function(){
-	  return __webpack_require__(142).get;
+	  return __webpack_require__(143).get;
 	});
 
 /***/ },
@@ -29277,7 +29592,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(150);
+	var toObject = __webpack_require__(151);
 
 	__webpack_require__(95)('keys', function($keys){
 	  return function keys(it){
@@ -32081,7 +32396,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.pushContainer = pushContainer;
 	exports.hoist = hoist;
 
-	var _constants = __webpack_require__(156);
+	var _constants = __webpack_require__(157);
 
 	var _libHoister = __webpack_require__(331);
 
@@ -32732,7 +33047,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.__esModule = true;
 
-	var _binding = __webpack_require__(158);
+	var _binding = __webpack_require__(159);
 
 	var _binding2 = _interopRequireDefault(_binding);
 
@@ -32895,7 +33210,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.verify = verify;
 	exports.merge = merge;
 
-	var _pathLibVirtualTypes = __webpack_require__(157);
+	var _pathLibVirtualTypes = __webpack_require__(158);
 
 	var virtualTypes = _interopRequireWildcard(_pathLibVirtualTypes);
 
@@ -33241,15 +33556,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.toBlock = toBlock;
 	exports.valueToNode = valueToNode;
 
-	var _lodashLangIsPlainObject = __webpack_require__(184);
+	var _lodashLangIsPlainObject = __webpack_require__(185);
 
 	var _lodashLangIsPlainObject2 = _interopRequireDefault(_lodashLangIsPlainObject);
 
-	var _lodashLangIsNumber = __webpack_require__(183);
+	var _lodashLangIsNumber = __webpack_require__(184);
 
 	var _lodashLangIsNumber2 = _interopRequireDefault(_lodashLangIsNumber);
 
-	var _lodashLangIsRegExp = __webpack_require__(185);
+	var _lodashLangIsRegExp = __webpack_require__(186);
 
 	var _lodashLangIsRegExp2 = _interopRequireDefault(_lodashLangIsRegExp);
 
@@ -35475,9 +35790,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.isScope = isScope;
 	exports.isImmutable = isImmutable;
 
-	var _retrievers = __webpack_require__(159);
+	var _retrievers = __webpack_require__(160);
 
-	var _esutils = __webpack_require__(163);
+	var _esutils = __webpack_require__(164);
 
 	var _esutils2 = _interopRequireDefault(_esutils);
 
@@ -38501,19 +38816,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _interopRequireDefault = __webpack_require__(1)["default"];
-
-	exports.__esModule = true;
-
-	var _tokenizerTypes = __webpack_require__(12);
-	var _types = _tokenizerTypes;
-
-	var _parser = __webpack_require__(11);
-
-	var _parser2 = _interopRequireDefault(_parser);
-
-	var pp = _parser2["default"].prototype;
-
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
@@ -38591,7 +38893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 					this.checkExport(node);
 					return this.finishNode(node, "ExportDefaultDeclaration");
 
-					//DCI (modified)
+					//DCI modified
 				} else if (this.state.type.keyword || this.state.value === 'context' || this.shouldParseExportDeclaration()) {
 						//} else if (this.state.type.keyword || this.shouldParseExportDeclaration()) {
 
@@ -38608,7 +38910,30 @@ return /******/ (function(modules) { // webpackBootstrap
 				return this.finishNode(node, "ExportNamedDeclaration");
 			};
 		});
+
+		//COPIED FROM babylon/src/plugins/flow.js
+		//We need this to parse role-player contracts since the flow parser plugin hasn't
+		//been fully initialized yet when the DCI Babylon plugin runs
+		//(the flow plugin is always added last.)
+		//
+		// don't consider `void` to be a keyword as then it'll use the void token type
+		// and set startExpr
+		instance.extend("isKeyword", function (inner) {
+			return function (name) {
+				if (this.state.inType && name === "void") {
+					return false;
+				} else {
+					return inner.call(this, name);
+				}
+			};
+		});
 	};
+
+	var _types = __webpack_require__(12);
+
+	var _parser = __webpack_require__(11);
+
+	var _parser2 = _interopRequireDefault(_parser);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38685,6 +39010,24 @@ return /******/ (function(modules) { // webpackBootstrap
 						this.raise(start, "setter should have exactly one param");
 					}
 				}
+			}
+		}
+
+		//Role-Player contracts
+		if (this.match(_types.types.name) && this.state.value === 'contract') {
+			var id = this.parseIdentifier();
+			if (id.name === 'contract') {
+				//use flow syntax plugin to parse the contract
+				var contract = this.flowParseType();
+				contract.type = 'RolePlayerContract';
+				node.contract = contract;
+
+				//let contract = this.startNode();
+				//this.expect(tt.braceL);
+				//while (!this.eat(tt.braceR)) {
+				//	
+				//}
+				//this.finishNode(contract, "RolePlayerContract");
 			}
 		}
 
@@ -38859,8 +39202,6 @@ return /******/ (function(modules) { // webpackBootstrap
 		this.semicolon();
 		return this.finishNode(node, "ContextProperty");
 	};
-
-	module.exports = exports.default;
 
 /***/ },
 /* 358 */
@@ -41011,7 +41352,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	var escapeStringRegexp = __webpack_require__(370);
-	var ansiStyles = __webpack_require__(194);
+	var ansiStyles = __webpack_require__(195);
 	var stripAnsi = __webpack_require__(446);
 	var hasAnsi = __webpack_require__(374);
 	var supportsColor = __webpack_require__(447);
@@ -41308,7 +41649,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	});
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(193).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(194).Buffer))
 
 /***/ },
 /* 367 */
@@ -41321,7 +41662,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = __webpack_require__(161);
+	exports = module.exports = __webpack_require__(162);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -41502,7 +41843,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = __webpack_require__(161);
+	exports = module.exports = __webpack_require__(162);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -42023,7 +42364,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	(function () {
 	    'use strict';
 
-	    var code = __webpack_require__(162);
+	    var code = __webpack_require__(163);
 
 	    function isStrictModeReservedWordES6(id) {
 	        switch (id) {
@@ -42243,7 +42584,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// https://github.com/paulmillr/es6-shim
 	// http://people.mozilla.org/~jorendorff/es6-draft.html#sec-number.isinteger
-	var isFinite = __webpack_require__(164);
+	var isFinite = __webpack_require__(165);
 	module.exports = Number.isInteger || function(val) {
 	  return typeof val === "number" &&
 	    isFinite(val) &&
@@ -44964,7 +45305,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var arrayEach = __webpack_require__(102),
-	    baseEach = __webpack_require__(171),
+	    baseEach = __webpack_require__(172),
 	    createForEach = __webpack_require__(416);
 
 	/**
@@ -45008,7 +45349,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var arrayMap = __webpack_require__(392),
 	    baseCallback = __webpack_require__(103),
-	    baseMap = __webpack_require__(175),
+	    baseMap = __webpack_require__(176),
 	    isArray = __webpack_require__(8);
 
 	/**
@@ -45081,7 +45422,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseCallback = __webpack_require__(103),
-	    baseMap = __webpack_require__(175),
+	    baseMap = __webpack_require__(176),
 	    baseSortBy = __webpack_require__(405),
 	    compareAscending = __webpack_require__(411),
 	    isIterateeCall = __webpack_require__(48);
@@ -45346,7 +45687,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 397 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFor = __webpack_require__(172),
+	var baseFor = __webpack_require__(173),
 	    keysIn = __webpack_require__(112);
 
 	/**
@@ -45477,7 +45818,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 399 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsEqual = __webpack_require__(174),
+	var baseIsEqual = __webpack_require__(175),
 	    toObject = __webpack_require__(23);
 
 	/**
@@ -45572,12 +45913,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseGet = __webpack_require__(104),
-	    baseIsEqual = __webpack_require__(174),
-	    baseSlice = __webpack_require__(177),
+	    baseIsEqual = __webpack_require__(175),
+	    baseSlice = __webpack_require__(178),
 	    isArray = __webpack_require__(8),
 	    isKey = __webpack_require__(108),
-	    isStrictComparable = __webpack_require__(179),
-	    last = __webpack_require__(165),
+	    isStrictComparable = __webpack_require__(180),
+	    last = __webpack_require__(166),
 	    toObject = __webpack_require__(23),
 	    toPath = __webpack_require__(109);
 
@@ -45684,11 +46025,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayCopy = __webpack_require__(167),
+	var arrayCopy = __webpack_require__(168),
 	    isArguments = __webpack_require__(49),
 	    isArray = __webpack_require__(8),
 	    isArrayLike = __webpack_require__(30),
-	    isPlainObject = __webpack_require__(184),
+	    isPlainObject = __webpack_require__(185),
 	    isTypedArray = __webpack_require__(111),
 	    toPlainObject = __webpack_require__(429);
 
@@ -46101,7 +46442,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var restParam = __webpack_require__(166);
+	var restParam = __webpack_require__(167);
 
 	/**
 	 * Creates a `_.defaults` or `_.defaultsDeep` function.
@@ -46383,7 +46724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isStrictComparable = __webpack_require__(179),
+	var isStrictComparable = __webpack_require__(180),
 	    pairs = __webpack_require__(432);
 
 	/**
@@ -46644,7 +46985,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(182),
+	var isFunction = __webpack_require__(183),
 	    isObjectLike = __webpack_require__(14);
 
 	/** Used to detect host constructors (Safari > 5). */
@@ -46698,7 +47039,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseCopy = __webpack_require__(170),
+	var baseCopy = __webpack_require__(171),
 	    keysIn = __webpack_require__(112);
 
 	/**
@@ -46743,7 +47084,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseMerge = __webpack_require__(402),
-	    createAssigner = __webpack_require__(178);
+	    createAssigner = __webpack_require__(179);
 
 	/**
 	 * Recursively merges own enumerable properties of the source object(s), that
@@ -46921,7 +47262,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseProperty = __webpack_require__(176),
+	var baseProperty = __webpack_require__(177),
 	    basePropertyDeep = __webpack_require__(404),
 	    isKey = __webpack_require__(108);
 
@@ -48072,7 +48413,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// Generated by `/scripts/character-class-escape-sets.js`. Do not edit.
-	var regenerate = __webpack_require__(191);
+	var regenerate = __webpack_require__(192);
 
 	exports.REGULAR = {
 		'd': regenerate()
@@ -48183,7 +48524,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var generate = __webpack_require__(443).generate;
 	var parse = __webpack_require__(444).parse;
-	var regenerate = __webpack_require__(191);
+	var regenerate = __webpack_require__(192);
 	var iuMappings = __webpack_require__(380);
 	var ESCAPE_SETS = __webpack_require__(441);
 
