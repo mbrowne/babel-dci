@@ -5,7 +5,7 @@
  */
 export default context Account
 {
-	constructor(ledgers: Array<LedgerEntry>) {
+	constructor(ledgers: ?Array<LedgerEntry>) {
 		if (!ledgers) ledgers = [];
 	}
 	
@@ -34,6 +34,26 @@ export default context Account
 	}
 }
 
+export function LedgerEntry(message: string, amount: number) {
+	this._message = message;
+	this._amount = amount;
+}
+
+LedgerEntry.prototype = {
+	constructor: LedgerEntry,
+	
+	get message(): string {
+		return this._message;
+	},
+	
+	get amount(): number {
+		return this._amount;
+	}
+};
+
+/*
+Or as a class:
+
 export class LedgerEntry
 {
 	constructor(message: string, amount: number) {
@@ -49,3 +69,4 @@ export class LedgerEntry
 		return this._amount;
 	}
 }
+*/

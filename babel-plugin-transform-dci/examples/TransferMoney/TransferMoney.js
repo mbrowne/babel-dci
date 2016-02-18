@@ -1,13 +1,15 @@
 /* @flow */
 
+import Account from './Account';
+
 /**
  * TransferMoney use case
  */
 export default function TransferMoney(sourceAccount: Account, destinationAccount: Account, amount: number) {
-	bank = this;
-	bank.transfer();
+	banker = this;
+	banker.transfer();
 
-	role bank {
+	role banker {
 		transfer() {
 			sourceAccount.withdraw();
 			destinationAccount.deposit();
@@ -23,6 +25,7 @@ export default function TransferMoney(sourceAccount: Account, destinationAccount
 		}
 	}
 	contract {
+		balance: number;
 		decreaseBalance(amt: number): void;
 	}
 	

@@ -4,10 +4,10 @@
  * TransferMoney use case
  */
 export default function TransferMoney(source: Account, destination: Account, amount: number) {
-	bank = this;
-	bank.transfer();
+	banker = this;
+	banker.transfer();
 
-	role bank {
+	role banker {
 		transfer() {
 			source.withdraw();
 			destination.deposit();
