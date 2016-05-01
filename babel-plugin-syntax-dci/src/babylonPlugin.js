@@ -362,10 +362,14 @@ pp.dci_parseContextMethod = function (ctxBody, method, isGenerator, isAsync) {
 };
 
 pp.dci_isContextProperty = function () {
-  return this.match(tt.eq) || this.isLineTerminator();
+  return this.match(tt.colon) || this.match(tt.eq) || this.isLineTerminator();
 };
 
 pp.dci_parseContextProperty = function (node) {
+  if (this.match(tt.colon)) {
+    node.typeAnnotation = this.flowParseTypeAnnotation();
+  }
+
   if (this.match(tt.eq)) {
     this.next();
     node.value = this.parseMaybeAssign();
