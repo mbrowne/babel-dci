@@ -268,6 +268,12 @@ export default function({types: t}) {
 				//transform role-player contracts to flow type aliases
 				let contractsAsFlowTypes = transformRolePlayerContracts(rolePaths);
 				
+				//declare any role variables that haven't yet been declared
+				let roleVarDeclarators = initRolePlayerVars(path, roleMethods);
+				if (roleVarDeclarators.length) {
+					roleBindingsMapInit.declarations = roleBindingsMapInit.declarations.concat(roleVarDeclarators);
+				}
+				
 				//Put it all together
 				let fnBodyNodes = [
 					ctxCallCheck,
@@ -284,7 +290,7 @@ export default function({types: t}) {
 								t.ObjectExpression(roleDescriptors.concat(contextMemberDescriptors))
 							]
 						)
-					),
+					)
 				]);
 				
 				fnBodyNodes = fnBodyNodes.concat(constructorBodyNodes);
