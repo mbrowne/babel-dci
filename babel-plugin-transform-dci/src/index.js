@@ -192,7 +192,9 @@ export default function({types: t}) {
 				//Transform Context members
 				
 				let contextMemberDescriptors = [];
-				let valueId = t.Identifier('value');
+				let valueId = t.Identifier('value'),
+					writableId = t.Identifier('writable'),
+					trueId = t.Identifier('true');
 				
 				//Transform Context members to descriptors that will be passed to
 				//Object.defineProperties(this, ...);
@@ -208,7 +210,8 @@ export default function({types: t}) {
 						contextMemberDescriptors.push(t.ObjectProperty(
 							prop.key,
 							t.ObjectExpression([
-								t.ObjectProperty(valueId, prop.value)
+								t.ObjectProperty(valueId, prop.value),
+								t.ObjectProperty(writableId, trueId)
 							])
 						));
 					}
