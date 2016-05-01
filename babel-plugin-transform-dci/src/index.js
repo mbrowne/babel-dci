@@ -29,7 +29,14 @@ export default function({types: t}) {
 	//this makes it possible to create a ContextDeclaration visitor
 	t.TYPES.push('ContextDeclaration');
 	
-	//Allow DCI node types to be traversed
+	//Allow DCI node types to be traversed.
+	//This is a bit of a hack; ideally we would define our types using defineType()
+	//as in https://github.com/babel/babel/blob/master/packages/babel-types/src/definitions/es2015.js.
+	//But this plugin runs too late for that to work.
+	//
+	//Note: BUILDER_KEYS and NODE_FIELDS may also be needed for future requirements.
+	//See https://github.com/babel/babel/blob/master/packages/babel-types/src/definitions/index.js
+	
 	t.VISITOR_KEYS.RoleDeclaration = ['id', 'body'];
 	t.VISITOR_KEYS.RoleDeclarationBody = ['body'];
 	t.VISITOR_KEYS.RoleMethod = ['key', 'params', 'body', 'decorators', 'returnType', 'typeParameters'];
@@ -37,6 +44,20 @@ export default function({types: t}) {
 	t.VISITOR_KEYS.ContextBody = ['body'];
 	t.VISITOR_KEYS.ContextProperty = ['key', 'value', 'decorators'];
 	t.VISITOR_KEYS.ContextMethod = ['key', 'params', 'body', 'decorators', 'returnType', 'typeParameters'];
+	
+	t.ALIAS_KEYS.ContextDeclaration = ["Scopable", "Statement", "Declaration"];
+	t.ALIAS_KEYS.ContextMethod = ["Function", "Scopable", "BlockParent", "FunctionParent", "Method"];
+	//Aliases appear not to be needed for ContextProperty (since it doesn't look like there are any for ClassProperty)
+	
+	//We need to update FLIPPED_ALIAS_KEYS as well (it's used internally by babel-types)
+	t.FLIPPED_ALIAS_KEYS = {};
+	for (let type in t.ALIAS_KEYS) {
+		let aliases = t.ALIAS_KEYS[type];
+		for (let alias of aliases) {
+		  let types = t.FLIPPED_ALIAS_KEYS[alias] = t.FLIPPED_ALIAS_KEYS[alias] || [];
+		  types.push(type);
+		}
+	}
 	
 	return {
 		inherits: require("babel-plugin-syntax-dci"),
@@ -50,6 +71,10 @@ export default function({types: t}) {
 				//2-dimensional map of role methods indexed by role name and then by method name
 				let roleMethods = {};
 				let rolePaths = [];
+
+				//role-player type annotations, indexed by role name
+				//not currently used but might be needed for future features
+				let playerTypeAnnotations = {};
 				let nodesToKeep = [];
 				
 				for (let subPath of path.get('body.body')) {
@@ -66,7 +91,13 @@ export default function({types: t}) {
 				if (!fnDecl.isDCIContext) {
 					return;
 				}
+
+				let automaticBindings = automaticallyBindConstructorParams(fnDecl.params, roleMethods, playerTypeAnnotations);
+				fnDecl.body.body = automaticBindings.concat(nodesToKeep);
 				
+				//TODO
+				//Type-casts for accessing instance properties
+
 				let roleDescriptors = transformRolesToDescriptors(roleMethods, rolePaths);
 				
 				//Also initialize the roleBindings map					
@@ -89,10 +120,7 @@ export default function({types: t}) {
 				));
 				*/
 				
-				let automaticBindings = automaticallyBindConstructorParams(fnDecl.params, roleMethods);
-				fnDecl.body.body = automaticBindings.concat(nodesToKeep);
-				
-				transformContextMethods(path.get('body'), roleMethods)
+				transformContextMethods(path.get('body'), roleMethods, playerTypeAnnotations);
 				
 				let roleAssignments = [
 					t.CallExpression(
@@ -133,7 +161,7 @@ export default function({types: t}) {
 				let contractsAsFlowTypes = transformRolePlayerContracts(rolePaths);
 				
 				//add initialization code to top of function declaration
-				fnDecl.body.body = [ctxAssignment].concat([roleBindingsMapInit], roleAssignments, fnDecl.body.body, contractsAsFlowTypes);
+				fnDecl.body.body = [ctxAssignment].concat(contractsAsFlowTypes, [roleBindingsMapInit], roleAssignments, fnDecl.body.body);
 			},
 			
 			ContextDeclaration(path) {
@@ -142,6 +170,10 @@ export default function({types: t}) {
 				//2-dimensional map of role methods indexed by role name and then by method name
 				let roleMethods = {};
 				let rolePaths = [];
+				
+				//role-player type annotations, indexed by role name
+				//not currently used but might be needed for future features
+				let playerTypeAnnotations = {};
 				let contextMemberPaths = [];
 				
 				for (let subPath of path.get('body.body')) {
@@ -197,8 +229,11 @@ export default function({types: t}) {
 				let constructorBodyNodes = [];
 				if (constructorPath) {
 					constructorBodyNodes = constructorPath.node.body.body;
-					transformContextMethods(constructorPath.get('body'), roleMethods);
+					transformContextMethods(constructorPath.get('body'), roleMethods, playerTypeAnnotations);
 				}
+				
+				let automaticBindings = automaticallyBindConstructorParams(constructorParams, roleMethods, playerTypeAnnotations);
+				constructorBodyNodes = automaticBindings.concat(constructorBodyNodes);
 				
 				//Transform roles
 				
@@ -212,11 +247,7 @@ export default function({types: t}) {
 					t.ObjectExpression([
 						t.ObjectProperty(t.Identifier('value'), t.Identifier('__roleBindings'))
 					])
-				));
-				
-				let automaticBindings = automaticallyBindConstructorParams(constructorParams, roleMethods);
-				constructorBodyNodes = automaticBindings.concat(constructorBodyNodes);
-				
+				));				
 				
 				//Add initialization code at the top of the Context function
 				
@@ -241,7 +272,9 @@ export default function({types: t}) {
 				//Put it all together
 				let fnBodyNodes = [
 					ctxCallCheck,
-					ctxAssignment,
+					ctxAssignment
+				];
+				fnBodyNodes = fnBodyNodes.concat(contractsAsFlowTypes, [
 					roleBindingsMapInit,
 					t.ExpressionStatement(
 						t.CallExpression(
@@ -253,13 +286,9 @@ export default function({types: t}) {
 							]
 						)
 					),
-				];
+				]);
 				
-				//TODO see if we can accomplish this by modifying the 'loc' objects. This inserts an unnecessary semicolon.
-				//push type declarations to the next line
-				contractsAsFlowTypes.unshift(t.EmptyStatement());
-				
-				fnBodyNodes = fnBodyNodes.concat(constructorBodyNodes, contractsAsFlowTypes);
+				fnBodyNodes = fnBodyNodes.concat(constructorBodyNodes);
 				
 				//was the Context declaration preceded with 'export default'?
 				if (path.parentPath.isExportDefaultDeclaration()) {
@@ -311,18 +340,16 @@ export default function({types: t}) {
 			//copy the method body array
 			methodBody = t.BlockStatement(method.body.body.slice());
 			
-			
-			
 			//MAY NEED TO USE
 			//PATH API TO INSERT THIS WITHOUT AN EXTRA NEWLINE IN THE GENERATED CODE
-			
 			
 			//Allow `self` to be used as an alternative to `this`
 			//(and without the scoping issues of `this`).
 			//
-			//var self = this;
+			//var self: RolePlayerType = this;
+			let selfId = t.Identifier('self');
 			methodBody.body.unshift(t.VariableDeclaration('var', [
-				t.VariableDeclarator(t.Identifier('self'), t.ThisExpression())
+				t.VariableDeclarator(selfId, t.ThisExpression())
 			]));
 			
 			props[i] = t.ObjectProperty(
@@ -345,8 +372,7 @@ export default function({types: t}) {
 		let roleDescriptors = [];
 		let valueId = t.Identifier('value');
 		for (let rolePath of rolePaths) {
-			let roleName = rolePath.node.id.name;
-			
+			let roleName = rolePath.node.id.name;			
 			roleDescriptors.push(t.ObjectProperty(
 				t.Identifier('__$' + roleName),
 				t.ObjectExpression([
@@ -361,7 +387,7 @@ export default function({types: t}) {
 	}
 	
 	//Transform the contents of the Context function and Context methods
-	function transformContextMethods(path, roleMethods) {
+	function transformContextMethods(path, roleMethods, playerTypeAnnotations) {
 		path.traverse({
 			ExpressionStatement(subPath) {
 				//TODO
@@ -389,7 +415,7 @@ export default function({types: t}) {
 			},
 			
 			CallExpression: createCallExpressionVisitor(roleMethods),
-			AssignmentExpression: createAssignmentExpressionVisitor(roleMethods)
+			AssignmentExpression: createAssignmentExpressionVisitor(roleMethods, playerTypeAnnotations)
 		});
 	}
 	
@@ -415,22 +441,22 @@ export default function({types: t}) {
 	}
 	
 	function createCallExpressionVisitor(roleMethods, currentRoleName) {
-		return function(subPath) {
-			let callee = subPath.node.callee;				
+		return function(path) {
+			let callee = path.node.callee;				
 			if (callee.type === 'MemberExpression') {
 				let roleId;
+				let isRoleMethod = false;
 			
 				//TODO for `this`, only top-level statements should be transformed
 				//(so `this` scoping works the same as it would normally)
-				if ( (t.isThisExpression(callee.object) || (callee.object.type === 'Identifier' && callee.object.name === 'self'))
-					&& (callee.property.name in roleMethods[currentRoleName])
-				) {
+				if (t.isThisExpression(callee.object) || (callee.object.type === 'Identifier' && callee.object.name === 'self')) {
 					roleId = t.Identifier(currentRoleName);
+					isRoleMethod = (callee.property.name in roleMethods[currentRoleName]);
 				}
-				else if (callee.object.type === 'Identifier' && callee.object.name in roleMethods
-					&& callee.property.name in roleMethods[callee.object.name]
-				) {
+				//is it a role method?
+				else if (callee.object.type === 'Identifier' && callee.object.name in roleMethods) {
 					roleId = callee.object;
+					isRoleMethod = (callee.property.name in roleMethods[callee.object.name]);
 				}
 				
 				if (!roleId) {
@@ -438,39 +464,58 @@ export default function({types: t}) {
 				}
 				
 				let methodId = callee.property;
-
-				//TODO
-				//Why is this causing an extra newline to be added?
-				//This only happens if the variable names start with underscores (__context and __$...)
-
-				//__context.roles.[[roleName]].[[methodName]].call([[rolePlayer]], ...);
-				subPath.replaceWith(t.CallExpression(
-					//build expression resolving to call() method of role method
-					t.MemberExpression(
+				
+				if (isRoleMethod) {
+					//TODO
+					//Why is this causing an extra newline to be added?
+					//This only happens if the variable names start with underscores (__context and __$...)
+					
+					//Transform role method call
+					//__context.roles.[[roleName]].[[methodName]].call([[rolePlayer]], ...);
+					path.replaceWith(t.CallExpression(
+						//build expression resolving to call() method of role method
 						t.MemberExpression(
 							t.MemberExpression(
-								t.Identifier('__context'),
-								t.Identifier('__$' + roleId.name)
+								t.MemberExpression(
+									t.Identifier('__context'),
+									t.Identifier('__$' + roleId.name)
+								),
+								methodId
 							),
-							methodId
+							t.Identifier('call')
 						),
-						t.Identifier('call')
-					),
-	
-					//arguments
-					[roleId].concat(subPath.node.arguments)
-				));
+		
+						//arguments
+						[roleId].concat(path.node.arguments)
+					));
+				}
 			}
 		};
 	}
 	
 	//Find role-binding statements (AKA role assignments) and keep track of bindings
-	function createAssignmentExpressionVisitor(roleMethods) {
+	function createAssignmentExpressionVisitor(roleMethods, playerTypeAnnotations) {
 		let roleBindingsExpr = t.MemberExpression(t.Identifier('__context'), t.Identifier('__roleBindings'));
 		return function(path) {
 			let node = path.node;
 			if (t.isIdentifier(node.left) && (node.left.name in roleMethods)) {
-				let roleId = node.left;				
+				let roleId = node.left;
+				
+				//Keep track of role player types
+				//Note: This would currently break in the case of role re-binding,
+				//but role re-binding probably shouldn't be allowed anyway.
+				let rhs = node.right;
+				if (t.isIdentifier(rhs) && rhs.name != '__context') {
+					let binding = path.scope.getBinding(rhs.name);
+					if (!binding) {
+						throw path.buildCodeFrameError("Undefined variable '" + rhs.name + "'");
+					}
+					
+					if (binding.identifier.typeAnnotation) {
+						playerTypeAnnotations[roleId.name] = binding.identifier.typeAnnotation;
+					}
+				}
+				
 				//__context.__roleBindings.[[roleName]] = [[player]]
 				path.insertAfter(t.ExpressionStatement(t.AssignmentExpression(
 					'=',
@@ -483,7 +528,7 @@ export default function({types: t}) {
 	
 	//Automatically bind any constructor (or Context function) parameters that have the
 	//same names as roles.
-	function automaticallyBindConstructorParams(fnParams, roleMethods) {
+	function automaticallyBindConstructorParams(fnParams, roleMethods, playerTypeAnnotations) {
 		let assignments = [];
 		let roleBindingsExpr = t.MemberExpression(t.Identifier('__context'), t.Identifier('__roleBindings'));
 		for (let param of fnParams) {
@@ -494,6 +539,11 @@ export default function({types: t}) {
 					t.MemberExpression(roleBindingsExpr, roleId),
 					roleId
 				)));
+				
+				//Keep track of role player types
+				if (roleId.typeAnnotation) {
+					playerTypeAnnotations[roleId.name] = roleId.typeAnnotation;
+				}
 			}
 		}
 		return assignments;
@@ -502,15 +552,23 @@ export default function({types: t}) {
 	//Initialize the role bindings map.
 	//Returns a variable declaration for the __roleBindings variable.
 	function initRoleBindingsMap(rolePaths) {
-		let roleBindingsId = t.Identifier('__roleBindings');
-		let rolePlayerContractTypes = [];
-		for (let rolePath of rolePaths) {
-			let roleDecl = rolePath.node;
-			if (roleDecl.contract) {
-				rolePlayerContractTypes.push(
-					t.ObjectTypeProperty(roleDecl.id, roleDecl.id)
-				);
+		let roleBindingsId = t.Identifier('__roleBindings'),
+			rolePlayerContractTypes = [],
+			props = [],
+			undef = t.Identifier('undefined');
+			
+		for (let rolePath of rolePaths) {			
+			let roleId = rolePath.node.id,
+				annotationId;
+			if (rolePath.node.contract) {
+				//type annotation (question mark indicates a "maybe type",
+				//which is needed since role players are undefined prior to role binding)
+				annotationId = t.Identifier('?__' + roleId.name + 'Contract');
 			}
+			else annotationId = t.Identifier('mixed');
+				
+			rolePlayerContractTypes.push(t.ObjectTypeProperty(roleId, annotationId));
+			props.push(t.ObjectProperty(roleId, undef));
 		}
 		
 		roleBindingsId.typeAnnotation = t.TypeAnnotation(
@@ -518,9 +576,8 @@ export default function({types: t}) {
 		);
 		
 		let roleBindingsMapInit = t.VariableDeclaration('var', [
-			t.VariableDeclarator(roleBindingsId, t.ObjectExpression([]))
+			t.VariableDeclarator(roleBindingsId, t.ObjectExpression(props))
 		]);
-		
 		return roleBindingsMapInit;
 	}
 	
@@ -532,7 +589,7 @@ export default function({types: t}) {
 				contract = roleDecl.contract;
 			if (contract) {
 				let typeAlias = t.TypeAlias();
-				typeAlias.id = roleDecl.id;
+				typeAlias.id = t.Identifier('__' + roleDecl.id.name + 'Contract');
 				contract.type = 'ObjectTypeAnnotation';
 				typeAlias.right = contract;
 				typeAliases.push(typeAlias);

@@ -10,7 +10,8 @@
     "babel-plugin"
   ],
   "scripts": {
-  	"build": "babel src -d lib"
+  	"build": "babel src -d lib",
+  	"build-watch": "babel src -wd lib"
   },
   "dependencies": {
     "babel-plugin-syntax-dci": "^0.0.1",
