@@ -127,7 +127,7 @@ pp.dci_parseRole = function (node) {
 
 //Parse role body
 //Adapted from parseClassBody(),
-//https://github.com/babel/babylon/blob/master/src/parser/statement.js
+//https://github.com/babel/babel/blob/master/packages/babylon/src/parser/statement.js
 pp.dci_parseRoleBody = function (node) {
 	let roleBody = this.startNode();
 	roleBody.body = [];
@@ -222,7 +222,7 @@ pp.dci_parseContext = function (node) {
 
 //Parse context body
 //Adapted from parseClassBody(),
-//https://github.com/babel/babylon/blob/master/src/parser/statement.js
+//https://github.com/babel/babel/blob/master/packages/babylon/src/parser/statement.js
 pp.dci_parseContextBody = function (node) {
 	// context bodies are implicitly strict
 	let oldStrict = this.state.strict;

@@ -46,12 +46,11 @@ export default function({types: t}) {
 	t.VISITOR_KEYS.ContextMethod = ['key', 'params', 'body', 'decorators', 'returnType', 'typeParameters'];
 	
 	t.ALIAS_KEYS.ContextDeclaration = ["Scopable", "Statement", "Declaration"];
-	t.ALIAS_KEYS.ContextMethod = ["Function", "Scopable", "BlockParent", "FunctionParent", "Method"];
+	t.ALIAS_KEYS.ContextMethod = ["Function", "Scopable", "BlockParent", "FunctionParent", "Method", "ObjectMethod"];
 	//Aliases appear not to be needed for ContextProperty (since it doesn't look like there are any for ClassProperty)
 	
 	//We need to update FLIPPED_ALIAS_KEYS as well (it's used internally by babel-types)
-	t.FLIPPED_ALIAS_KEYS = {};
-	for (let type in t.ALIAS_KEYS) {
+	for (let type of ['ContextDeclaration', 'ContextMethod']) {
 		let aliases = t.ALIAS_KEYS[type];
 		for (let alias of aliases) {
 		  let types = t.FLIPPED_ALIAS_KEYS[alias] = t.FLIPPED_ALIAS_KEYS[alias] || [];
