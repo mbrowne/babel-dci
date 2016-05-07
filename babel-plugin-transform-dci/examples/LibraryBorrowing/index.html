@@ -1,20 +1,28 @@
 <!doctype html>
 <head>
-	<title>Borrow Library Book</title>
-	<style>
-		[hidden] {display:none;}
-	</style>
+	<title>Borrow Library Items</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id="container"></div>
-	<!--<button id="scanAnother">Scan Another</button>-->
+
+<div id="container" class="screen-only"></div>
+<div id="receipt" class="print-only"></div>
 	
 <script id="panelTemplate" type="text/ractive">
-	<!--<button id="scanFirstItemButton" on-click="scanLoanItem">Scan Library Item</button>-->
-	<nav id="menu"></nav>
+	<h1>Borrow Library Items</h1>
 	
-	{{#if itemScanned}}
-		<p>Scanned Item: {{itemScanned.title}}</p>
+	<p>Welcome to the automatic library borrowing service!</p>
+	
+	<nav id="menu" class="menu"></nav>
+	
+	{{#if scannedItem}}
+		<div class="scanned-item">
+			<strong>Scanned Item:</strong>
+			{{scannedItem.title}}
+			{{#if successfullyBorrowed}}
+				<p>Borrowed successfully.</p>
+			{{/if}}
+		</div>
 	{{/if}}
 </script>
 <script id="menuTemplate" type="text/ractive">
@@ -29,7 +37,25 @@
 		{{/if}}
 	</ul>
 </script>
+<script id="confirmationTemplate" type="text/ractive">
+	<p>Thank you for using our automatic borrowing service! You successfully borrowed the items below.</p>
+	<p><strong>Don't forget your library card!</strong></p>
+	<h3>Items Borrowed:</h3>
+	<ul>
+	{{#each loanItems}}
+		<li>{{title}}</li>
+	{{/each}}
+	</ul>
+</script>
 <script id="receiptTemplate" type="text/ractive">
+	<h2>Receipt</h2>
+	<p>
+		<strong>Borrower:</strong> {{borrower.name}}<br>
+		<strong>Card Number:</strong> {{borrower.cardNumber}}<br>
+		<strong>Date:</strong> {{date}}
+	</p>
+	
+	<h3>Items Borrowed:</h3>
 	<ul>
 	{{#each loanItems}}
 		<li>{{title}}</li>
@@ -37,8 +63,5 @@
 	</ul>
 </script>
 
-<script>
-window.log = console.log.bind(console);
-</script>
 <script src="dist/bundle.js"></script>
 </body>

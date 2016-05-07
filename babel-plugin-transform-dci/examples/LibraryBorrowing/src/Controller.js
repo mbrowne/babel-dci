@@ -1,10 +1,9 @@
 import BorrowLibraryItems from './BorrowLibraryItems';
-import session from './session';
+import app from './app';
 import User from './data-objects/User';
-import Panel from './Panel';
-import MenuView from './MenuView';
 import Deferred from './Deferred';
 import Command from './Command';
+import Ractive from 'ractive';
 
 var log = console.log.bind(console);
 
@@ -12,40 +11,38 @@ var log = console.log.bind(console);
  * MVC Controller
  */
 export default context Controller {
-	_panel: Panel;
-	_menu: MenuView;
+	_panel: Ractive;
+	_menuView: Ractive;
+	_confirmationView: Ractive;
+	_receiptView: Ractive;
 	_deferredNextCommand: Deferred;
 
 	constructor() {
+		Scanner = null;
 		this._deferredNextCommand = new Deferred();
 	}
 	
 	init() {
-		let self = this;
-		//setTimeout(function() {
-		//
-		//self._emitCommand('scanAnother');
-		//}, 100);
-		
-		self._panel = new Panel(self);
-		self._menu = new MenuView({
-			el: '#menu'	//render to #menu element
-		});
-		
-		//TEMP
-		window.panel = self._panel;
-
-		self._initEventHandlers();
+		this._renderPanel();
+		this._renderMenu();
+		this._initEventHandlers();
 	}
 	
-	showScannedItem(item: ItemRecord) {
-		this._panel.set('itemScanned', item);
+	role Scanner {
+		//generate random item number (mock scanner)
+		getItemId(): number {
+			let min = 1, max = 7;
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+	}
+	
+	showScannedItem(item: ItemRecord, successfullyBorrowed: boolean) {
+		this._panel.set('scannedItem', item);
+		this._panel.set('successfullyBorrowed', successfullyBorrowed);
 	}
 	
 	showNextSteps() {
-		//this._panel.find('#scanFirstItemButton').hidden = true;
-
-		this._menu.set('firstItemWasScanned', true);
+		this._menuView.set('firstItemWasScanned', true);
 	}
 	
 	showError(errMsg: string) {
@@ -54,30 +51,26 @@ export default context Controller {
 	
 	_initEventHandlers() {
 		let self = this,
-			menu = self._menu;
+			menu = self._menuView;
 		
 		menu.on('scanFirstItem', function() {
 			/*
 			 * Start the use case
 			 */
-			BorrowLibraryItems(session.user, self._generateRandomItemId(), self);
+			BorrowLibraryItems(app.session.user, Scanner.getItemId(), self);
 		});
 		
-		//let menuOptions = ['scanAnother', 'finishWithReceipt', 'finishWithoutReceipt'];
-		
 		menu.on('scanAnother', function() {
-			self._emitCommand('scanAnother', [self._generateRandomItemId()]);
+			self._emitCommand('scanAnother', [Scanner.getItemId()]);
 		});
 		
 		menu.on('finishWithReceipt', function() {
 			self._emitCommand('finishWithReceipt');
 		});
-	}
-	
-	//generate random item number (mock scanner)
-	_generateRandomItemId() {
-		let min = 1, max = 4;
-		return Math.floor(Math.random() * (max - min)) + min;
+		
+		menu.on('finishWithoutReceipt', function() {
+			self._emitCommand('finishWithoutReceipt');
+		});
 	}
 	
 	_emitCommand(commandName: string, args: ?Array<any>) {
@@ -88,5 +81,44 @@ export default context Controller {
 	async nextCommand() {
 		//setTimeout(() => deferred.resolve("test"), 100);
 		return this._deferredNextCommand.promise;
+	}
+	
+	_renderPanel() {
+		this._panel = new Ractive({
+			el: 'container',
+			template: '#panelTemplate'
+		});
+	}
+	
+	_renderMenu() {
+		this._menuView = new Ractive({
+			el: 'menu',
+			template: '#menuTemplate',
+			data: {
+				firstItemScanned: false
+			}
+		});
+	}
+	
+	showConfirmation(loanItems: Array<ItemRecord>) {
+		this._confirmationView = new Ractive({
+			el: 'container',
+			template: '#confirmationTemplate',
+			data: {
+				loanItems
+			}
+		});
+	}
+	
+	showReceipt(borrower:User, loanItems: Array<ItemRecord>, date: Date) {
+		this._receiptView = new Ractive({
+			el: 'receipt',
+			template: '#receiptTemplate',
+			data: {
+				borrower,
+				loanItems,
+				date
+			}
+		});
 	}
 }
