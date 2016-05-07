@@ -5,7 +5,7 @@ import ItemRecord from './data-objects/ItemRecord';
 import Loan from './data-objects/Loan';
 import app from './app';
 
-var log = console.log.bind(console);
+//var log = console.log.bind(console);
 
 /**
  * Borrow Library Items

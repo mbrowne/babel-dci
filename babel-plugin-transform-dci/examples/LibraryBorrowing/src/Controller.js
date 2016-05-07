@@ -5,7 +5,7 @@ import Deferred from './Deferred';
 import Command from './Command';
 import Ractive from 'ractive';
 
-var log = console.log.bind(console);
+//var log = console.log.bind(console);
 
 /**
  * MVC Controller
