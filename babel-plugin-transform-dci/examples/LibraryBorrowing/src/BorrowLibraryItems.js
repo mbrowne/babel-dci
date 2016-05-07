@@ -58,11 +58,11 @@ export default function BorrowLibraryItems(borrower: User, firstItemId: number, 
 			self.showNextSteps();
 			let cmd = await Screen.nextCommand();
 			switch (cmd.name) {
-                case "scanAnother":
-                    Borrower.borrowLoanItem((cmd.arguments[0]: number));
-                    break;
+				case "scanAnother":
+					Borrower.borrowLoanItem((cmd.arguments[0]: number));
+					break;
 				case "finishWithReceipt":
-                case "finishWithoutReceipt":
+				case "finishWithoutReceipt":
 					let arrBorrowedItems = Array.from(borrowedItems.values());
 					Screen.showConfirmation(arrBorrowedItems);
 					if (cmd.name == "finishWithReceipt") {
@@ -72,7 +72,7 @@ export default function BorrowLibraryItems(borrower: User, firstItemId: number, 
 					break;
 				default:
 					throw Error('Invalid command: "' + cmd.name + '"');
-            }
+			}
 		}
 	}
 	contract {
