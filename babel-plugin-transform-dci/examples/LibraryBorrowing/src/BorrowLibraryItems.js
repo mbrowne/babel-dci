@@ -40,7 +40,7 @@ export default function BorrowLibraryItems(borrower: User, firstItemId: number, 
 				Screen.showError(error);
 			}
 			else {			
-				let loan = new Loan(Borrower, loanItem);
+				let loan = new Loan((Borrower: User), loanItem);
 				Database.save(loan);
 				//add to local map of borrowed items (indexed by item ID)
 				borrowedItems.set(loanItem.id, loanItem);
@@ -66,7 +66,7 @@ export default function BorrowLibraryItems(borrower: User, firstItemId: number, 
 					let arrBorrowedItems = Array.from(borrowedItems.values());
 					Screen.showConfirmation(arrBorrowedItems);
 					if (cmd.name == "finishWithReceipt") {
-						Screen.showReceipt(Borrower, arrBorrowedItems, new Date());
+						Screen.showReceipt((Borrower: User), arrBorrowedItems, new Date());
 						Printer.print();
 					}
 					break;
