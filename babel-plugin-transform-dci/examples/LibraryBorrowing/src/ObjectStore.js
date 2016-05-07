@@ -9,6 +9,8 @@ export default context ObjectStore {
 	}
 	
 	save(entity: Object) {
+		//TODO: throw an error if two objects have the same ID
+		
 		if (!this._entities.has(entity))
 			this._entities.set((entity.id: string), entity);
 	}
