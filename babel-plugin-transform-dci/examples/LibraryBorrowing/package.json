@@ -1,0 +1,27 @@
+{
+  "name": "borrow-library-items",
+  "main": "lib/index.js",
+  "author": "Matt Browne",
+  "license": "MIT",
+  "browserify": {
+    "transform": ["babelify"]
+  },
+  "scripts": {
+    "build": "simplifyify src/index.js --debug --outfile dist/bundle.js",
+    "build-watch": "simplifyify src/index.js --debug --watch --outfile dist/bundle.js",
+    "transpile": "babel src -sd lib",
+    "transpile-watch": "babel src -wsd lib"
+  },
+  "devDependencies": {
+    "babel-plugin-syntax-dci": "^0.0.1",
+    "babel-runtime": "^5.0.0",
+    "babelify": "^7.3.0",
+    "babylon": "^6.3.25",
+    "simplifyify": "^2.0.1",
+    "watchify": "^3.7.0",
+    "exorcist": "^0.4.0"
+  },
+  "dependencies": {
+    "ractive": "^0.7.3"
+  }
+}

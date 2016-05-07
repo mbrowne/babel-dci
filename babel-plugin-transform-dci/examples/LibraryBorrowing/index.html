@@ -1,0 +1,44 @@
+<!doctype html>
+<head>
+	<title>Borrow Library Book</title>
+	<style>
+		[hidden] {display:none;}
+	</style>
+</head>
+<body>
+	<div id="container"></div>
+	<!--<button id="scanAnother">Scan Another</button>-->
+	
+<script id="panelTemplate" type="text/ractive">
+	<!--<button id="scanFirstItemButton" on-click="scanLoanItem">Scan Library Item</button>-->
+	<nav id="menu"></nav>
+	
+	{{#if itemScanned}}
+		<p>Scanned Item: {{itemScanned.title}}</p>
+	{{/if}}
+</script>
+<script id="menuTemplate" type="text/ractive">
+	<ul>
+		{{#unless firstItemWasScanned}}
+			<li><a href="javascript:;" on-click="scanFirstItem">Scan Library Item</a></li>
+		{{/unless}}
+		{{#if firstItemWasScanned}}
+			<li><a href="javascript:;" on-click="scanAnother" class="pure-button">Scan Another Item</a></li>
+			<li><a href="javascript:;" on-click="finishWithReceipt" class="pure-button">Finish with a Receipt</a></li>
+			<li><a href="javascript:;" on-click="finishWithoutReceipt" class="pure-button">Finish without a Receipt</a></li>
+		{{/if}}
+	</ul>
+</script>
+<script id="receiptTemplate" type="text/ractive">
+	<ul>
+	{{#each loanItems}}
+		<li>{{title}}</li>
+	{{/each}}
+	</ul>
+</script>
+
+<script>
+window.log = console.log.bind(console);
+</script>
+<script src="dist/bundle.js"></script>
+</body>
