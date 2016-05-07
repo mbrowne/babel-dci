@@ -1,0 +1,67 @@
+<!doctype html>
+<head>
+	<title>Borrow Library Items</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container" class="screen-only"></div>
+<div id="receipt" class="print-only"></div>
+	
+<script id="panelTemplate" type="text/ractive">
+	<h1>Borrow Library Items</h1>
+	
+	<p>Welcome to the automatic library borrowing service!</p>
+	
+	<nav id="menu" class="menu"></nav>
+	
+	{{#if scannedItem}}
+		<div class="scanned-item">
+			<strong>Scanned Item:</strong>
+			{{scannedItem.title}}
+			{{#if successfullyBorrowed}}
+				<p>Borrowed successfully.</p>
+			{{/if}}
+		</div>
+	{{/if}}
+</script>
+<script id="menuTemplate" type="text/ractive">
+	<ul>
+		{{#unless firstItemWasScanned}}
+			<li><a href="javascript:;" on-click="scanFirstItem">Scan Library Item</a></li>
+		{{/unless}}
+		{{#if firstItemWasScanned}}
+			<li><a href="javascript:;" on-click="scanAnother" class="pure-button">Scan Another Item</a></li>
+			<li><a href="javascript:;" on-click="finishWithReceipt" class="pure-button">Finish with a Receipt</a></li>
+			<li><a href="javascript:;" on-click="finishWithoutReceipt" class="pure-button">Finish without a Receipt</a></li>
+		{{/if}}
+	</ul>
+</script>
+<script id="confirmationTemplate" type="text/ractive">
+	<p>Thank you for using our automatic borrowing service! You successfully borrowed the items below.</p>
+	<p><strong>Don't forget your library card!</strong></p>
+	<h3>Items Borrowed:</h3>
+	<ul>
+	{{#each loanItems}}
+		<li>{{title}}</li>
+	{{/each}}
+	</ul>
+</script>
+<script id="receiptTemplate" type="text/ractive">
+	<h2>Receipt</h2>
+	<p>
+		<strong>Borrower:</strong> {{borrower.name}}<br>
+		<strong>Card Number:</strong> {{borrower.cardNumber}}<br>
+		<strong>Date:</strong> {{date}}
+	</p>
+	
+	<h3>Items Borrowed:</h3>
+	<ul>
+	{{#each loanItems}}
+		<li>{{title}}</li>
+	{{/each}}
+	</ul>
+</script>
+
+<script src="dist/bundle.js"></script>
+</body>

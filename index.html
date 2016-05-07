@@ -124,8 +124,7 @@ function TransferMoney(source: Account, destination: Account, amount: number) {
     role amount {}
 }
 
-context Account
-{
+context Account {
     constructor(ledgers: ?Array<LedgerEntry>) {
         if (!ledgers) ledgers = [];
     }
@@ -198,27 +197,30 @@ console.log('destination balance', dest.balance);
 	
     function transform() {
       try {
+      	var plugins = ['transform-dci', 'syntax-flow'];
+      	
         var output = Babel.transform(inputEl.value, {
           presets: ['es2015'],
-          plugins: [
-          	'transform-flow-strip-types',
-          	'transform-dci',
-          	'transform-class-properties'
-          ]
+          plugins: plugins
         }).code;
         
         outputEl.innerHTML = output;
+        
       } catch (ex) {
         outputEl.innerHTML = 'ERROR: ' + ex.message;
       }
       return output;
     }
-
-    transform();
+	
+	transform();
     
     $('#btn-compile').addEventListener('click', transform);
     $('#btn-run').addEventListener('click', function() {
-    	eval(transform());
+    	//strip flow types before running
+    	output = Babel.transform(transform(), {
+          plugins: ['transform-flow-strip-types']
+        }).code;
+    	eval(output);
     });
 
 </script>

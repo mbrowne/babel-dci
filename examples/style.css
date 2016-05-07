@@ -1,0 +1,40 @@
+body {
+	font-family: sans-serif;
+	font-size: 18px;
+}
+
+#container {
+	width:75%;
+	margin:1em auto;
+}
+
+h1 {font-size:1.7em;}
+
+.menu {display:inline-block; width:50%;}
+.menu ul {
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+.menu li {
+	width:15em;
+	background:#0a7f6d;
+	padding:8px;
+	margin-bottom:1em;
+	text-align:center;
+	border-radius:5px;
+}
+.menu a {
+	color:white;
+	text-decoration: none;
+}
+
+.scanned-item {display:inline-block; vertical-align: top;}
+
+@media screen {
+	.print-only {display:none !important;}
+}
+
+@media print {
+	.screen-only {display:none !important;}
+}
