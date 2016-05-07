@@ -513,7 +513,10 @@ export default function({types: t}) {
 				//Note: This would currently break in the case of role re-binding,
 				//but role re-binding probably shouldn't be allowed anyway.
 				let rhs = node.right;
-				if (t.isIdentifier(rhs) && rhs.name != '__context' && rhs.name != 'window') {
+				if (t.isIdentifier(rhs) && rhs.name != '__context'
+					//the global objects `window` and `console` can also play roles
+					&& rhs.name != 'window' && rhs.name != 'console'
+				) {
 					let binding = path.scope.getBinding(rhs.name);
 					if (!binding) {
 						throw path.buildCodeFrameError("Undefined variable '" + rhs.name + "'");
