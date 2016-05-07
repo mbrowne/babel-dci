@@ -449,7 +449,7 @@ export default function({types: t}) {
 	}
 	
 	function createCallExpressionVisitor(roleMethods, currentRoleName) {
-		return function(path) {
+		return function(path) {		
 			let callee = path.node.callee;				
 			if (callee.type === 'MemberExpression') {
 				let roleId;
@@ -459,12 +459,12 @@ export default function({types: t}) {
 				//(so `this` scoping works the same as it would normally)
 				if (t.isThisExpression(callee.object) || (callee.object.type === 'Identifier' && callee.object.name === 'self')) {
 					roleId = t.Identifier(currentRoleName);
-					isRoleMethod = (callee.property.name in roleMethods[currentRoleName]);
+					isRoleMethod = (roleMethods[currentRoleName] && (callee.property.name in roleMethods[currentRoleName]));
 				}
 				//is it a role method?
 				else if (callee.object.type === 'Identifier' && callee.object.name in roleMethods) {
 					roleId = callee.object;
-					isRoleMethod = (callee.property.name in roleMethods[callee.object.name]);
+					isRoleMethod = (roleMethods[callee.object.name] && (callee.property.name in roleMethods[callee.object.name]));
 				}
 				
 				if (!roleId) {
@@ -513,7 +513,7 @@ export default function({types: t}) {
 				//Note: This would currently break in the case of role re-binding,
 				//but role re-binding probably shouldn't be allowed anyway.
 				let rhs = node.right;
-				if (t.isIdentifier(rhs) && rhs.name != '__context') {
+				if (t.isIdentifier(rhs) && rhs.name != '__context' && rhs.name != 'window') {
 					let binding = path.scope.getBinding(rhs.name);
 					if (!binding) {
 						throw path.buildCodeFrameError("Undefined variable '" + rhs.name + "'");
