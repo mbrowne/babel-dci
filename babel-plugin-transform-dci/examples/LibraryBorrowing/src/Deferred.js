@@ -18,9 +18,8 @@
    ```
  */
 export default function Deferred(label: ?string) {
-	let self = this;
-	self.promise = new Promise(function(resolve, reject) {
-		self.resolve = resolve;
-		self.reject = reject;
+	this.promise = new Promise((resolve, reject) => {
+		this.resolve = resolve;
+		this.reject = reject;
 	}, label);
 }

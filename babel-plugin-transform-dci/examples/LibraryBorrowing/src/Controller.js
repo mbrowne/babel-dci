@@ -50,27 +50,26 @@ export default context Controller {
 	}
 	
 	_initEventHandlers() {
-		let self = this,
-			menu = self._menuView;
+		let menu = this._menuView;
 		
-		menu.on('scanFirstItem', function() {
+		menu.on('scanFirstItem', () =>
 			/*
 			 * Start the use case
 			 */
-			BorrowLibraryItems(app.session.user, Scanner.getItemId(), self);
-		});
+			BorrowLibraryItems(app.session.user, Scanner.getItemId(), this)
+		);
 		
-		menu.on('scanAnother', function() {
-			self._emitCommand('scanAnother', [Scanner.getItemId()]);
-		});
+		menu.on('scanAnother', () =>
+			this._emitCommand('scanAnother', [Scanner.getItemId()])
+		);
 		
-		menu.on('finishWithReceipt', function() {
-			self._emitCommand('finishWithReceipt');
-		});
+		menu.on('finishWithReceipt', () =>
+			this._emitCommand('finishWithReceipt')
+		);
 		
-		menu.on('finishWithoutReceipt', function() {
-			self._emitCommand('finishWithoutReceipt');
-		});
+		menu.on('finishWithoutReceipt', () =>
+			this._emitCommand('finishWithoutReceipt')
+		);
 	}
 	
 	_emitCommand(commandName: string, args: ?Array<any>) {

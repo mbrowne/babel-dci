@@ -16,17 +16,16 @@ h1 {font-size:1.7em;}
 	padding:0;
 	list-style-type:none;
 }
-.menu li {
+.menu a {
+	display:block;
 	width:15em;
+	color:white;
+	text-decoration: none;
 	background:#0a7f6d;
 	padding:8px;
 	margin-bottom:1em;
 	text-align:center;
 	border-radius:5px;
-}
-.menu a {
-	color:white;
-	text-decoration: none;
 }
 
 .scanned-item {display:inline-block; vertical-align: top;}
