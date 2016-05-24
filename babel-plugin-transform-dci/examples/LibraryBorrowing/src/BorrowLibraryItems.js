@@ -24,7 +24,7 @@ export default function BorrowLibraryItems(borrower: User, firstItemId: number, 
 	
 	role Borrower {
 		borrowLoanItem(itemId: number) {
-			let loanItem: ItemRecord = Database.getById(itemId);
+			let loanItem: ItemRecord = Database.getItemRecordById(itemId);
 			let error;
 			
 			if (!loanItem.isAvailable()) {
