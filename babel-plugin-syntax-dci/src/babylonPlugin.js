@@ -2,7 +2,6 @@
 
 //TEMP
 const log = console.log;
-
 import { types as tt } from "babylon/lib/tokenizer/types";
 import Parser from "babylon/lib/parser";
 
@@ -249,33 +248,27 @@ pp.dci_parseContextBody = function (node) {
 		*/
 		
     	let member = this.startNode();
+		this.dci_parsePropertyModifiers(member);
 		this.parsePropertyName(member);
 		
 		if (member.key.type === 'Identifier' && member.key.name === 'role') {
 			ctxBody.body.push(this.dci_parseRole(member));
 			continue;
 		}
-		
-		let method = member;
     	
 		//let isConstructorCall = false;
 		let isGenerator = this.eat(tt.star);
 		let isGetSet = false;
 		let isAsync = false;
 		
-		if (!isGenerator && method.key.type === "Identifier" && !method.computed) {
+		if (!isGenerator && member.key.type === "Identifier" && !member.computed) {
 		  if (this.dci_isContextProperty()) {
-			ctxBody.body.push(this.dci_parseContextProperty(method));
+			ctxBody.body.push(this.dci_parseContextProperty(member));
 			continue;
 		  }
-		  
-		  /*
-		  if (this.hasPlugin("classConstructorCall") && method.key.name === "call" && this.match(tt.name) && this.state.value === "constructor") {
-			isConstructorCall = true;
-			this.parsePropertyName(method);
-		  }
-		  */
 		}
+		
+		let method = member;
 	    
 		let isAsyncMethod = this.hasPlugin("asyncFunctions") && !this.match(tt.parenL) && !method.computed && method.key.type === "Identifier" && method.key.name === "async";
 		if (isAsyncMethod) {
@@ -317,6 +310,13 @@ pp.dci_parseContextBody = function (node) {
 		}
 		
 		/*
+		if (this.hasPlugin("classConstructorCall") && method.key.name === "call" && this.match(tt.name) && this.state.value === "constructor") {
+		  isConstructorCall = true;
+		  this.parsePropertyName(method);
+		}
+		*/
+		
+		/*
 		// convert constructor to a constructor call
 		if (isConstructorCall) {
 		  if (hadConstructorCall) this.raise(method.start, "Duplicate constructor call in the same DCI context");
@@ -356,6 +356,25 @@ pp.dci_parseContextBody = function (node) {
 	this.state.strict = oldStrict;
 };
 
+const dci_propertyModifiers = ['public', 'private', 'readonly', 'writeonce'];
+
+pp.dci_parsePropertyModifiers = function (prop) {
+	let i = 0;
+	while (this.match(tt.name) && dci_propertyModifiers.includes(this.state.value)) {
+		prop[this.state.value] = true;
+		this.next();
+		i++;
+	}
+	if (i > 1) {
+		if (prop.public && prop.private) {
+			this.raise(this.state.start, "A property cannot be both public and private");
+		}
+		if (prop.readonly && prop.writeonce) {
+			this.raise(this.state.start, "A property cannot be both readonly and writeonce");
+		}
+	}
+}
+
 pp.dci_parseContextMethod = function (ctxBody, method, isGenerator, isAsync) {
   this.parseMethod(method, isGenerator, isAsync);
   ctxBody.body.push(this.finishNode(method, "ContextMethod"));
@@ -369,7 +388,6 @@ pp.dci_parseContextProperty = function (node) {
   if (this.match(tt.colon)) {
     node.typeAnnotation = this.flowParseTypeAnnotation();
   }
-
   if (this.match(tt.eq)) {
     this.next();
     node.value = this.parseMaybeAssign();
