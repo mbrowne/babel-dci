@@ -126,7 +126,7 @@ pp.dci_parseRole = function (node) {
 
 //Parse role body
 //Adapted from parseClassBody(),
-//https://github.com/babel/babel/blob/master/packages/babylon/src/parser/statement.js
+//https://github.com/babel/babylon/blob/master/src/parser/statement.js
 pp.dci_parseRoleBody = function (node) {
 	let roleBody = this.startNode();
 	roleBody.body = [];
@@ -214,14 +214,32 @@ pp.dci_parseRoleMethod = function (roleBody, method, isGenerator, isAsync) {
 // Context declarations (context MyContext {...})
 
 pp.dci_parseContext = function (node) {
+  //TODO Do we need optionalId like the current version of parseClass()?
+  
   node.id = this.parseIdentifier();
+  if (this.match(tt.name) && this.state.value === 'embed') {
+    this.next();
+	node.embeds = this.dci_parseEmbed(node);
+  }
   this.dci_parseContextBody(node);
   return this.finishNode(node, "ContextDeclaration");
 };
 
+//Parse `embed` expression (used for object composition)
+//Example: `context User embed Entity, Timestampable {...}`
+pp.dci_parseEmbed = function(node) {
+	let embeds = [];
+	do {
+		let expr = this.parseExprAtom();
+		embeds.push(this.parseSubscripts(expr, this.state.start, this.state.startLoc));
+	}
+	while (this.eat(tt.comma));
+	return embeds;
+};
+
 //Parse context body
 //Adapted from parseClassBody(),
-//https://github.com/babel/babel/blob/master/packages/babylon/src/parser/statement.js
+//https://github.com/babel/babylon/blob/master/src/parser/statement.js
 pp.dci_parseContextBody = function (node) {
 	// context bodies are implicitly strict
 	let oldStrict = this.state.strict;
