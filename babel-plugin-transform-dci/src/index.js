@@ -4,6 +4,15 @@ const log = console.log;
 import {parse} from "babylon";
 import * as helpers from "babel-helpers/lib/helpers";
 
+//NOTE
+//It would be more efficient to build the AST for these code snippets programmatically, but it's not a lot of code so maybe
+//it doesn't matter.
+
+//TODO
+//role map for use by prototype methods
+//let code = "const roleMap = new WeakMap()";
+//const roleWeakMapInit = parse(code).program.body[0].expression;
+
 //Code to initialize __context variable.
 //This works on the server and in the browser and in both strict and non-strict mode.
 //If it's a constructor function, __context is set to `this`; otherwise, create an empty object to
@@ -12,10 +21,7 @@ import * as helpers from "babel-helpers/lib/helpers";
 //TODO
 //Could we just do this instead?
 //var __context = (this instanceof MyContext ? this: {});
-//
-//TODO
-//It would be more efficient to build the AST for this programmatically
-let code = "(this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this)";
+code = "(this===undefined || (typeof global !== 'undefined' && this === global) || (typeof window !== 'undefined' && this === window) ? {}: this)";
 const initContextVariableAst = parse(code).program.body[0].expression;
 
 code = "throw Error(\"Contexts defined with the 'context' declaration should be instantiated with the 'new' operator.\");";
@@ -233,6 +239,10 @@ export default function({types: t}) {
 					constructorBodyNodes = constructorPath.node.body.body;
 					transformContextMethods(constructorPath.get('body'), roleMethods, playerTypeAnnotations);
 				}
+				
+				//TODO find where first embedded object is defined and transform it to:
+				//Object.setPrototypeOf(this, new EmbeddedObject(...))
+				//(where EmbeddedObject is the name of the embedded Context type or Class)
 				
 				let automaticBindings = automaticallyBindConstructorParams(constructorParams, roleMethods, playerTypeAnnotations);
 				constructorBodyNodes = automaticBindings.concat(constructorBodyNodes);

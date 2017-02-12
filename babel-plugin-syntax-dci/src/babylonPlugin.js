@@ -226,8 +226,12 @@ pp.dci_parseContext = function (node) {
 };
 
 //Parse `embed` expression (used for object composition)
-//Example: `context User embed Entity, Timestampable {...}`
+//Example: `context Car embed Vehicle, EnginePowered {...}`
 pp.dci_parseEmbed = function(node) {
+	//TODO
+	//We should probably allow this syntax to be optionally explicit about the type
+	//and embedded instance name:
+	//	context User embed entity: Entity
 	let embeds = [];
 	do {
 		let expr = this.parseExprAtom();
@@ -236,6 +240,8 @@ pp.dci_parseEmbed = function(node) {
 	while (this.eat(tt.comma));
 	return embeds;
 };
+
+const accessModifiers = ['public', 'private'];
 
 //Parse context body
 //Adapted from parseClassBody(),
@@ -252,7 +258,6 @@ pp.dci_parseContextBody = function (node) {
 	ctxBody.body = [];
 
 	this.expect(tt.braceL);
-
 	while (!this.eat(tt.braceR)) {
 		if (this.eat(tt.semi)) {
 		  continue;
@@ -266,13 +271,20 @@ pp.dci_parseContextBody = function (node) {
 		*/
 		
     	let member = this.startNode();
-		this.dci_parsePropertyModifiers(member);
-		this.parsePropertyName(member);
 		
-		if (member.key.type === 'Identifier' && member.key.name === 'role') {
+		if (this.match(tt.name) && this.state.value === 'role') {
+			this.parseIdentifier();
 			ctxBody.body.push(this.dci_parseRole(member));
 			continue;
 		}
+		
+		this.dci_parseAccessModifiers(member);
+		//TODO
+		//Is there a way to look ahead to see if there's a parenthesis so we only parse
+		//the mutability modifiers (readonly, writeonce) for properties and not methods?
+		this.dci_parseMutabilityModifiers(member);
+		
+		this.parsePropertyName(member);
     	
 		//let isConstructorCall = false;
 		let isGenerator = this.eat(tt.star);
@@ -287,6 +299,12 @@ pp.dci_parseContextBody = function (node) {
 		}
 		
 		let method = member;
+		method.kind = "method";
+		
+		//TODO
+		//Can we find an alternative to this code? (See above.)
+		delete method.readonly;
+		delete method.writeonce;
 	    
 		let isAsyncMethod = this.hasPlugin("asyncFunctions") && !this.match(tt.parenL) && !method.computed && method.key.type === "Identifier" && method.key.name === "async";
 		if (isAsyncMethod) {
@@ -294,8 +312,6 @@ pp.dci_parseContextBody = function (node) {
 		  isAsync = true;
 		  this.parsePropertyName(method);
 		}
-		
-		method.kind = "method";
 		
 		if (!method.computed) {
 			let { key } = method;
@@ -374,22 +390,28 @@ pp.dci_parseContextBody = function (node) {
 	this.state.strict = oldStrict;
 };
 
-const dci_propertyModifiers = ['public', 'private', 'readonly', 'writeonce'];
+const dci_accessModifiers = ['public', 'private'];
+const dci_mutabilityModifiers = ['readonly', 'writeonce'];
 
-pp.dci_parsePropertyModifiers = function (prop) {
-	let i = 0;
-	while (this.match(tt.name) && dci_propertyModifiers.includes(this.state.value)) {
-		prop[this.state.value] = true;
-		this.next();
-		i++;
+pp.dci_parseAccessModifiers = function (member) {
+	this._dci_parseModifiers(member, dci_accessModifiers);
+	if (member.public && member.private) {
+		this.raise(this.state.start, "A property or method cannot be both public and private");
 	}
-	if (i > 1) {
-		if (prop.public && prop.private) {
-			this.raise(this.state.start, "A property cannot be both public and private");
-		}
-		if (prop.readonly && prop.writeonce) {
-			this.raise(this.state.start, "A property cannot be both readonly and writeonce");
-		}
+	if (!member.private) member.public = true;
+}
+
+pp.dci_parseMutabilityModifiers = function (prop) {
+	this._dci_parseModifiers(prop, dci_mutabilityModifiers);
+	if (prop.readonly && prop.writeonce) {
+		this.raise(this.state.start, "A property cannot be both readonly and writeonce");
+	}
+}
+
+pp._dci_parseModifiers = function(member, modifiers) {
+	while (this.match(tt.name) && modifiers.includes(this.state.value)) {
+		member[this.state.value] = true;
+		this.next();
 	}
 }
 
