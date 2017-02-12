@@ -263,14 +263,18 @@ pp.dci_parseContextBody = function (node) {
 		  continue;
 		}
 		
-		//TODO?
-		//annotations
-		/*
 		if (this.match(tt.at)) {
+			decorators.push(this.parseDecorator());
+      		continue;
 		}
-		*/
 		
     	let member = this.startNode();
+    	
+		// add the decorators if there are any
+		if (decorators.length) {
+			member.decorators = decorators;
+			decorators = [];
+		}
 		
 		if (this.match(tt.name) && this.state.value === 'role') {
 			this.parseIdentifier();
