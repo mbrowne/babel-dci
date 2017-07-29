@@ -7,7 +7,7 @@
 //https://gist.github.com/mbrowne/215f2dd2a92841c48b5d
 
 export default function FrontLoadActivities(project: Project) {
-	allActivities: Array<Activity> = project.activities;
+	allActivities: [Activity] = project.activities;
 
 	allActivities.forEach(a => a.earlyStart = 0);
 	
@@ -27,7 +27,7 @@ export default function FrontLoadActivities(project: Project) {
 		
 		role unplannedActivity() {
 			frontLoad() {
-				//let maxPred: Activity = predecessors.FirstOrDefault(p => p.EarlyFinish == c.Predecessors.Max(m => m.EarlyFinish));
+				//const maxPred: Activity = predecessors.FirstOrDefault(p => p.EarlyFinish == c.Predecessors.Max(m => m.EarlyFinish));
                 if (maxPred != null) {
                     self.earlyStart = maxPred.earlyFinish + 1;
                 }

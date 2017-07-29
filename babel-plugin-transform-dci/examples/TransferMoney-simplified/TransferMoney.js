@@ -16,16 +16,16 @@ export default function TransferMoney(source: Account, destination: Account, amo
 
 	role source {
 		withdraw() {
-			if (self.balance < amount) {
+			if (this.balance < amount) {
 				throw Error('Insufficient funds');
 			}
-			self.decreaseBalance(amount);
+			this.decreaseBalance(amount);
 		}
 	}
 	
 	role destination {
 		deposit() {
-			self.increaseBalance(amount);
+			this.increaseBalance(amount);
 		}
 	}
 	

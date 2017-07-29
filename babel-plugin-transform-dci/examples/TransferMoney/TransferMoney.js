@@ -18,10 +18,10 @@ export default function TransferMoney(sourceAccount: Account, destinationAccount
 
 	role sourceAccount {
 		withdraw() {
-			if (self.balance < amount) {
+			if (this.balance < amount) {
 				throw Error('Insufficient funds');
 			}
-			self.decreaseBalance(amount);
+			this.decreaseBalance(amount);
 		}
 	}
 	contract {
@@ -31,7 +31,7 @@ export default function TransferMoney(sourceAccount: Account, destinationAccount
 	
 	role destinationAccount {
 		deposit() {
-			self.increaseBalance(amount);
+			this.increaseBalance(amount);
 		}
 	}
 	contract {

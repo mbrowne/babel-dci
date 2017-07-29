@@ -8,12 +8,12 @@ export default function Graph(edges) {
 	this.previous = new Map();
 
 	for (let edge of edges) {
-		let from = edge[0],
+		const from = edge[0],
 			to = edge[1],
 			dist = edge[2];
 
 		let pairs = this.nodes.get(from);
-		if (pairs == null) {
+		if (pairs === null) {
 			pairs = new Map();
 			pairs.set(to, dist);
 			this.nodes.add(from, pairs);

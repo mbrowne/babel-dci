@@ -1,10 +1,10 @@
 import Account from './Account';
 import TransferMoney from './TransferMoney';
 
-let sourceAccount = new Account();
+const sourceAccount = new Account();
 sourceAccount.increaseBalance(30);
 
-let destinationAccount = new Account();
+const destinationAccount = new Account();
 destinationAccount.increaseBalance(20);
 
 //run the use case

@@ -5,7 +5,7 @@
  */
 export default context Account
 {
-	constructor(ledgers: ?Array<LedgerEntry>) {
+	constructor(ledgers: ?[LedgerEntry]) {
 		if (!ledgers) ledgers = [];
 	}
 	
@@ -27,9 +27,7 @@ export default context Account
 		}
 		
 		getBalance(): number {
-			let sum = 0;
-			ledgers.forEach(ledger => sum += ledger.amount);
-			return sum;
+			return ledgers.reduce((sum, ledger) => sum + ledger.amount, 0);
 		}
 	}
 }
